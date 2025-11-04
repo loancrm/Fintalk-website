@@ -1,0 +1,116 @@
+<div *ngIf="productInfo">
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>{{ productInfo.title }}</h2>
+      </div>
+
+      <div class="row content">
+        <div class="col-lg-6 p-4 pt-lg-0">
+          <h2 class="fw-bold mb-4">{{ productInfo.heading }}</h2>
+          <div *ngFor="let para of productInfo.paragraphs">
+            <p [innerHTML]="para"></p>
+          </div>
+        </div>
+
+        <div
+          class="col-lg-6 d-flex justify-content-center align-items-center"
+          data-aos="fade-right"
+          data-aos-delay="100"
+          style="height: 280px"
+        >
+          <img
+            [src]="productInfo.image"
+            alt="{{ productInfo.title }}"
+            class="img-fluid"
+            style="max-width: 90%; max-height: 400px; object-fit: contain"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">{{ productInfo.stepsTitle }}</h2>
+      <div class="row g-4">
+        <div
+          class="col-md-4"
+          *ngFor="let step of productInfo.steps; let i = index"
+        >
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ i + 1 }}. {{ step.title }}</h5>
+              <p class="card-text">{{ step.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">{{ productInfo.eligibilityTitle }}</h2>
+      <ul class="list-group list-group-flush shadow w-75 mx-auto">
+        <li
+          class="list-group-item"
+          *ngFor="let item of productInfo.eligibility"
+        >
+          ✅ {{ item }}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Documents -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">{{ productInfo.documentsTitle }}</h2>
+      <ul class="list-group list-group-flush shadow w-75 mx-auto">
+        <li
+          class="list-group-item"
+          *ngFor="let doc of productInfo.documents"
+        >
+          📄 {{ doc }}
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">{{ productInfo.benefitsTitle }}</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <ul class="list-group list-group-flush shadow">
+            <li
+              class="list-group-item"
+              *ngFor="let benefit of productInfo.benefits"
+            >
+             {{ benefit }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-5 bg-primary text-white text-center">
+    <div class="container">
+      <h2 class="mb-3">{{ productInfo.ctaTitle }}</h2>
+      <p class="mb-4">{{ productInfo.ctaDescription }}</p>
+      <a [href]="productInfo.ctaLink" class="btn btn-light btn-lg px-4">{{
+        productInfo.ctaButtonText
+      }}</a>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="!productInfo">
+  <p>Product not found.</p>
+</div>

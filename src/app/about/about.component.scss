@@ -1,0 +1,143 @@
+
+// *--------------------------------------------------------------
+// # About Us
+// --------------------------------------------------------------*/
+.about .content h3 {
+  font-weight: 600;
+  font-size: 26px;
+}
+.about{
+  background-color: #F3F5FA;
+}
+.about .content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about .content ul li {
+  padding-left: 28px;
+  position: relative;
+}
+
+.about .content ul li + li {
+  margin-top: 10px;
+}
+
+.about .content ul i {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 20px;
+  color: #1acc8d;
+  line-height: 1;
+}
+
+.about .content p:last-child {
+  margin-bottom: 0;
+}
+
+.about .content .btn-learn-more {
+  // font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 4px;
+  transition: 0.3s;
+  line-height: 1;
+  color: #1acc8d;
+  animation-delay: 0.8s;
+  margin-top: 6px;
+  border: 2px solid #1acc8d;
+}
+
+.about .content .btn-learn-more:hover {
+  background: #1acc8d;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #37517e;
+}
+
+.section-title h2::before {
+  content: "";
+  // position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  // background: #1acc8d;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+section {
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+
+.section-bg {
+  background-color: #f3f5fa;
+}
+.highlight-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #149f6e;
+  margin-bottom: 15px;
+}
+
+.highlight-text {
+  font-size: 16px;
+  text-align: justify;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.highlight-list {
+  list-style: none;
+  padding: 0;
+}
+
+.highlight-list li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.highlight-list li i {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  color: #1acc8d;
+  font-size: 18px;
+}

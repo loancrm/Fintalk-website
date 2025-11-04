@@ -1,0 +1,107 @@
+.timeline-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 60px;
+  color: #222;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.timeline-step.reverse .step-content {
+  flex-direction: row-reverse;
+}
+
+.step-marker {
+  position: relative;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  background: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.line {
+  flex: 1;
+  width: 4px;
+  background-color: #007bff;
+  margin-top: 5px;
+}
+
+.step-content {
+  display: flex;
+  gap: 40px;
+  flex: 1;
+  align-items: center;
+  flex-direction: row;
+}
+
+.step-img img {
+  width: 300px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.step-text {
+  flex: 1;
+}
+
+.step-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.step-text p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .timeline-step,
+  .timeline-step.reverse .step-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step-img img {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .step-marker {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,21 @@
+<div class="timeline-container">
+  <h2 class="timeline-title">Business Loan Process</h2>
+
+  <div *ngFor="let step of loanSteps; let i = index" class="timeline-step" [ngClass]="{ 'reverse': i % 2 !== 0 }">
+
+    <div class="step-marker">
+      <div class="circle">{{ 'Step ' + (i + 1) }}</div>
+      <div class="line" *ngIf="i < loanSteps.length - 1"></div>
+    </div>
+
+    <div class="step-content">
+      <div class="step-img">
+        <img [src]="step.image" [alt]="step.title" />
+      </div>
+      <div class="step-text">
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
