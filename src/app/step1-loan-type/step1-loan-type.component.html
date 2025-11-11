@@ -1,0 +1,49 @@
+<!-- <p>step1-loan-type works!</p>
+<h2>Choose the type of loan you need</h2>
+<p>Select a loan type below to continue</p>
+
+<div class="loan-grid">
+  <div
+    class="loan-card"
+    [class.active]="selectedType === type"
+    *ngFor="let type of ['Business', 'Professional', 'Personal', 'Education']"
+    (click)="selectType(type)"
+  >
+    <h3>{{ type }} Loan</h3>
+    <p *ngIf="type === 'Business'">For Business Expansion or Working Capital</p>
+    <p *ngIf="type === 'Professional'">For Doctors, Architects & Certified Pros</p>
+    <p *ngIf="type === 'Personal'">For Travel, Wedding, or Personal Use</p>
+    <p *ngIf="type === 'Education'">For Educational Expenses & Tuition</p>
+  </div>
+</div>
+
+<button class="next-btn" (click)="continue()" [disabled]="!selectedType">Continue</button> -->
+<!-- <div class="back-btn" (click)="goBack()">← Back</div> -->
+<div class="loan-type-container">
+  <!-- Breadcrumb -->
+  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+
+  <h2>Choose the type of loan you need</h2>
+  <p class="subtitle">Select a loan type below to continue</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let type of loanTypes"
+      [class.active]="selectedType === type.value"
+      (click)="selectType(type.value)"
+    >
+      <div class="icon">
+        <img [src]="type.icon" alt="{{ type.title }}" class="icon-img" />
+      </div>
+      <div>
+        <h3>{{ type.title }}</h3>
+        <p>{{ type.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button class="next-btn" (click)="continue()" [disabled]="!selectedType">
+    Continue
+  </button> -->
+</div>

@@ -14,6 +14,13 @@ import { ProductDetailModule } from "./product-detail/product-detail.module";
 import { FooterModule } from "./footer/footer.module";
 import { ProcessModule } from "./process/process.module";
 import { ApplyModule } from "./apply/apply.module";
+import { HttpClientModule } from '@angular/common/http';
+import { LoanApplicationModule } from "./loan-application/loan-application.module";
+import { Step1LoanTypeModule } from "./step1-loan-type/step1-loan-type.module";
+import { Step2DetailsModule } from "./step2-details/step2-details.module";
+import { ContactDetailsModule } from "./contact-details/contact-details.module";
+import { ProductDetailsModule } from "./product-details/product-details.module";
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,9 +34,15 @@ import { ApplyModule } from "./apply/apply.module";
     ProductDetailModule,
     FooterModule,
     ProcessModule,
-    ApplyModule
+    LoanApplicationModule,
+    Step1LoanTypeModule,
+    ApplyModule,
+    Step2DetailsModule,
+    HttpClientModule,
+    ContactDetailsModule,
+    ProductDetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

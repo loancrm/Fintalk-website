@@ -20,30 +20,46 @@
         data-aos-delay="200"
       >
       <img src="assets/img/image.png" class="img-fluid animated" alt="" /> -->
-         <!-- <img src="../../assets/img/bannerimg2.svg" alt="" class="resized-image"> -->
-          <!-- <img src="../../assets/img/bannercolorbg.svg" alt="">
+<!-- <img src="../../assets/img/bannerimg2.svg" alt="" class="resized-image"> -->
+<!-- <img src="../../assets/img/bannercolorbg.svg" alt="">
       </div>
     </div>
   </div>
-</section> --> 
-<section id="home" class="home-section d-flex align-items-center justify-content-center">
+</section> -->
+<section
+  id="home"
+  class="home-section d-flex align-items-center justify-content-center"
+>
   <div class="container text-center">
-    <h1 class="headingname">
-        Unsecured Loans For<span class="line-break"> Your Business</span>
-      </h1>
+    <h1 class="headingname">Unsecured Loans For Your Business</h1>
 
-      <h5 class="customubheading">
-        <span class="line-break">Get quick access to funds without collateral. Transparent, flexible, </span>
-        <span class="line-break">and hassle-free.</span>
-      </h5>
+    <h5 class="customubheading">
+      Fast, Flexible Business Loans from 10 L to 5 Cr. Repay on your terms, up
+      to 84 months.
+    </h5>
 
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center">
       <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div> -->
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <a routerLink="/apply" class="btn btn-outline-primary btn-custom-outline">
+        Apply Now
+      </a>
+
+      <a
+        (click)="scrollToSection('contactus')"
+        class="btn btn-primary btn-custom-filled"
+        >Contact Us</a
+      >
     </div>
   </div>
 </section>
-<section data-aos="zoom-in" data-aos-duration="1500" class="section-bg carouselsect">
-  <div class="carousel-container mx-2">
+<!-- <section
+  data-aos="zoom-in"
+  data-aos-duration="1500"
+  class="section-bg carouselsect m-2"
+>
+  <div class="carousel-container ">
     <p-carousel
       [value]="images"
       [numVisible]="numVisibleItems"
@@ -55,46 +71,419 @@
       styleClass="custom-carousel"
     >
       <ng-template let-image pTemplate="item">
-        <img [src]="image"  class="image-carousel" style="width: 55%; height: 50%" />
+        <img [src]="image" class="image-carousel" />
+      </ng-template>
+    </p-carousel>
+  </div>
+</section> -->
+<section
+  data-aos="zoom-in"
+  data-aos-duration="1500"
+  class="section-bg carouselsect m-2"
+>
+  <div class="carousel-container">
+    <p-carousel
+      [value]="images"
+      [numVisible]="5"
+      [numScroll]="1"
+      [circular]="true"
+      [autoplayInterval]="2500"
+      [showIndicators]="false"
+      [showNavigators]="false"
+      styleClass="custom-carousel"
+    >
+      <ng-template let-image pTemplate="item">
+        <div
+          class="logo-slide d-flex justify-content-center align-items-center"
+        >
+          <img [src]="image" alt="Bank Logo" class="image-carousel" />
+        </div>
       </ng-template>
     </p-carousel>
   </div>
 </section>
 
-
-  <section  id="aboutUs" class="Card aboutusbox d-flex flex-lg-row flex-sm-column section">
-    
+<!-- <section
+  id="aboutUs"
+  class="Card aboutusbox d-flex flex-lg-row flex-sm-column section"
+>
+  <div>
     <div>
-      <div>
       <h1>About Us</h1>
-      <p>We provide unsecured loans designed to meet your personal and business financial needs with quick, hassle-free access to funds.</p>
-      </div>
-      <div>
-      <p>At Fintalk, we make securing unsecured business loans easier than ever. Our efficient and streamlined process, powered by innovative technology and a skilled team, ensures that entrepreneurs can quickly access the funding they need to grow and succeed. Whether you're launching a new project, managing cash flow, or expanding operations, our goal is to help businesses thrive by offering fast, reliable, and cost-effective financial solutions.
-
-<br> <strong> Our Key Benefits </strong><br>
-
- <strong>Fast Funding:</strong> Thanks to our advanced technology, we can approve and disburse funds quickly—often within 24 hours—so you can meet your business needs without delay.
-
- <br><strong>Simple and Stress-Free Process:</strong> Say goodbye to the hassle of paperwork. Our expert team takes care of the entire process, handling all the documentation, so you don’t have to spend valuable time on administrative tasks.
-
-<br><strong>Competitive Loan Rates:</strong> With our strong relationships with top lenders, we’re able to secure the best possible interest rates and loan terms, ensuring that your business gets the most affordable financing options available.</p>
-       </div>
+      <p>
+        We provide unsecured loans designed to meet your personal and business
+        financial needs with quick, hassle-free access to funds.
+      </p>
     </div>
-
     <div>
-      <img src="../../assets/img/aboutusimggg.svg" alt="">
-    </div>
-  </section>
+      <p>
+        At Fintalk, we make securing unsecured business loans easier than ever.
+        Our efficient and streamlined process, powered by innovative technology
+        and a skilled team, ensures that entrepreneurs can quickly access the
+        funding they need to grow and succeed. Whether you're launching a new
+        project, managing cash flow, or expanding operations, our goal is to
+        help businesses thrive by offering fast, reliable, and cost-effective
+        financial solutions.
 
-  <!-- <img
+        <br />
+        <strong> Our Key Benefits </strong><br />
+
+        <strong>Fast Funding:</strong> Thanks to our advanced technology, we can
+        approve and disburse funds quickly—often within 24 hours—so you can meet
+        your business needs without delay.
+
+        <br /><strong>Simple and Stress-Free Process:</strong> Say goodbye to
+        the hassle of paperwork. Our expert team takes care of the entire
+        process, handling all the documentation, so you don’t have to spend
+        valuable time on administrative tasks.
+
+        <br /><strong>Competitive Loan Rates:</strong> With our strong
+        relationships with top lenders, we’re able to secure the best possible
+        interest rates and loan terms, ensuring that your business gets the most
+        affordable financing options available.
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <img src="../../assets/img/aboutusimggg.svg" alt="" />
+  </div>
+</section> -->
+
+<section id="aboutUs" class="about-section container py-5">
+  <div class="row align-items-center">
+    <h2 class="fw-bold text-center">About Us</h2>
+    <p class="text-muted text-center mb-4">
+      At our digital marketing agency, we offer a range of services to help
+      businesses grow and succeed online.
+    </p>
+    <!-- Left Side Image -->
+    <div class="col-md-6 text-center mb-4 mb-md-0">
+      <img
+        src="../../assets/img/svgs/about.svg"
+        alt="About Us"
+        class="img-fluid about-img"
+      />
+    </div>
+
+    <!-- Right Side Content -->
+    <div class="col-md-6">
+      <p class="text-justify">
+        At Fintalk, we specialize in making unsecured loans with simple, and
+        fast accessible. Our streamlined process, powered by most advanced
+        technology and backed by an experienced team, ensures entrepreneurs and
+        business leaders can getting the required funds without unnecessary
+        delays.
+      </p>
+      <p class="text-justify">
+        With Fintalk, you can focus on what matter most scaling your business,
+        expand your operations, and grasping opportunities while we take care of
+        your financial needs. collaborate with us and experience a smarter way
+        to boost your business growth.
+      </p>
+
+      <a href="#about" class="btn btn-outline-primary btn-custom-outline"
+        >Get In Touch</a
+      >
+    </div>
+  </div>
+</section>
+
+<section class="empower-section text-center py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Your Growth Starts Here</h2>
+    <p class="text-muted mb-5">
+      We empower small businesses with fast, flexible, and
+      transparent loan solutions
+    </p>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4 col-sm-12">
+        <div class="info-card p-4 shadow-sm">
+          <h5 class="fw-semibold mb-3">Our Mission</h5>
+          <p class="text-muted mb-0">
+            Our mission provides available, affordable, and truthful financial
+            solutions that helps businesses and professionals achieve their
+            goals and advance in a competitive market.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12">
+        <div class="info-card p-4 shadow-sm">
+          <h5 class="fw-semibold mb-3">Our Vision</h5>
+          <p class="text-muted mb-0">
+            Our vision is to become the most trusted partner for professionals
+            and businesses; provides a creative financial solution this makes
+            growth simple and Realistic.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12">
+        <div class="info-card p-4 shadow-sm">
+          <h5 class="fw-semibold mb-3">Our Promise</h5>
+          <p class="text-muted mb-0">
+            At Fintalk, our promise is to provide trusted support, flexible
+            loans, Effortless funding and data security helping businesses
+            growth without unnecessary stress or delays.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="products" class="products-section text-center py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Smart Loan Options</h2>
+    <p class="text-muted mb-5">
+      Fintalk provides Personal, Business, Professional, and Educational Loans
+      with quick approvals, flexible terms, and clear, safe funding.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+      <div
+        class="col-md-6 col-sm-12"
+        *ngFor="let product of products"
+        style="cursor: pointer"
+        (click)="goToProduct(product)"
+      >
+        <div class="product-card p-4">
+          <!-- <div class="icon-box me-3">
+            <i class="pi pi-send text-dark fs-4"></i>
+          </div> -->
+          <div class="icon-box me-3">
+            <img
+              src="../../assets/img/svgs/send.svg"
+              alt="Send Icon"
+              class="icon-img"
+            />
+          </div>
+          <div class="text-start mt-2">
+            <h5 class="fw-semibold mb-2">{{ product.title }}</h5>
+            <p class="text-muted mb-0">{{ product.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="process-section">
+  <div class="container">
+    <div class="process-grid">
+      <!-- Left side -->
+      <div class="process-left">
+        <h2>Simple procedure</h2>
+        <p>
+          Our process is simple and well managed - submit your application in
+          online, go through quick verification, accept fast approvals, and
+          access your funds on time. Fintalk confirms a smooth, clear experience
+          every step of the way.
+        </p>
+        <img
+          src="../../assets/img/svgs/process.svg"
+          alt="Process Illustration"
+          class="illustration"
+        />
+      </div>
+
+      <!-- Right side -->
+      <div class="process-right">
+        <div class="process-step" *ngFor="let step of steps">
+          <div class="process-box">
+            <img [src]="step.icon" alt="Step Icon" class="icon-img" />
+          </div>
+          <div class="step-text">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="container">
+    <h2>Here From Client Say</h2>
+    <p class="subtitle">
+      Hear from fulfilled customers who turned their financial goals into
+      reality with Fintalk, quick and transparent loan process.
+    </p>
+
+    <div class="carousel">
+      <div
+        class="slides"
+        [style.transition]="
+          isTransitioning ? 'transform 0.6s ease-in-out' : 'none'
+        "
+        [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+      >
+        <!-- Clone of last slide for seamless loop -->
+        <div class="slide">
+          <div class="testimonial-card">
+            <div class="quote">"</div>
+            <p class="text">{{ testimonials[testimonials.length - 1].text }}</p>
+            <div class="author">
+              <h4>{{ testimonials[testimonials.length - 1].name }}</h4>
+              <p>{{ testimonials[testimonials.length - 1].position }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Original slides -->
+        <div class="slide" *ngFor="let item of testimonials">
+          <div class="testimonial-card">
+            <div class="quote">
+              <img src="../../assets/img/svgs/quotation.svg" alt="Quote Icon" />
+            </div>
+            <p class="text">{{ item.text }}</p>
+            <div class="author">
+              <h4>{{ item.name }}</h4>
+              <p>{{ item.position }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Clone of first slide for seamless loop -->
+        <div class="slide">
+          <div class="testimonial-card">
+            <div class="quote">"</div>
+            <p class="text">{{ testimonials[0].text }}</p>
+            <div class="author">
+              <h4>{{ testimonials[0].name }}</h4>
+              <p>{{ testimonials[0].position }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav prev" (click)="prevSlide()">&#10094;</button>
+      <button class="nav next" (click)="nextSlide()">&#10095;</button>
+    </div>
+
+    <div class="dots">
+      <span
+        *ngFor="let item of testimonials; let i = index"
+        [class.active]="getDisplayIndex() === i"
+        (click)="goToSlide(i)"
+      ></span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-section container">
+  <div class="faq-left">
+    <h2>Got questions? <br /><span>We got answers!</span></h2>
+    <p>Feel free to reach out to us if you have more questions for us.</p>
+    <button class="contact-btn" (click)="scrollToSection('contactus')">
+      Contact us →
+    </button>
+  </div>
+
+  <div class="faq-right">
+    <div
+      class="faq-item"
+      *ngFor="let faq of faqs; let i = index"
+      [class.active]="openIndex === i"
+      (click)="toggleFAQ(i)"
+    >
+      <div class="faq-question">
+        <h4>{{ faq.question }}</h4>
+        <span class="icon">{{ openIndex === i ? "−" : "+" }}</span>
+      </div>
+
+      <div class="faq-answer" *ngIf="openIndex === i">
+        <p>{{ faq.answer }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contactus" class="contact-section">
+  <div class="container d-flex justify-content-center g-4 align-items-center">
+    <!-- Left side -->
+    <div class="contact-left">
+      <h2>Get In Touch With Us</h2>
+      <p>
+        Contact Fintalk’s team for quick support, expert guidance, and simple
+        loan solutions custom-made to your needs.
+      </p>
+
+      <div class="contact-info">
+        <p><strong>Email</strong></p>
+        <a href="mailto:info@thefintalk.in">info@thefintalk.in</a>
+
+        <p><strong>Mobile Number</strong></p>
+        <a href="tel:+919985961300">+91 9985961300</a>
+      </div>
+    </div>
+
+    <!-- Right side (Form) -->
+    <div class="contact-right">
+      <form (submit)="onSubmit($event)" class="contact-form">
+        <div class="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            placeholder="Enter Full Name"
+            required
+            [(ngModel)]="formData.name"
+            name="name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Email*</label>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            required
+            [(ngModel)]="formData.email"
+            name="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input
+            type="tel"
+            placeholder="Enter Mobile Number"
+            required
+            [(ngModel)]="formData.mobile"
+            name="mobile"
+          />
+        </div>
+
+        <div class="form-group services">
+          <label>Services</label>
+          <div class="checkbox-group">
+            <label *ngFor="let service of services">
+              <input
+                type="checkbox"
+                class="checkbox-design"
+                [(ngModel)]="service.selected"
+                name="services"
+              />
+              {{ service.name }}
+            </label>
+          </div>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="submit-btn" [disabled]="loading">
+            {{ loading ? "Submitting..." : "Submit" }}
+          </button>
+        </div>
+        <p *ngIf="message" class="message">{{ message }}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- <img
     src="/assets/images/about/about-banner.png"
     alt="About Banner"
     class="w-100 img-fluid"
-  /> 
+  />
   <h2 class="section-title position-absolute top-50 start-50 translate-middle text-white">About</h2> -->
-
-
 
 <!-- <section id="about" class="about">
   <div class="container" data-aos="fade-up">
@@ -160,7 +549,7 @@
   </div>
 </section> -->
 <!-- <div class="bg-color"> -->
-  <!-- <section id="why-us" class="why-us section-bg">
+<!-- <section id="why-us" class="why-us section-bg">
     <div class="container-fluid" data-aos="fade-up">
       <div class="row">
         <div
@@ -217,33 +606,33 @@
       </div>
     </div>
   </section> -->
-  <!-- <section id="product" class="services section-bg"> -->
-    <!-- <div class="container" data-aos="fade-up"> -->
-      <!-- <div class="section-title">
+<!-- <section id="product" class="services section-bg"> -->
+<!-- <div class="container" data-aos="fade-up"> -->
+<!-- <div class="section-title">
         <h2>Our Products</h2>
       </div> -->
 
-      <!-- <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+<!-- <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
         <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
               <!-- <i class="bi bi-activity"></i> -->
-              <!-- <img src="assets/img/products/loan.png" width="60px" />
+<!-- <img src="assets/img/products/loan.png" width="60px" />
             </div>
             <h3>Business Loans</h3>
             <p> -->
-              <!-- A Business loan is a kind of a term loan offered by Banks/NBFCs
+<!-- A Business loan is a kind of a term loan offered by Banks/NBFCs
               which ranges up to 50Lakhs. These loans are generally offered for
               short tenure up to and of maximum 5 years.
             </p>
             <a [routerLink]="['/product', 'business-loans']" class="readmore stretched-link">
               Read more <i class="bi bi-arrow-right"></i>
             </a> -->
-          <!-- </div>
+<!-- </div>
         </div> -->
-        <!-- End Service Item -->
+<!-- End Service Item -->
 
-        <!-- <div class="col-lg-4 col-md-6">
+<!-- <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
               <img src="assets/img/products/draft.png" width="60px" />
@@ -261,15 +650,15 @@
           </div>
         </div> -->
 
-        <!-- End Service Item -->
+<!-- End Service Item -->
 
-        <!-- End Service Item -->
+<!-- End Service Item -->
 
-        <!-- <div class="col-lg-4 col-md-6">
+<!-- <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
                <i class="bi bi-activity"></i> -->
-              <!-- <img src="assets/img/products/lap.png" width="60px" />
+<!-- <img src="assets/img/products/lap.png" width="60px" />
             </div>
             <h3>Loan Against Property</h3>
             <p>
@@ -278,14 +667,14 @@
               disbursal. It’s ideal for business expansion, education, or other
               personal financial needs.
             </p> -->
-            <!-- <a [routerLink]="['/product', 'loan-against-property']" class="readmore stretched-link">
+<!-- <a [routerLink]="['/product', 'loan-against-property']" class="readmore stretched-link">
               Read more <i class="bi bi-arrow-right"></i>
             </a>
-          </div> --> 
-        <!-- </div> -->
-        <!-- End Service Item -->
+          </div> -->
+<!-- </div> -->
+<!-- End Service Item -->
 
-        <!-- <div class="col-lg-4 col-md-6">
+<!-- <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
               <img src="assets/img/products/home.png" width="60px" />
@@ -301,7 +690,7 @@
             </a>
           </div>
         </div> -->
-        <!-- <div class="col-lg-4 col-md-6">
+<!-- <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
               <img src="assets/img/products/car.png" width="60px"/>
@@ -317,7 +706,7 @@
             </a>
           </div>
         </div> -->
-        <!-- <div class="col-lg-4 col-md-6">
+<!-- <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
               <img src="assets/img/products/car2.png" width="60px" />
@@ -333,290 +722,255 @@
             </a>
           </div>
         </div> -->
-        <!-- End Service Item -->
-      <!-- </div> -->
-      <!-- End Service Item -->
-    <!-- </div> -->
-  <!-- </section> -->
+<!-- End Service Item -->
+<!-- </div> -->
+<!-- End Service Item -->
+<!-- </div> -->
+<!-- </section> -->
 
-<section id="product" class="services section-bg " id="products" >
+<!-- <section id="product" class="services section-bg" id="products">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2><span class="highlight">Our Products</span></h2>
     </div>
 
     <div class="product-row d-flex flex-lg-row flex-sm-column">
-      <!-- Left Side - Product Cards -->
-      <div class="product-cards" #productCardsContainer style="height: 470px; overflow: scroll;">
-        <!-- Card 1 -->
+      <div
+        class="product-cards"
+        #productCardsContainer
+        style="height: 470px; overflow: scroll"
+      >
         <div class="product-card productcardinside">
           <div>
             <h2><span class="highlight">Business Loan</span></h2>
-            <p>Business loans help businesses grow by providing funds for working capital, expansion, or urgent financial needs. They can support everything from operations to buying new equipment.</p></div>
+            <p>
+              Business loans help businesses grow by providing funds for working
+              capital, expansion, or urgent financial needs. They can support
+              everything from operations to buying new equipment.
+            </p>
+          </div>
           <div>
-            <img src="../../assets/img/illustrate2.svg" alt="">
+            <img src="../../assets/img/illustrate2.svg" alt="" />
           </div>
         </div>
-        <!-- Card 2 -->
         <div class="product-card productcardinside">
           <div>
             <h2><span class="highlight">Personal Loan</span></h2>
-            <p>These loans can be used for personal needs like medical bills, vacations, weddings, or education. They don’t require collateral and offer flexible repayment options.</p>
+            <p>
+              These loans can be used for personal needs like medical bills,
+              vacations, weddings, or education. They don’t require collateral
+              and offer flexible repayment options.
+            </p>
           </div>
           <div>
-            <img src="../../assets/img/personalloan.svg" alt="">
+            <img src="../../assets/img/personalloan.svg" alt="" />
           </div>
         </div>
-        <!-- Card 3 -->
         <div class="product-card productcardinside">
           <div>
             <h2><span class="highlight">Educational Loan</span></h2>
-            <p>Educational loans help students pay for their studies, covering tuition, books, and other related costs. Repayment begins after the course is completed.</p></div>
+            <p>
+              Educational loans help students pay for their studies, covering
+              tuition, books, and other related costs. Repayment begins after
+              the course is completed.
+            </p>
+          </div>
           <div>
-            <img src="../../assets/img/educationalloan.svg" alt="">
+            <img src="../../assets/img/educationalloan.svg" alt="" />
           </div>
         </div>
-        <!-- Card 4 -->
         <div class="product-card productcardinside">
           <div>
             <h2><span class="highlight">Over Draft Limit</span></h2>
-            <p>An overdraft allows you to withdraw more money than you have in your bank account, giving you extra funds in emergencies. Interest is charged on the amount used.</p></div>
+            <p>
+              An overdraft allows you to withdraw more money than you have in
+              your bank account, giving you extra funds in emergencies. Interest
+              is charged on the amount used.
+            </p>
+          </div>
           <div>
-            <img src="../../assets/img/overdraft.svg" alt="">
+            <img src="../../assets/img/overdraft.svg" alt="" />
           </div>
         </div>
-        <!-- Card 5 -->
         <div class="product-card productcardinside">
           <div>
             <h2><span class="highlight">Professional Loan</span></h2>
-            <p>These loans are designed for professionals like doctors, lawyers, and accountants to help them set up or expand their practice. They can be used for buying equipment or covering business expenses.</p></div>
+            <p>
+              These loans are designed for professionals like doctors, lawyers,
+              and accountants to help them set up or expand their practice. They
+              can be used for buying equipment or covering business expenses.
+            </p>
+          </div>
           <div>
-            <img src="../../assets/img/illustrateimg1.svg" alt="">
+            <img src="../../assets/img/illustrateimg1.svg" alt="" />
           </div>
         </div>
       </div>
 
-      <!-- Right Side - Heading and Paragraph -->
       <div class="product-heading productcardinside">
         <div class="heading-content">
-          <p>We offer a variety of loan products designed to help <br> you achieve your personal, business, and professional <br>goals with ease and flexibility:</p><img src="../../assets/img/productimg.svg" alt="Heading Image">
+          <p>
+            We offer a variety of loan products designed to help <br />
+            you achieve your personal, business, and professional <br />goals
+            with ease and flexibility:
+          </p>
+          <img src="../../assets/img/productimg.svg" alt="Heading Image" />
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<section
+  style="justify-content: space-evenly; gap: 0%"
+  class="d-flex flex-lg-row flex-sm-column"
+>
+  <div class="section-title">
+    <h2><span class="highlight">Our Process</span></h2>
+    <p>
+      We’ve designed a quick and easy process <br />to help you get the
+      financial support you <br />need. Follow these simple steps to apply and
+      <br />get your loan approved with ease:
+    </p>
+    <br />
+    <img src="../../assets/img/processimg.svg" alt="" />
+  </div>
 
-    <section style="justify-content: space-evenly; gap: 0%;" class="d-flex flex-lg-row flex-sm-column">
-      <div class="section-title">
-      <h2><span class="highlight">Our Process</span></h2>
-      <p>We’ve designed a quick and easy process <br>to help you get the financial support you <br>need. Follow  these simple steps to apply and <br>get your loan approved with ease:</p> <br>
-      <img src="../../assets/img/processimg.svg" alt="">
-    </div>
-    
-    <div class="processsidecard">
-      <img src="../../assets/img/processlineimg.svg" alt="">
-      <div  style="display: flex; flex-direction: column; margin-left: 20px;">
-        <div>
-        <h4>Fill Simple Application</h4>
-        <p>Complete a basic application form with personal and loan details.<br> It typically takes a few minutes and can be done online or in-person.<p>
-      </div>
+  <div class="processsidecard">
+    <img src="../../assets/img/processlineimg.svg" alt="" />
+    <div style="display: flex; flex-direction: column; margin-left: 20px">
       <div>
-        <h4>Upload  Documents</h4>
-        <p>Submit required documents like identification, income proof, and <br>address proof. This helps the lender verify your eligibility for the loan.<p>
+        <h4>Fill Simple Application</h4>
+        <p>
+          Complete a basic application form with personal and loan details.<br />
+          It typically takes a few minutes and can be done online or in-person.
+        </p>
+        <p></p>
       </div>
+
+      <div>
+        <h4>Upload Documents</h4>
+        <p>
+          Submit required documents like identification, income proof, and
+          <br />address proof. This helps the lender verify your eligibility for
+          the loan.
+        </p>
+        <p></p>
+      </div>
+
       <div>
         <h4>Credit Analysis</h4>
-        <p>The lender reviews your financial history, including credit score<br> and income,  to assess your repayment ability. They may also <br> consider your employment or business stability.<p>
+        <p>
+          The lender reviews your financial history, including credit score<br />
+          and income, to assess your repayment ability. They may also <br />
+          consider your employment or business stability.
+        </p>
+        <p></p>
       </div>
+
       <div>
         <h4>Loan Approval</h4>
-        <p>After reviewing your application and documents, the lender makes a<br> decision. If approved,  you’ll receive an offer with loan <br> terms, including interest rate and repayment schedule.<p>
+        <p>
+          After reviewing your application and documents, the lender makes a<br />
+          decision. If approved, you’ll receive an offer with loan <br />
+          terms, including interest rate and repayment schedule.
+        </p>
+        <p></p>
       </div>
+
       <div>
- 
-        <!-- <nav class="navbar navbar-default" role="navigation">
-           Brand and toggle get grouped for better mobile display -->
-          <!-- <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Title</a>
-          </div> -->
-        
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <!-- <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul> -->
-            <!-- <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Link</a></li>
-              <li class="dropdown"> -->
-                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul> -->
-              <!-- </li>
-            </ul> -->
-          <!-- </div>/.navbar-collapse -->
-        <!-- </nav> --> 
-         <!-- Nunc vulputate libero et velit interdum, ac aliquet odio mattis.<p> -->
-      </div>
+
       </div>
     </div>
-    </section>
+  </div>
+</section>
 
-    <section id="credit-repair" class="creditrepaire d-flex flex-lg-row flex-sm-column">
-      <div>
-        <h1>Credit Repair</h1>
-        <p>Credit repair involves improving your credit score by correcting <br> errors on your credit report and addressing negative items. <br>It helps enhance  your creditworthiness,  making it easier to <br>secure loans and better financial terms.</p>
-      </div>
-      <div>
-        <img src="../../assets/img/creditrepairimggg.svg" alt="">
-      </div>
-    </section>
-    
+<section
+  id="credit-repair"
+  class="creditrepaire d-flex flex-lg-row flex-sm-column"
+>
+  <div>
+    <h1>Credit Repair</h1>
+    <p>
+      Credit repair involves improving your credit score by correcting <br />
+      errors on your credit report and addressing negative items. <br />It helps
+      enhance your creditworthiness, making it easier to <br />secure loans and
+      better financial terms.
+    </p>
+  </div>
+  <div>
+    <img src="../../assets/img/creditrepairimggg.svg" alt="" />
+  </div>
+</section> -->
 
-    <!-- <section style="display: flex; justify-self: center; flex-direction: column;">
-      <div>
-        <h2>Testimonials</h2>
-        <p>Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services</p>
-      </div>
-      <div class="testnomilacardss">
-
-      </div>
-    </section> -->
-  <section style="display: flex; justify-self: center; flex-direction: column;">
-    <div><h1>Contact Us</h1>
+<!-- <section style="display: flex; justify-self: center; flex-direction: column">
+  <div>
+    <h1>Contact Us</h1>
     <p>Connect with Us: Let's Discuss Your Digital Marketing Needs</p>
-    </div>
-    <div class="contagpage">
-      <div>
-        <form action="">
+  </div>
+  <div class="contagpage">
+    <div>
+      <form action="">
         <div class="labelscontact">
-          <label for="">Name</label> 
-        <input type="text" placeholder="Enter Your Name" class="inputchagf">
+          <label for="">Name</label>
+          <input type="text" placeholder="Enter Your Name" class="inputchagf" />
         </div>
         <div class="labelscontact">
-          <label for="">Email*</label> 
-        <input type="text" placeholder="Enter Your Email" class="inputchagf">
+          <label for="">Email*</label>
+          <input
+            type="text"
+            placeholder="Enter Your Email"
+            class="inputchagf"
+          />
         </div>
         <div class="labelscontact">
-          <label for="">Mobile Number</label> 
-        <input type="text" placeholder="Enter Your Number" class="inputchagf">
+          <label for="">Mobile Number</label>
+          <input
+            type="text"
+            placeholder="Enter Your Number"
+            class="inputchagf"
+          />
         </div>
-           <div class="labelscontacts">
-            <div class="checkbocsd">
-              <label>
-                  <input type="checkbox" name="" value=""> Business Loans
-              </label>
-              <label>
-                  <input type="checkbox" name="" value=""> Personal Loans
-              </label>
-              <label>
-                  <input type="checkbox" name="" value=""> Over Draft Loans
-              </label>
-            </div>
-              <div class="checkbocsd">
-                <label>
-                  <input type="checkbox" name="" value=""> Educational Loans
-              </label>
+        <div class="labelscontacts">
+          <div class="checkbocsd">
             <label>
-                  <input type="checkbox" name="" value=""> Professional Loans
-              </label>
-              <label>
-                  <input type="checkbox" name="" value=""> Credit Repair
-              </label>
-              </div>
-              
+              <input type="checkbox" name="" value="" /> Business Loans
+            </label>
+            <label>
+              <input type="checkbox" name="" value="" /> Personal Loans
+            </label>
+            <label>
+              <input type="checkbox" name="" value="" /> Over Draft Loans
+            </label>
+          </div>
+          <div class="checkbocsd">
+            <label>
+              <input type="checkbox" name="" value="" /> Educational Loans
+            </label>
+            <label>
+              <input type="checkbox" name="" value="" /> Professional Loans
+            </label>
+            <label>
+              <input type="checkbox" name="" value="" /> Credit Repair
+            </label>
+          </div>
         </div>
-               
       </form>
       <div>
-          <button class="buttonpurpose">Submit</button>
-      </div> 
-      </div>
-      <div>
-        <img src="../../assets/img/contactusimage.svg" alt="" class="contactimgs">
+        <button class="buttonpurpose">Submit</button>
       </div>
     </div>
-   
-  </section>
-  <!-- <section id="services" class="services section-bg">
-    <div class="container" data-aos="fade-up">
-      <div class="section-title">
-        <h2>Our Process</h2>
-        <p>Get Fintalk business loan in 4 easy steps!</p>
-      </div>
-
-      <div class="row">
-        <div
-          class="col-xl-3 col-md-6 d-flex align-items-stretch"
-          data-aos="zoom-in"
-          data-aos-delay="100"
-        >
-          <div class="icon-box">
-            <div class="icon"><i class="pi pi-globe"></i></div>
-            <h4><a href=""> Fill out one simple application.</a></h4>
-            <p>It takes only 5 min.</p>
-          </div>
-        </div>
-
-        <div
-          class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
-          data-aos="zoom-in"
-          data-aos-delay="200"
-        >
-          <div class="icon-box">
-            <div class="icon"><i class="pi pi-file"></i></div>
-            <h4><a href="">Upload your documents</a></h4>
-            <p>
-              Depending on your application we may require additional documents
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0"
-          data-aos="zoom-in"
-          data-aos-delay="300"
-        >
-          <div class="icon-box">
-            <div class="icon"><i class="pi pi-gauge"></i></div>
-            <h4><a href="">Credit Analysis</a></h4>
-            <p>We will check your documents and evaluate your application</p>
-          </div>
-        </div>
-
-        <div
-          class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0"
-          data-aos="zoom-in"
-          data-aos-delay="400"
-        >
-          <div class="icon-box">
-            <div class="icon"><i class="pi pi-thumbs-up"></i></div>
-            <h4><a href="">Loan Approval</a></h4>
-            <p>Once Approved your funds will be credited in your account.</p>
-          </div>
-        </div>
-      </div>
+    <div>
+      <img
+        src="../../assets/img/contactusimage.svg"
+        alt=""
+        class="contactimgs"
+      />
     </div>
-  </section> -->
+  </div>
+</section> -->
 
-  <!-- <section id="cta" class="cta">
+<!-- <section id="cta" class="cta">
     <div class="container" data-aos="zoom-in">
       <div class="row">
         <div class="col-lg-9 text-center text-lg-start">
@@ -633,8 +987,8 @@
       </div>
     </div>
   </section> -->
-  <!-- ======= Frequently Asked Questions Section ======= -->
-  <!-- <section id="faq" class="faq section-bg">
+<!-- ======= Frequently Asked Questions Section ======= -->
+<!-- <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2>Frequently Asked Questions</h2>
@@ -795,7 +1149,7 @@
         </div>
         <!-- End testimonial item -->
 
-        <!-- <div class="swiper-slide">
+<!-- <div class="swiper-slide">
           <div class="testimonial-item">
             <img
               src="assets/img/testimonial/tony-s.png"
@@ -812,9 +1166,9 @@
             </p>
           </div>
         </div> -->
-        <!-- End testimonial item -->
+<!-- End testimonial item -->
 
-        <!-- <div class="swiper-slide">
+<!-- <div class="swiper-slide">
           <div class="testimonial-item">
             <img
               src="assets/img/testimonial/victor-m.png"
@@ -833,12 +1187,12 @@
             </p>
           </div>
         </div> -->
-        <!-- End testimonial item -->
-      <!-- </div> -->
-      <!-- <div class="swiper-pagination"></div>
+<!-- End testimonial item -->
+<!-- </div> -->
+<!-- <div class="swiper-pagination"></div>
     </div> -->
-  <!-- </div> -->
-<!-- </section> --> 
+<!-- </div> -->
+<!-- </section> -->
 <!-- <section id="contact" class="contact">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
@@ -876,11 +1230,11 @@
               style="border: 0; width: 100%; height: 290px"
               allowfullscreen
             ></iframe> -->
-        <!-- </div>
+<!-- </div>
       </div> -->
 
-      <!-- <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"> -->
-        <!-- <form id="contact-form" class="php-email-form">
+<!-- <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"> -->
+<!-- <form id="contact-form" class="php-email-form">
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="name">Your Name</label>
@@ -938,7 +1292,7 @@
               <button type="submit">Send Message</button>
             </div>
           </form> -->
-        <!-- <div class="info">
+<!-- <div class="info">
           <div class="address">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1307.558890127975!2d78.45042058932385!3d17.425955949819535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb97d017ebfaa5%3A0xcbe0eaf3e529227!2sFintalk!5e0!3m2!1sen!2sin!4v1744697565621!5m2!1sen!2sin"
@@ -949,8 +1303,8 @@
             ></iframe>
           </div>
         </div> -->
-      <!-- </div>
+<!-- </div>
     </div>
   </div>
-</section> --> 
+</section> -->
 <!-- End Contact Section -->

@@ -1,189 +1,53 @@
-// .navbar {
-//   position: sticky;
-//   top: 0;
-//   width: 100%;
-//   z-index: 1000;
-// //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* smooth shadow */
-//   background-color: #fff;
-// //
-//  }
-
-// .nav-custom {
-//   color:#000000 !important;
-//   transition: color 0.3s ease;
-//   font-weight: bold;
-//   font-size: 18px;
-//   // gap: 40px;
-//   }
-
-// .nav-custom:hover {
-//   color: #1acc8d !important;
-// }
-
-// .nav-custom.active {
-//   color: #1acc8d !important;
-//   font-weight: bold;
-// }
-// .nav-item{
-//   margin-right: 40px !important;
-// }
-
-// .custom-login-btn {
-
-//   background-color:#333333;
-//   color:#FFFFFF;
-//   border-radius: 8px;
-//   font-size: 18px;
-//   font-weight: bold;
-//   // background-color: transparent;
-//   transition: all 0.4s ease;
-//    border: 1px solid #000000;
-// }
-
-// .custom-login-btn:hover {
-//   color: #149f6e;
-//  border: 1px solid #051f69;
-// background-color: #fff;
-// }
-
-// // .custom-apply-btn {
-// //   background-color:#fff;
-// //   color:  #051f69;
-// //   border-radius: 8px;
-// //   font-size: 18px;
-// //   font-weight: bold;
-// //   // background-color: transparent;
-// //   transition: all 0.4s ease;
-// //    border: 1px solid #051f69;
-// // }
-
-// // .custom-apply-btn:hover {
-// //   color: #149f6e;
-// //   border: 1px solid #051f69;
-// //   background-color: #fff;
-// // }
-// /* Adding gap between heading and paragraph */
-
-// .logchanges{
-//   margin-left: 100px;
-//   margin-right: 100px;
-//   height:78px;
-// }
-
-
-
-
-
-// /* General Navbar */
-// .fintalk-navbar {
-//   background-color: #fff;
-//   position: sticky;
-//   top: 0;
-//   width: 100%;
-//   z-index: 1000;
-//   border-radius: 50px;
-//   box-shadow: 0px 12px 20px rgba(89, 50, 234, 0.15);
-//   padding: 0.5rem 2rem;
-//   transition: all 0.3s ease;
-// }
-
-// /* Logo */
-// .logchanges {
-//   height: 78px;
-//   margin: 0 40px;
-// }
-
-// /* Navbar links */
-// .nav-custom {
-//   color: #000 !important;
-//   font-weight: bold;
-//   font-size: 18px;
-//   transition: color 0.3s ease;
-// }
-
-// .nav-custom:hover,
-// .nav-custom.active {
-//   color: #1acc8d !important;
-// }
-
-// .nav-item {
-//   margin-right: 40px !important;
-// }
-
-// /* Login Button */
-// .custom-login-btn {
-//   background-color: #333;
-//   color: #fff;
-//   font-size: 18px;
-//   font-weight: bold;
-//   padding: 8px 22px;
-//   border-radius: 8px;
-//   border: 1px solid #000;
-//   transition: all 0.4s ease;
-// }
-
-// .custom-login-btn:hover {
-//   background-color: #fff;
-//   color: #149f6e;
-//   border-color: #051f69;
-//   transform: scale(1.05);
-// }
-
-// /* Responsive */
-// @media (max-width: 992px) {
-//   .fintalk-navbar {
-//     border-radius: 0;
-//   }
-  
-//   .navbar-nav {
-//     background-color: #fff;
-//     text-align: center;
-//     margin-top: 10px;
-//   }
-
-//   .nav-item {
-//     margin: 5px 0;
-//   }
-
-//   .custom-login-btn {
-//     margin-top: 10px;
-//   }
-// }
-
-
-
-
-
 .fintalk-navbar {
   background-color: #fff;
-  position: sticky;        /* keeps navbar on top */
-  top: 20px;               /* top gap */
-  width: 90%;              /* narrower width */
+  position: sticky; /* keeps navbar on top */
+  top: 25px; /* top gap */
+  width: 90%; /* narrower width */
   max-width: 1200px;
-  margin: 0 auto;          /* center horizontally */
-  height: 55px;            /* reduced height */
-  border-radius: 35px;     /* rounded style */
-  box-shadow: 0px 8px 15px rgba(89, 50, 234, 0.15);
-  padding: 0.25rem 1.5rem;
+  margin: 0 auto; /* center horizontally */
+  height: 62px; /* reduced height */
+  border-radius: 13px; /* rounded style */
+  // box-shadow: 0px 8px 15px rgba(89, 50, 234, 0.15);
+  // padding: 0.25rem 1.5rem;
   transition: all 0.3s ease;
   z-index: 1000;
+  border: 0.97px solid #cdcdcdb5;
 }
 
 /* Ensure page content doesn’t go behind navbar */
 body {
   padding-top: 75px; /* navbar height (55px) + top gap (20px) */
 }
+.brand-text {
+  display: flex;
+  align-items: baseline;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.brand-main {
+  color: #283873; /* dark navy (THE) */
+  margin-right: 6px;
+}
+
+.brand-highlight {
+  color: #3ece9a;
+}
 
 /* Logo */
 .logchanges {
-  height: 50px;       /* smaller logo */
-  margin: 0 20px;
+  // height: 50px;       /* smaller logo */
+  // margin: 0 20px;
+  width: 40px;
+  height: 40px;
 }
 
 /* Navbar links */
 .nav-custom {
-  color: #000 !important;
-  font-weight: bold;
+  cursor: pointer;
+  color: #717274 !important;
+  font-weight: 500;
   font-size: 16px;
   transition: color 0.3s ease;
 }
@@ -219,11 +83,13 @@ body {
 /* ===== Mobile Styles ===== */
 @media (max-width: 992px) {
   .fintalk-navbar {
-    width: 95%;            /* full width on smaller screens */
+    position: absolute;
+    width: 100%; /* full width on smaller screens */
     border-radius: 15px;
     height: auto;
     padding: 0.5rem 1rem;
-    top: 10px;             /* smaller top gap on mobile */
+    z-index: 999; /* ensure it overlays */
+    top: 10px; /* smaller top gap on mobile */
   }
 
   .navbar-collapse {
@@ -248,11 +114,46 @@ body {
   }
 
   .logchanges {
-    height: 40px;          /* scale down logo */
+    height: 40px; /* scale down logo */
     margin: 0 auto;
   }
 
   body {
-    padding-top: 85px;     /* account for top gap + expanded navbar */
+    padding-top: 85px; /* account for top gap + expanded navbar */
   }
 }
+
+/* Mobile navbar overlay style */
+// @media (max-width: 992px) {
+//   .navbar-collapse {
+//     position: absolute;
+//     top: 55px; /* height of navbar */
+//     left: 0;
+//     width: 100%;
+//     background: #fff;
+//     border: 0.97px solid #cdcdcdb5;
+//     padding: 15px 0;
+//     // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+//   }
+
+//   .navbar-nav {
+//     flex-direction: column;
+//     align-items: center;
+//   }
+
+//   .navbar-toggler {
+//     border: none;
+//   }
+
+//   .fintalk-navbar {
+//     position: relative;
+//   }
+// }
+
+// .navbar-collapse {
+//   justify-content: space-between !important;
+// }
+
+// .navbar-nav {
+//   align-items: center;
+// }

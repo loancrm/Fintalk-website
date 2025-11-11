@@ -1,0 +1,47 @@
+<div class="loan-container">
+  <!-- Show steps and progress bar only if not viewing contact details -->
+  <ng-container *ngIf="!showContactDetails">
+    <p class="step-info">Step {{ currentStep }} of 5</p>
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="progressWidth()"></div>
+    </div>
+
+    <ng-container [ngSwitch]="currentStep">
+      <app-step1-loan-type
+        *ngSwitchCase="1"
+        (next)="nextStep()"
+      ></app-step1-loan-type>
+
+      <app-step2-details
+        *ngSwitchCase="2"
+        (next)="nextStep()"
+        (back)="prevStep()"
+      ></app-step2-details>
+
+      <app-step3-details
+        *ngSwitchCase="3"
+        (next)="nextStep()"
+        (back)="prevStep()"
+      ></app-step3-details>
+
+      <app-step4-details
+        *ngSwitchCase="4"
+        (next)="nextStep()"
+        (back)="prevStep()"
+      ></app-step4-details>
+
+      <app-loan-eligible
+        *ngSwitchCase="5"
+        (back)="prevStep()"
+        (contactUs)="openContactDetails()"  
+      ></app-loan-eligible>
+    </ng-container>
+  </ng-container>
+
+  <!-- Only Contact Details Section -->
+  <ng-container *ngIf="showContactDetails">
+    <app-contact-details
+      (back)="showContactDetails = false"
+    ></app-contact-details>
+  </ng-container>
+</div>

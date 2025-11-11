@@ -1,0 +1,189 @@
+<!-- Breadcrumb -->
+<!-- <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb> -->
+
+<!-- <div class="contact-details-card">
+  <h2><strong>Enter Your Contact Details</strong></h2>
+  <p class="subtitle">Select a loan type below to continue.</p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Name</label>
+        <input
+          type="text"
+          formControlName="fullName"
+          placeholder="Enter Full Name"
+        />
+        <small
+          *ngIf="
+            contactForm.get('fullName')?.touched &&
+            contactForm.get('fullName')?.invalid
+          "
+        >
+          Name is required (min 3 characters)
+        </small>
+      </div>
+
+      <div class="form-group full">
+        <label>Business Name</label>
+        <input
+          type="text"
+          formControlName="businessName"
+          placeholder="Enter Business Name"
+        />
+      </div>
+
+      <div class="form-group full">
+        <label>Name of the City</label>
+        <input
+          type="text"
+          formControlName="city"
+          placeholder="Enter City Name"
+        />
+      </div>
+
+      <div class="form-group half">
+        <label>Required Loan Amount</label>
+        <input
+          type="text"
+          formControlName="loanAmount"
+          placeholder="Enter Amount"
+        />
+      </div>
+
+      <div class="form-group half">
+        <label>GST Registered</label>
+        <select formControlName="gstRegistered">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div class="form-group half">
+        <label>Enter Email ID</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Enter Email ID"
+        />
+      </div>
+
+      <div class="form-group half">
+        <label>Enter Phone Number</label>
+        <input
+          type="text"
+          formControlName="phone"
+          placeholder="+91 00000 00000"
+        />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="back-btn" (click)="back.emit()">Back</button>
+      <button type="submit" class="submit-btn">Submit</button>
+    </div>
+  </form>
+</div> -->
+
+<div class="contact-details-card" *ngIf="!isSubmitted; else thankYouTemplate">
+  <h2><strong>Enter Your Contact Details</strong></h2>
+  <p class="subtitle">Please fill out the form below to continue.</p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-grid">
+      <!-- Full Name -->
+      <div class="form-group full">
+        <label>Name</label>
+        <input
+          type="text"
+          formControlName="fullName"
+          placeholder="Enter Full Name"
+        />
+        <small
+          *ngIf="
+            contactForm.get('fullName')?.touched &&
+            contactForm.get('fullName')?.invalid
+          "
+        >
+          Name is required (min 3 characters)
+        </small>
+      </div>
+
+      <!-- Business Name -->
+      <div class="form-group full">
+        <label>Business Name</label>
+        <input
+          type="text"
+          formControlName="businessName"
+          placeholder="Enter Business Name"
+        />
+      </div>
+
+      <!-- City -->
+      <div class="form-group full">
+        <label>Name of the City</label>
+        <input
+          type="text"
+          formControlName="city"
+          placeholder="Enter City Name"
+        />
+      </div>
+
+      <!-- Loan Amount + GST -->
+      <div class="form-group half">
+        <label>Required Loan Amount</label>
+        <input
+          type="text"
+          formControlName="loanAmount"
+          placeholder="Enter Amount"
+        />
+      </div>
+
+      <div class="form-group half">
+        <label>GST Registered</label>
+        <select formControlName="gstRegistered">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <!-- Email + Phone -->
+      <div class="form-group half">
+        <label>Enter Email ID</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Enter Email ID"
+        />
+      </div>
+
+      <div class="form-group half">
+        <label>Enter Phone Number</label>
+        <input
+          type="text"
+          formControlName="phone"
+          placeholder="+91 00000 00000"
+        />
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="actions">
+      <button type="button" class="back-btn" (click)="back.emit()">Back</button>
+      <button type="submit" class="submit-btn">Submit</button>
+    </div>
+  </form>
+</div>
+
+<!-- ✅ Thank-you message + Home button -->
+<ng-template #thankYouTemplate>
+  <div class="congrats-card">
+    <div class="content">
+      <h2>🎉 Thank You!</h2>
+
+      <p>Thank you for contacting us. We will get in touch with you shortly.</p>
+
+      <button class="contact-btn" (click)="goHome()">🏠 Go to Home</button>
+    </div>
+  </div>
+</ng-template>

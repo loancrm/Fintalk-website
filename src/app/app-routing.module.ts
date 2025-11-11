@@ -6,9 +6,18 @@ import { ProcessComponent } from "./process/process.component";
 import { ContactComponent } from "./contact/contact.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
 import { ApplyComponent } from "./apply/apply.component";
+import { LoanApplicationComponent } from "./loan-application/loan-application.component";
+import { ProductDetailsComponent } from "./product-details/product-details.component";
+import { CookiesPolicyComponent } from "./cookies-policy/cookies-policy.component";
+import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent },
+  { path: 'apply', component: LoanApplicationComponent },
+  { path: 'products/:slug', component: ProductDetailsComponent },
+  { path: 'cookies-policy', component: CookiesPolicyComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+
   // { path: "about", component: AboutComponent },
   // { path: "process", component: ProcessComponent },
   // { path: "apply", component: ApplyComponent },
@@ -25,4 +34,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

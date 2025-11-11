@@ -1,16 +1,13 @@
-<!-- ======= Footer ======= -->
-<footer id="footer">
+<!-- <footer id="footer">
   <div class="footer-top">
     <div class="container">
       <div class="row">
-        <!-- Logo Section -->
         <div class="col-md-4">
           <div class="footer-info">
             <img src="../../assets/img/thefintalklogo copy.svg" alt="Fintalk Logo" class="footer-logo">
           </div>
         </div>
 
-        <!-- Navigation Links and Social Icons in Row -->
         <div class="col-md-4">
           <div class="footer-nav">
             <ul class="footer-nav-links">
@@ -19,7 +16,6 @@
               <li><a href="#">Process</a></li>
               <li><a href="#">Credit Repair</a></li>
             </ul>
-            <!-- Social Icons -->
             <div class="social-icons">
               <a href="#"><i class="pi pi-facebook"></i></a>
               <a href="#"><i class="pi pi-twitter"></i></a>
@@ -29,16 +25,13 @@
         </div>
       </div>
 
-      <!-- Address and Email/Subscribe Section -->
       <div class="row footer-contact-row">
-        <!-- Address Section (Left) -->
         <div class="col-md-6 footer-contact">
           <p><strong>Phone:</strong> +91 9948024674</p>
           <p><strong>Email:</strong> info&#64;thefintalk.in</p>
           <p><strong>Address:</strong> 506, 5th Floor, MGR Estates, <br> Punjagutta, Hyderabad, Telangana 500082</p>
         </div>
 
-        <!-- Subscribe Section (Right) -->
         <div class="col-md-6 footer-subscribe">
          <div class="footer-subscription-box">
   <div class="footer-subscription-row">
@@ -57,7 +50,7 @@
     </div>
   </div>
 
-  <!-- Copyright -->
+
   <div class="container">
     <div class="copyright">
       &copy; Copyright <strong><span>Fintalk</span></strong>. All Rights Reserved.
@@ -65,4 +58,149 @@
   </div>
 </footer>
 
+ -->
 
+<footer class="footer-section">
+  <div class="newsletter">
+    <h2>Footer Heading Regarding News Letter</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
+      libero et velit interdum, ac aliquet odio mattis. Class aptent taciti
+      sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    </p>
+
+    <form [formGroup]="subscribeForm" class="newsletter-form" (ngSubmit)="onSubmit()" novalidate>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Full Name"
+        required
+      />
+      <!-- <input type="text" placeholder="Full Name" required /> -->
+      <div class="email-box">
+        <i class="bi bi-envelope"></i>
+        <input
+          formControlName="emailAddress"
+          type="email"
+          placeholder="Email Address"
+          required
+        />
+      </div>
+      <!-- <button type="submit">Subscribe Now</button> -->
+      <button type="submit" [disabled]="loading || subscribeForm.invalid">
+        {{ loading ? "Subscribing..." : "Subscribe Now" }}
+      </button>
+    </form>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="footer-content">
+    <!-- <div class="footer-col brand">
+      <h3>MyLoanCRM</h3>
+      <p>Clarity gives you the blocks and components you need to create a truly professional website.</p>
+      <lucide-icon name="facebook"></lucide-icon>
+      <lucide-icon name="instagram"></lucide-icon>
+      <lucide-icon name="linkedin"></lucide-icon>
+      <lucide-icon name="youtube"></lucide-icon>
+    </div> -->
+    <div class="footer-col brand">
+      <a
+        class="navbar-brand d-flex align-items-center justify-content-center"
+        href="/"
+      >
+        <img
+          src="assets/img/logo.png"
+          alt="Fintalk Logo"
+          class="logchanges me-2"
+        />
+        <span class="brand-text">
+          <span class="brand-main">THE</span>
+          <span class="brand-highlight">FINTALK</span>
+        </span>
+      </a>
+      <p>
+        Clarity gives you the blocks and components you need to create a truly
+        professional website.
+      </p>
+      <div class="social-icons">
+        <a
+          href="https://www.facebook.com/profile.php?id=61582980951387"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <lucide-icon name="facebook"></lucide-icon>
+        </a>
+        <a
+          href="https://www.instagram.com/fintalk25/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <lucide-icon name="instagram"></lucide-icon>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/fin-talk-745220390/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <lucide-icon name="linkedin"></lucide-icon>
+        </a>
+        <a
+          href="https://www.youtube.com/@RaviKumar-d5l5w"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <lucide-icon name="youtube"></lucide-icon>
+        </a>
+
+        <a
+          href="https://x.com/Fintalk2025"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="../../assets/img/svgs/twitter.svg"
+            alt="Twitter"
+            class="social-img"
+          />
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>RESOURCES</h4>
+      <ul>
+        <li
+          *ngFor="let item of resources"
+          (click)="scrollToSection(item.sectionId)"
+        >
+          {{ item.label }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>HELP</h4>
+      <ul>
+        <li *ngFor="let item of help" (click)="scrollToSection(item.sectionId)">
+          {{ item.label }}
+        </li>
+        <li routerLink="/cookies-policy">Cookies Policy</li>
+        <li routerLink="/privacy-policy">Privacy Policy</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>OUR SERVICES</h4>
+      <ul>
+        <li *ngFor="let item of services" (click)="goToProduct(item.sectionId)">
+          {{ item.label }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © Copyright 2025, All Rights Reserved by The Fintalk
+  </div>
+</footer>

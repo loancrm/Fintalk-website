@@ -1,0 +1,22 @@
+.loan-container {
+  max-width: 800px;
+  margin: 60px auto;
+  // background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #131f2f;
+  transition: width 0.3s ease;
+}

@@ -1,0 +1,25 @@
+<!-- Breadcrumb -->
+<app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+
+<div class="back-btn" (click)="goBack()">← Back</div>
+<h2>Choose the Business Vintage</h2>
+<p>Select a Business Entity below to continue</p>
+
+<div class="loan-grid">
+  <div
+    class="loan-card"
+    *ngFor="let entity of VinatgeTypes"
+    [class.active]="selectedVintage === entity.name"
+    (click)="selectEntity(entity.name)"
+  >
+    <div class="icon">
+      <img [src]="entity.icon" alt="{{ entity.title }}" />
+    </div>
+    <h3>{{ entity.title }}</h3>
+    <p>{{ entity.description }}</p>
+  </div>
+</div>
+
+<!-- <button class="next-btn" (click)="continue()" [disabled]="!selectedVintage">
+  Continue
+</button> -->

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { CarouselModule } from 'primeng/carousel';
 import { AppRoutingModule } from '../app-routing.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +13,9 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     CarouselModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

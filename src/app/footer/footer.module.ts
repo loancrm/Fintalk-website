@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { LucideAngularModule, Facebook, Instagram, Linkedin, Youtube } from 'lucide-angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,9 +13,12 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LucideAngularModule.pick({ Facebook, Instagram, Linkedin, Youtube })
   ],
-  exports:[
+  exports: [
     FooterComponent
   ]
 })

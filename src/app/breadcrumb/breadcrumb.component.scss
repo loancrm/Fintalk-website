@@ -1,0 +1,50 @@
+// Breadcrumb styles
+.breadcrumb-nav {
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  align-items: center;
+}
+
+.breadcrumb-list li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-list li + li {
+  padding-left: 10px;
+}
+
+.breadcrumb-list li + li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #6b7280;
+  content: "/";
+  font-weight: normal;
+}
+
+.breadcrumb-list li a {
+  color: #4668a2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-list li a:hover {
+  color: #00bfa6;
+  text-decoration: underline;
+}
+
+.breadcrumb-list li.active,
+.breadcrumb-list li span {
+  color: #6b7280;
+  font-weight: 500;
+}
+
