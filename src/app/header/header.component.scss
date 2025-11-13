@@ -79,11 +79,13 @@ body {
   border-color: #051f69;
   transform: scale(1.05);
 }
-
+.navbar-nav {
+  align-items: center;
+}
 /* ===== Mobile Styles ===== */
 @media (max-width: 992px) {
   .fintalk-navbar {
-    position: absolute;
+    position: fixed;
     width: 100%; /* full width on smaller screens */
     border-radius: 15px;
     height: auto;
@@ -98,19 +100,21 @@ body {
   }
 
   .navbar-nav {
+    align-items: start;
     flex-direction: column;
     margin: 0;
     gap: 10px;
   }
 
   .nav-item {
+    text-align: left !important;
     margin: 5px 0 !important;
   }
 
   .custom-login-btn {
-    width: 80%;
-    margin: 10px auto 0 auto;
-    display: block;
+    width: auto;
+    margin: 10px 0 0 0;
+    display: inline-block;
   }
 
   .logchanges {

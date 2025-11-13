@@ -10,6 +10,7 @@ import { LoanApplicationComponent } from "./loan-application/loan-application.co
 import { ProductDetailsComponent } from "./product-details/product-details.component";
 import { CookiesPolicyComponent } from "./cookies-policy/cookies-policy.component";
 import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
+import { EmicalculatorComponent } from "./emicalculator/emicalculator.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'products/:slug', component: ProductDetailsComponent },
   { path: 'cookies-policy', component: CookiesPolicyComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'emi-calculator', component: EmicalculatorComponent },
 
   // { path: "about", component: AboutComponent },
   // { path: "process", component: ProcessComponent },
@@ -30,7 +32,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: "enabled",
       onSameUrlNavigation: "reload"
-    })
+  })
   ],
   exports: [RouterModule]
 })

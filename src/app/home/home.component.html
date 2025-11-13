@@ -42,7 +42,7 @@
       <a href="#about" class="btn-get-started scrollto">Get Started</a>
     </div> -->
     <div class="d-flex justify-content-center gap-3 mt-4">
-      <a routerLink="/apply" class="btn btn-outline-primary btn-custom-outline">
+      <a routerLink="/apply" class="btn btn-custom-outline">
         Apply Now
       </a>
 
@@ -82,24 +82,27 @@
   class="section-bg carouselsect m-2"
 >
   <div class="carousel-container">
-    <p-carousel
-      [value]="images"
-      [numVisible]="5"
-      [numScroll]="1"
-      [circular]="true"
-      [autoplayInterval]="2500"
-      [showIndicators]="false"
-      [showNavigators]="false"
-      styleClass="custom-carousel"
-    >
-      <ng-template let-image pTemplate="item">
-        <div
+    <div class="scroll-wrapper">
+      <div 
+        class="scroll-content"
+        (mouseenter)="pauseScroll()"
+        (mouseleave)="resumeScroll()"
+      >
+        <div 
+          *ngFor="let image of images" 
           class="logo-slide d-flex justify-content-center align-items-center"
         >
           <img [src]="image" alt="Bank Logo" class="image-carousel" />
         </div>
-      </ng-template>
-    </p-carousel>
+        <!-- Duplicate for seamless loop -->
+        <div 
+          *ngFor="let image of images" 
+          class="logo-slide d-flex justify-content-center align-items-center"
+        >
+          <img [src]="image" alt="Bank Logo" class="image-carousel" />
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -182,7 +185,7 @@
         to boost your business growth.
       </p>
 
-      <a href="#about" class="btn btn-outline-primary btn-custom-outline"
+      <a href="#about" class="btn btn-custom-outline"
         >Get In Touch</a
       >
     </div>
@@ -254,8 +257,8 @@
           </div> -->
           <div class="icon-box me-3">
             <img
-              src="../../assets/img/svgs/send.svg"
-              alt="Send Icon"
+            [src]="product.icon"
+            alt="{{ product.title }}"
               class="icon-img"
             />
           </div>
@@ -399,27 +402,28 @@
   </div>
 </section>
 <section id="contactus" class="contact-section">
-  <div class="container d-flex justify-content-center g-4 align-items-center">
-    <!-- Left side -->
-    <div class="contact-left">
-      <h2>Get In Touch With Us</h2>
-      <p>
-        Contact Fintalk’s team for quick support, expert guidance, and simple
-        loan solutions custom-made to your needs.
-      </p>
+  <div class="container">
+    <div class="row g-4 align-items-center justify-content-center">
+      <!-- Left side -->
+      <div class="contact-left col-12 col-lg-5">
+        <h2>Get In Touch With Us</h2>
+        <p>
+          Contact Fintalk’s team for quick support, expert guidance, and simple
+          loan solutions custom-made to your needs.
+        </p>
 
-      <div class="contact-info">
-        <p><strong>Email</strong></p>
-        <a href="mailto:info@thefintalk.in">info@thefintalk.in</a>
+        <div class="contact-info">
+          <p><strong>Email</strong></p>
+          <a href="mailto:info@thefintalk.in">info@thefintalk.in</a>
 
-        <p><strong>Mobile Number</strong></p>
-        <a href="tel:+919985961300">+91 9985961300</a>
+          <p><strong>Mobile Number</strong></p>
+          <a href="tel:+919985961300">+91 9985961300</a>
+        </div>
       </div>
-    </div>
 
-    <!-- Right side (Form) -->
-    <div class="contact-right">
-      <form (submit)="onSubmit($event)" class="contact-form">
+      <!-- Right side (Form) -->
+      <div class="contact-right col-12 col-lg-7">
+        <!-- <form [formGroup]="contactForm"  (ngSubmit)="onSubmit()" novalidate class="contact-form">
         <div class="form-group">
           <label>Name</label>
           <input
@@ -467,13 +471,79 @@
             </label>
           </div>
         </div>
-        <div class="text-end">
+        <div class="text-center text-md-end">
           <button type="submit" class="submit-btn" [disabled]="loading">
             {{ loading ? "Submitting..." : "Submit" }}
           </button>
         </div>
         <p *ngIf="message" class="message">{{ message }}</p>
-      </form>
+      </form> -->
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+          novalidate
+          class="contact-form"
+        >
+          <div class="form-group">
+            <label>Name</label>
+            <input
+              type="text"
+              placeholder="Enter Full Name"
+              formControlName="name"
+              pInputText
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              formControlName="email"
+              pInputText
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input
+              type="tel"
+              placeholder="Enter Mobile Number"
+              formControlName="mobile"
+              pInputText
+            />
+          </div>
+
+          <div class="form-group services">
+            <label>Services</label>
+            <div class="checkbox-group">
+              <label *ngFor="let service of services">
+                <input
+                  type="checkbox"
+                  [checked]="service.selected"
+                  (change)="onServiceChange(service)"
+                  class="checkbox-design"
+                />
+                {{ service.name }}
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center text-md-end">
+            <button
+              type="submit"
+              class="submit-btn"
+              [disabled]="loading || contactForm.invalid"
+            >
+              {{ loading ? "Submitting..." : "Submit" }}
+            </button>
+          </div>
+
+          <!-- <p *ngIf="message" class="message">{{ message }}</p> -->
+        </form>
+      </div>
     </div>
   </div>
 </section>

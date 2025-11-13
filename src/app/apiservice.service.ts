@@ -10,10 +10,13 @@ export class ApiserviceService {
   // private BASE_URL = 'https://rest.thefintalk.in:5002/';
 
   constructor(private http: HttpClient) { }
-  sendContactForm(data: any) {
+  createEnquiry(data: any) {
     return this.http.post(this.BASE_URL + 'enquiries', data);
   }
   subscribeUser(data: any) {
     return this.http.post(this.BASE_URL + 'enquiries/newsletter', data);
+  }
+  createContactRequests(data: any) {
+    return this.http.post(this.BASE_URL + 'enquiries/contact-requests', data);
   }
 }

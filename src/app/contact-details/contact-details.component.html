@@ -11,13 +11,13 @@
         <label>Name</label>
         <input
           type="text"
-          formControlName="fullName"
+          formControlName="contactPerson"
           placeholder="Enter Full Name"
         />
         <small
           *ngIf="
-            contactForm.get('fullName')?.touched &&
-            contactForm.get('fullName')?.invalid
+            contactForm.get('contactPerson')?.touched &&
+            contactForm.get('contactPerson')?.invalid
           "
         >
           Name is required (min 3 characters)
@@ -46,7 +46,7 @@
         <label>Required Loan Amount</label>
         <input
           type="text"
-          formControlName="loanAmount"
+          formControlName="loanRequirement"
           placeholder="Enter Amount"
         />
       </div>
@@ -86,8 +86,8 @@
 </div> -->
 
 <div class="contact-details-card" *ngIf="!isSubmitted; else thankYouTemplate">
-  <h2><strong>Enter Your Contact Details</strong></h2>
-  <p class="subtitle">Please fill out the form below to continue.</p>
+  <!-- <h2><strong>Fill Up Your Details To Get Your Loan Approved</strong></h2> -->
+  <p class="fw-bold fs-6">Fill Up Your Details To Get Your Loan Approved.</p>
 
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="form-grid">
@@ -96,13 +96,13 @@
         <label>Name</label>
         <input
           type="text"
-          formControlName="fullName"
+          formControlName="contactPerson"
           placeholder="Enter Full Name"
         />
         <small
           *ngIf="
-            contactForm.get('fullName')?.touched &&
-            contactForm.get('fullName')?.invalid
+            contactForm.get('contactPerson')?.touched &&
+            contactForm.get('contactPerson')?.invalid
           "
         >
           Name is required (min 3 characters)
@@ -117,59 +117,117 @@
           formControlName="businessName"
           placeholder="Enter Business Name"
         />
+        <small
+          *ngIf="
+            contactForm.get('businessName')?.touched &&
+            contactForm.get('businessName')?.invalid
+          "
+        >
+          Business name is required
+        </small>
       </div>
 
       <!-- City -->
-      <div class="form-group full">
+      <!-- <div class="form-group full">
         <label>Name of the City</label>
         <input
           type="text"
           formControlName="city"
           placeholder="Enter City Name"
         />
-      </div>
+      </div> -->
 
       <!-- Loan Amount + GST -->
-      <div class="form-group half">
-        <label>Required Loan Amount</label>
-        <input
-          type="text"
-          formControlName="loanAmount"
-          placeholder="Enter Amount"
-        />
-      </div>
-
-      <div class="form-group half">
-        <label>GST Registered</label>
-        <select formControlName="gstRegistered">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
 
       <!-- Email + Phone -->
       <div class="form-group half">
         <label>Enter Email ID</label>
         <input
           type="email"
-          formControlName="email"
+          formControlName="emailId"
           placeholder="Enter Email ID"
         />
+        <small
+          *ngIf="
+            contactForm.get('emailId')?.touched &&
+            contactForm.get('emailId')?.invalid
+          "
+        >
+          <span *ngIf="contactForm.get('emailId')?.errors?.['required']"
+            >Email is required</span
+          >
+          <span
+            *ngIf="contactForm.get('emailId')?.errors?.['email'] && !contactForm.get('emailId')?.errors?.['required']"
+            >Please enter a valid email address</span
+          >
+        </small>
       </div>
 
       <div class="form-group half">
         <label>Enter Phone Number</label>
         <input
           type="text"
-          formControlName="phone"
+          formControlName="mobile"
           placeholder="+91 00000 00000"
         />
+        <small
+          *ngIf="
+            contactForm.get('mobile')?.touched &&
+            contactForm.get('mobile')?.invalid
+          "
+        >
+          <span *ngIf="contactForm.get('mobile')?.errors?.['required']"
+            >Phone number is required</span
+          >
+          <span
+            *ngIf="contactForm.get('mobile')?.errors?.['pattern'] && !contactForm.get('mobile')?.errors?.['required']"
+            >Please enter a valid phone number (+91 followed by 10 digits)</span
+          >
+        </small>
+      </div>
+      <div class="form-group half">
+        <label>Required Loan Amount (Optional)</label>
+        <input
+          type="text"
+          formControlName="loanRequirement"
+          placeholder="Enter Amount"
+        />
+        <small
+          *ngIf="
+            contactForm.get('loanRequirement')?.touched &&
+            contactForm.get('loanRequirement')?.invalid &&
+            contactForm.get('loanRequirement')?.errors?.['pattern']
+          "
+        >
+          Please enter a valid numeric amount
+        </small>
+      </div>
+
+      <div class="form-group half">
+        <label>Is GST Registered? <span class="optional-text">(Optional)</span></label>
+        <p-dropdown 
+          formControlName="isGstRegistered"
+          [options]="gstOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select"
+          [style]="{'width': '100%'}"
+          styleClass="custom-dropdown">
+        </p-dropdown>
+        <small
+          *ngIf="
+            contactForm.get('isGstRegistered')?.touched &&
+            contactForm.get('isGstRegistered')?.invalid
+          "
+        >
+          Please select a GST registration status
+        </small>
       </div>
     </div>
 
     <!-- Buttons -->
     <div class="actions">
-      <button type="button" class="back-btn" (click)="back.emit()">Back</button>
+      <!-- <button type="button" class="back-btn" (click)="back.emit()">Back</button> -->
       <button type="submit" class="submit-btn">Submit</button>
     </div>
   </form>
@@ -177,7 +235,7 @@
 
 <!-- ✅ Thank-you message + Home button -->
 <ng-template #thankYouTemplate>
-  <div class="congrats-card">
+  <div class="">
     <div class="content">
       <h2>🎉 Thank You!</h2>
 

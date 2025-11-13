@@ -20,6 +20,7 @@ import { Step1LoanTypeModule } from "./step1-loan-type/step1-loan-type.module";
 import { Step2DetailsModule } from "./step2-details/step2-details.module";
 import { ContactDetailsModule } from "./contact-details/contact-details.module";
 import { ProductDetailsModule } from "./product-details/product-details.module";
+import { EmicalculatorModule } from "./emicalculator/emicalculator.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +41,8 @@ import { ProductDetailsModule } from "./product-details/product-details.module";
     Step2DetailsModule,
     HttpClientModule,
     ContactDetailsModule,
-    ProductDetailsModule
+    ProductDetailsModule,
+    EmicalculatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

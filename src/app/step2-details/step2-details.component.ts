@@ -9,7 +9,7 @@ import { LoanApplicationService } from '../loan-application.service';
 export class Step2DetailsComponent {
   @Output() next = new EventEmitter<void>();
   @Output() back = new EventEmitter<void>();
-
+  loanType:any
   selectedEntity: string | null = null;
 
   breadcrumbItems = [
@@ -29,6 +29,7 @@ export class Step2DetailsComponent {
   ];
   ngOnInit() {
     // ✅ Restore previous entity selection if exists
+    this.loanType = this.loanService.getLoanType();
     this.selectedEntity = this.loanService.getEntityType();
   }
 

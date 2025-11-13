@@ -38,11 +38,13 @@ export class FooterComponent implements OnInit {
   loading = false;
   message = '';
   accountId: any = 1270983;
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private apiService: ApiserviceService) { }
+  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private apiService: ApiserviceService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
   ngOnInit(): void {
     this.subscribeForm = this.fb.group({
       name: ['', [Validators.required]],
-        emailAddress: ['', [Validators.required, Validators.email]]
+      emailAddress: ['', [Validators.required, Validators.email]]
     });
   }
   // onSubmit(event: Event) {

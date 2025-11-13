@@ -9,7 +9,9 @@
     <div class="d-flex gap-3 mt-4">
       <a routerLink="/apply" class="btn btn-custom-outline"> Apply Now </a>
 
-      <a href="#contact" class="btn btn-primary btn-custom-filled"
+      <a
+        (click)="scrollToSection('contactus')"
+        class="btn btn-primary btn-custom-filled"
         >Contact Us</a
       >
     </div>
@@ -26,14 +28,15 @@
 
 <div class="loan-section container-fluid" *ngIf="content">
   <div class="loan-left">
-    <img [src]="content.image" alt="Loan Image" class="loan-image" />
+    <img [src]="content.processImage" alt="Loan Image" class="loan-image" />
   </div>
 
   <div class="loan-right">
-    <h2>{{ content.title }}</h2>
-    <ul>
+    <h2>{{ content.secondtitle }}</h2>
+    <p>{{ content.secondheading }}</p>
+    <!-- <ul>
       <li *ngFor="let feature of content.features">{{ feature }}</li>
-    </ul>
+    </ul> -->
     <button class="apply-btn" routerLink="/apply">
       <span>Apply Now</span>
       <div class="icon-circle">
@@ -43,53 +46,13 @@
   </div>
 </div>
 
-<!-- <section class="process-section">
-  <div class="container">
-    <h2>The Process</h2>
-    <p>
-      Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
-      libero et velit interdum, ac aliquet odio mattis.
-    </p>
-    <div class="process-left">
-      <div class="timeline">
-        <div class="timeline-item" *ngFor="let step of content?.processSteps">
-          <div class="icon-box">
-            <img [src]="step.image" [alt]="step.title" />
-          </div>
-          <div class="content">
-            <h4>{{ step.title }}</h4>
-            <p>{{ step.text }}</p>
-          </div>
-        </div>
-      </div>
-
-      <button class="apply-btn" routerLink="/apply">
-        <span>Apply Now</span>
-        <div class="icon-circle">
-          <img src="../../assets/img/svgs/arrow.svg" alt="arrow" />
-        </div>
-      </button>
-    </div>
-
-    <div class="process-right">
-      <div class="shape-bg"></div>
-      <div class="shape-fg">
-        <img
-          *ngIf="content?.processImage"
-          [src]="content?.processImage"
-          alt="process visual"
-        />
-      </div>
-    </div>
-  </div>
-</section> -->
 <section class="process-section">
   <div class="container">
     <!-- LEFT SIDE -->
     <h2>The Process</h2>
     <div class="process-description">
-      Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
-      libero et velit interdum, ac aliquet odio mattis.
+      Follow these simple steps to get your loan approved and disbursed in no
+      time.
     </div>
     <div class="process-left">
       <div class="timeline">
@@ -127,8 +90,7 @@
   <div class="container">
     <h2>Our Numbers Speak more that words</h2>
     <p class="subtitle">
-      Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
-      libero et velit interdum, ac aliquet odio mattis.
+      {{ content.statsSubtitle }}
     </p>
 
     <div class="stats-grid">
@@ -154,7 +116,9 @@
   <div class="faq-left">
     <h2>Got questions? <br /><span>We got answers!</span></h2>
     <p>Feel free to reach out to us if you have more questions for us.</p>
-    <button class="contact-btn">Contact us →</button>
+    <button class="contact-btn" (click)="scrollToSection('contactus')">
+      Contact us →
+    </button>
   </div>
 
   <div class="faq-right">

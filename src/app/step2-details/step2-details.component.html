@@ -2,7 +2,8 @@
 <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
 
 <div class="back-btn" (click)="goBack()">← Back</div>
-<h2>Choose the Business Entity</h2>
+<div *ngIf="loanType === 'Business Loan'">
+  <h2>Choose the Business Entity</h2>
 <p>Select a Business Entity below to continue</p>
 
 <div class="loan-grid">
@@ -20,6 +21,6 @@
   </div>
 </div>
 
-<!-- <button class="next-btn" (click)="continue()" [disabled]="!selectedEntity">
-  Continue
-</button> -->
+
+
+</div>

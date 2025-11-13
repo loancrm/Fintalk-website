@@ -10,6 +10,7 @@ export class LoanEligibleComponent implements OnInit {
    loanType: any ; // dynamic loan type (e.g., "Business Loan")
   @Output() next = new EventEmitter<void>();
   @Output() contactUs = new EventEmitter<void>();
+  isSubmitted = false;
   breadcrumbItems = [
     { label: 'Home', route: '/' },
     { label: 'Apply', route: '/apply' },

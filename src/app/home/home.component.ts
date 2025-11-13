@@ -16,21 +16,25 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     {
       title: 'Business Loans',
       slug: 'business-loan',
+      icon: 'assets/img/svgs/business.svg',
       description: 'Access fast and reliable business loans that support entrepreneurs to grow, develop, and manage operations effortlessly.'
     },
     {
       title: 'Personal Loans',
       slug: 'personal-loan',
+      icon: 'assets/img/svgs/personal.svg',
       description: 'Quick, support for personal needs, emergencies, or lifestyle needs.'
     },
     {
       title: 'Professional Loans',
       slug: 'professional-loan',
+      icon: 'assets/img/svgs/professional.svg',
       description: 'This is Planned for engineers, chartered accountants, doctors and other specialists to support their professions or practices.'
     },
     {
       title: 'Educational Loans',
       slug: 'education-loan',
+      icon: 'assets/img/svgs/educational.svg',
       description: 'Helping students who are pursuing quality education in India or abroad with simple and manageable repayment opportunities.'
     }
   ];
@@ -88,7 +92,9 @@ easy it was. Their guidance made my study abroad journey possible.`,
 
   currentIndex = 1; // Start at 1 because index 0 is the cloned last slide
   intervalId: any;
+  contactForm!: FormGroup;
   isTransitioning = true;
+  scrollResumeTimeout: any;
   images: string[] = [
     'assets/img/clients/hdfc.png',
     'assets/img/clients/scb.png',
@@ -112,22 +118,22 @@ easy it was. Their guidance made my study abroad journey possible.`,
     'assets/img/clients/poona.png',
     'assets/img/clients/arka.png',
     'assets/img/clients/bandhan.png',
-    'assets/img/clients/mas.png',
+    // 'assets/img/clients/mas.png',
     'assets/img/clients/chola.png',
     'assets/img/clients/fed.png',
     'assets/img/clients/finplex.png',
     'assets/img/clients/godrej.png',
     'assets/img/clients/protium.png',
     'assets/img/clients/iifl.png',
-    'assets/img/clients/mahindra.png',
+    // 'assets/img/clients/mahindra.png',
     'assets/img/clients/indifi.png',
     // 'assets/img/clients/kinara.png',
     'assets/img/clients/karur.png',
     'assets/img/clients/lt.png',
-    'assets/img/clients/unity.png',
+    // 'assets/img/clients/unity.png',
     'assets/img/clients/piramal.png',
     'assets/img/clients/shriram.png',
-    'assets/img/clients/credit.png'
+    // 'assets/img/clients/credit.png'
   ];
   openIndex: number | null = 0; // Default open first FAQ
 
@@ -204,7 +210,7 @@ and quick business loan options with minimal documentation.`
     { name: 'Educational Loans', selected: false },
     { name: 'Professional Loans', selected: false }
   ];
-
+  accountId: any = 1270983;
   // Product Cards Data
   productCards = [
     { title: 'Business Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },
@@ -217,11 +223,18 @@ and quick business loan options with minimal documentation.`
   currentCardIndex = 0; // The index of the current card being viewed
   scrollInterval: any; // Interval for auto-scrolling
   numVisibleItems: number = 1;
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private api: ApiserviceService) { }
+  constructor(private http: HttpClient, private apiService: ApiserviceService, private router: Router, private fb: FormBuilder, private api: ApiserviceService) { }
   ngOnInit(): void {
-
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      mobile: ['', Validators.pattern(/^[0-9]{10}$/)],
+    });
     this.setVisibleItems();
     this.startAutoSlide();
+  }
+  onServiceChange(service: any) {
+    service.selected = !service.selected;
   }
 
   ngAfterViewInit(): void {
@@ -233,7 +246,31 @@ and quick business loan options with minimal documentation.`
     }, 50);
   }
 
+  pauseScroll() {
+    const scrollContent = document.querySelector('.scroll-content') as HTMLElement;
+    if (scrollContent) {
+      scrollContent.style.animationPlayState = 'paused';
+    }
+    // Clear any existing resume timeout
+    if (this.scrollResumeTimeout) {
+      clearTimeout(this.scrollResumeTimeout);
+    }
+  }
+
+  resumeScroll() {
+    // Resume after 2 seconds delay
+    this.scrollResumeTimeout = setTimeout(() => {
+      const scrollContent = document.querySelector('.scroll-content') as HTMLElement;
+      if (scrollContent) {
+        scrollContent.style.animationPlayState = 'running';
+      }
+    }, 2000); // 2 second delay
+  }
+
   ngOnDestroy(): void {
+    if (this.scrollResumeTimeout) {
+      clearTimeout(this.scrollResumeTimeout);
+    }
     if (this.scrollInterval) {
       clearInterval(this.scrollInterval); // Clear the interval when the component is destroyed
     }
@@ -356,8 +393,10 @@ and quick business loan options with minimal documentation.`
     }
     return this.currentIndex - 1; // Real slides are offset by 1
   }
-  onSubmit(event: Event) {
-    event.preventDefault();
+  onSubmit() {
+    console.log(this.contactForm.value);
+    if (this.contactForm.invalid) return;
+
     this.loading = true;
     this.message = '';
 
@@ -365,35 +404,29 @@ and quick business loan options with minimal documentation.`
       .filter(s => s.selected)
       .map(s => s.name);
 
-    const payload = {
-      ...this.formData,
-      services: selectedServices
+    const formData = {
+      ...this.contactForm.value,
+      services: selectedServices,
+      accountId: this.accountId
     };
 
-    if (!this.formData.email || !this.formData.name || !this.formData.mobile) {
-      this.message = 'Please fill all required fields.';
-      this.loading = false;
-      return;
-    }
-
-    // Replace with your real API endpoint
-    const apiUrl = 'https://yourapi.com/contact';
-
-    this.http.post(apiUrl, payload).subscribe({
-      next: () => {
-        this.message = 'Thank you for reaching out! We will contact you soon.';
-        this.resetForm();
+    this.apiService.createContactRequests(formData).subscribe({
+      next: (res: any) => {
+        alert(res.message || 'Thank you for contacting us!');
+        this.contactForm.reset();
+        this.services.forEach(s => (s.selected = false));
+        this.loading = false;
       },
-      error: () => {
-        this.message = 'Something went wrong. Please try again.';
-      },
-      complete: () => (this.loading = false)
+      error: (error: any) => {
+        console.error(error);
+        const errorMessage = error?.error?.message || '❌ Failed to subscribe. Please try again.';
+        alert(errorMessage);
+        this.loading = false;
+      }
     });
   }
 
-  resetForm() {
-    this.formData = { name: '', email: '', mobile: '' };
-    this.services.forEach(s => (s.selected = false));
-  }
+
+
 
 }

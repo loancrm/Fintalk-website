@@ -1,0 +1,70 @@
+.loan-card {
+  margin-top: 75px;
+  background-color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #4faf9f;
+    // box-shadow: 0 6px 15px rgba(0, 123, 255, 0.15);
+  }
+
+  h5 {
+    color: #333;
+    margin: 0;
+  }
+
+  &.active-card {
+    border: 2px solid #4faf9f;
+    background: #f1f9f5;
+    // background: linear-gradient(135deg, #e6f0ff 0%, #ffffff 100%);
+    // box-shadow: 0 4px 14px rgba(0, 86, 210, 0.2);
+  }
+}
+
+.tab-content {
+  margin-top: 2rem;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .container{
+    margin-top: 60px;
+  }
+  .loan-card {
+    margin-top: 2rem;
+    padding: 1.25rem !important;
+
+    h5 {
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      transform: none; // Disable hover effect on mobile
+    }
+  }
+
+  .tab-content {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loan-card {
+    margin-top: 1.5rem;
+    padding: 1rem !important;
+    border-radius: 10px;
+
+    h5 {
+      font-size: 1rem;
+    }
+  }
+
+  .tab-content {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <!-- Business Loan Card -->
+    <div class="col-12 col-md-4 mb-3 mb-md-0">
+      <div
+        class="card text-center p-4 pointer loan-card"
+        [ngClass]="{ 'active-card': activeTab === 'one' }"
+        (click)="activeTab = 'one'"
+      >
+        <h5 class="fw-semibold mb-2">Business Loan</h5>
+      </div>
+    </div>
+
+    <!-- Personal Loan Card -->
+    <div class="col-12 col-md-4">
+      <div
+        class="card text-center p-4 pointer loan-card"
+        [ngClass]="{ 'active-card': activeTab === 'two' }"
+        (click)="activeTab = 'two'"
+      >
+        <h5 class="fw-semibold mb-2">Personal Loan</h5>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tab-content">
+  <app-blcalculator *ngIf="activeTab === 'one'"></app-blcalculator>
+  <app-plcalculator *ngIf="activeTab === 'two'"></app-plcalculator>
+</div>

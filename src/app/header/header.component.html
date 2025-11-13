@@ -27,11 +27,11 @@
     </button>
 
     <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav" #navbarCollapse>
       <!-- Centered nav links -->
-      <ul class="navbar-nav mx-auto align-items-center">
+      <ul class="navbar-nav mx-auto">
         <li class="nav-item me-3">
-          <a class="nav-link nav-custom" href="">Home</a>
+          <a class="nav-link nav-custom" href="" (click)="closeNavbar()">Home</a>
         </li>
         <li class="nav-item me-3">
           <a class="nav-link nav-custom" (click)="scrollToSection('aboutUs')"
@@ -48,7 +48,7 @@
           <a class="nav-link nav-custom" href="#creditRepair">Credit Repair</a>
         </li> -->
         <li class="nav-item me-3">
-          <a class="nav-link nav-custom" href="#emiCalculator"
+          <a class="nav-link nav-custom" routerLink="/emi-calculator" (click)="closeNavbar()"
             >EMI Calculator</a
           >
         </li>
@@ -60,7 +60,7 @@
       </ul>
 
       <!-- Login button at the end -->
-      <a class="btn custom-login-btn" href="https://app.myloancrm.com">Login</a>
+      <a class="btn custom-login-btn" href="https://app.myloancrm.com" (click)="closeNavbar()">Login</a>
     </div>
   </div>
 </nav>

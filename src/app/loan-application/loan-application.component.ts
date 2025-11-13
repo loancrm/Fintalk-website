@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LoanApplicationComponent {
   currentStep = 1;
-  totalSteps = 5;
+  totalSteps = 4;
   showContactDetails = false;
   nextStep() {
-    if (this.currentStep < this.totalSteps) this.currentStep++;
+    // Allow up to step 5 (loan-eligible), but only 4 steps shown in progress
+    if (this.currentStep < 5) this.currentStep++;
   }
 
   prevStep() {
@@ -19,7 +20,9 @@ export class LoanApplicationComponent {
   }
 
   progressWidth() {
-    return (this.currentStep / this.totalSteps) * 100;
+    // Cap at 4 steps for progress calculation (step 5 is loan-eligible, not counted)
+    const stepForProgress = Math.min(this.currentStep, 4);
+    return (stepForProgress / this.totalSteps) * 100;
   }
   openContactDetails() {
     console.log('openContactDetails');

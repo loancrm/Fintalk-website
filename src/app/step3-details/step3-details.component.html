@@ -3,7 +3,7 @@
 
 <div class="back-btn" (click)="goBack()">← Back</div>
 <h2>Choose the Business Vintage</h2>
-<p>Select a Business Entity below to continue</p>
+<p>Select a Business Vintage below to continue</p>
 
 <div class="loan-grid">
   <div
@@ -12,11 +12,11 @@
     [class.active]="selectedVintage === entity.name"
     (click)="selectEntity(entity.name)"
   >
-    <div class="icon">
+    <div class="icon mb-3">
       <img [src]="entity.icon" alt="{{ entity.title }}" />
     </div>
     <h3>{{ entity.title }}</h3>
-    <p>{{ entity.description }}</p>
+    <!-- <p>{{ entity.description }}</p> -->
   </div>
 </div>
 
