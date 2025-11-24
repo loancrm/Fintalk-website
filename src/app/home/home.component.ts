@@ -210,7 +210,7 @@ and quick business loan options with minimal documentation.`
     { name: 'Educational Loans', selected: false },
     { name: 'Professional Loans', selected: false }
   ];
-  accountId: any = 1270983;
+  accountId: any = 1234567;
   // Product Cards Data
   productCards = [
     { title: 'Business Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },

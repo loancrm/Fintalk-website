@@ -110,6 +110,16 @@
 //     transform: scale(1.1); /* Adjust the scale factor as needed */
 //   }
 // }
+@media (min-width: 992px) {   /* lg screens and above */
+  .floating-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    max-width: 45%;   /* Adjust size if needed */
+  }
+}
 #home {
   // width: 1250;
   // height: 802;
@@ -1762,8 +1772,20 @@ h2 {
   .testimonials .testimonial-item p {
     width: 80%;
   }
+
+}
+@media (min-width: 992px) {
+  .leftcontent {
+    margin-left: 49px;
+  }
 }
 
+/* Mobile + Tablet (< 992px) - remove margin */
+@media (max-width: 991px) {
+  .leftcontent {
+    margin-left: 0 !important;
+  }
+}
 .contact .info {
   border-top: 3px solid #1acc8d;
   border-bottom: 3px solid #1acc8d;
@@ -1886,7 +1908,50 @@ h2 {
   text-align: center;
   padding: 15px;
 }
+.headingname {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+}
 
+.customubheading {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.btn-custom-outline {
+  padding: 10px 28px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  background: transparent;
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-custom-outline:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btn-custom-filled {
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+}
+.leftcontent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* Vertical center */
+  align-items: flex-start;   /* Horizontal alignment but keep text LEFT */
+  height: 100%;              /* Needed for vertical centering */
+  text-align: left;          /* Ensure headings stay left */
+}
 .contact .php-email-form .loading:before {
   content: "";
   display: inline-block;

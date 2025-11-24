@@ -147,7 +147,7 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       ],
 
       aboutImage: 'assets/img/svgs/pl/about.svg',
-      processImage: 'assets/img/svgs/pl/process.svg',
+      processImage: 'assets/img/svgs/bl/process.svg',
 
       images: [
         'assets/img/svgs/pl/frame1.svg',

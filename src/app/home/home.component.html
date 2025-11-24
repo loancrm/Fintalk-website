@@ -26,7 +26,7 @@
     </div>
   </div>
 </section> -->
-<section
+<!-- <section
   id="home"
   class="home-section d-flex align-items-center justify-content-center"
 >
@@ -38,9 +38,7 @@
       to 84 months.
     </h5>
 
-    <!-- <div class="d-flex justify-content-center">
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
-    </div> -->
+
     <div class="d-flex justify-content-center gap-3 mt-4">
       <a routerLink="/apply" class="btn btn-custom-outline">
         Apply Now
@@ -53,7 +51,45 @@
       >
     </div>
   </div>
+</section> -->
+
+<section id="home" class="home-section pt-5">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <!-- LEFT CONTENT -->
+      <div class="col-md-6 leftcontent text-center text-md-start">
+        <h1 class="headingname">Unsecured Loans For Your Business</h1>
+
+        <h5 class="customubheading mt-3">
+          Fast, Flexible Business Loans from 10 L to 5 Cr. Repay on your terms,
+          up to 84 months.
+        </h5>
+
+        <div
+          class="d-flex gap-3 mt-4 justify-content-center justify-content-md-start"
+        >
+          <a routerLink="/apply" class="btn btn-custom-outline">Apply Now</a>
+          <a
+            (click)="scrollToSection('contactus')"
+            class="btn btn-primary btn-custom-filled"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT IMAGE (HIDDEN ON MOBILE) -->
+      <div class="col-md-6 text-center mt-4 mt-md-0 d-none d-md-block">
+        <img
+          src="../../assets/img/svgs/banner.svg"
+          alt="Loan Banner"
+          class="img-fluid hero-image floating-img"
+        />
+      </div>
+    </div>
+  </div>
 </section>
+
 <!-- <section
   data-aos="zoom-in"
   data-aos-duration="1500"
@@ -83,20 +119,20 @@
 >
   <div class="carousel-container">
     <div class="scroll-wrapper">
-      <div 
+      <div
         class="scroll-content"
         (mouseenter)="pauseScroll()"
         (mouseleave)="resumeScroll()"
       >
-        <div 
-          *ngFor="let image of images" 
+        <div
+          *ngFor="let image of images"
           class="logo-slide d-flex justify-content-center align-items-center"
         >
           <img [src]="image" alt="Bank Logo" class="image-carousel" />
         </div>
         <!-- Duplicate for seamless loop -->
-        <div 
-          *ngFor="let image of images" 
+        <div
+          *ngFor="let image of images"
           class="logo-slide d-flex justify-content-center align-items-center"
         >
           <img [src]="image" alt="Bank Logo" class="image-carousel" />
@@ -185,9 +221,7 @@
         to boost your business growth.
       </p>
 
-      <a href="#about" class="btn btn-custom-outline"
-        >Get In Touch</a
-      >
+      <a href="#about" class="btn btn-custom-outline">Get In Touch</a>
     </div>
   </div>
 </section>
@@ -257,8 +291,8 @@
           </div> -->
           <div class="icon-box me-3">
             <img
-            [src]="product.icon"
-            alt="{{ product.title }}"
+              [src]="product.icon"
+              alt="{{ product.title }}"
               class="icon-img"
             />
           </div>
