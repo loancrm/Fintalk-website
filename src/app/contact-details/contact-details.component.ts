@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoanApplicationService } from '../loan-application.service';
@@ -7,9 +7,9 @@ import { ApiserviceService } from '../apiservice.service';
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.scss']
+  styleUrls: ['./contact-details.component.scss'],
 })
-export class ContactDetailsComponent {
+export class ContactDetailsComponent implements OnInit {
   @Output() back = new EventEmitter<void>();
   @Output() next = new EventEmitter<void>();
   @Output() submitted = new EventEmitter<void>();
@@ -23,17 +23,22 @@ export class ContactDetailsComponent {
     { label: 'Business Vintage' },
     { label: 'Business Turnover' },
     { label: 'Eligibility' },
-    { label: 'Contact Details', isActive: true }
+    { label: 'Contact Details', isActive: true },
   ];
-
+  loanType: any;
   contactForm: FormGroup;
   loading = false;
   gstOptions = [
     { label: 'Yes', value: 'Yes' },
-    { label: 'No', value: 'No' }
+    { label: 'No', value: 'No' },
   ];
 
-  constructor(private fb: FormBuilder, private loanService: LoanApplicationService, private router: Router, private apiService: ApiserviceService) {
+  constructor(
+    private fb: FormBuilder,
+    private loanService: LoanApplicationService,
+    private router: Router,
+    private apiService: ApiserviceService
+  ) {
     // Custom validator for optional numeric field
     const numericOrEmptyValidator = (control: any) => {
       if (!control.value || control.value === '') {
@@ -44,15 +49,36 @@ export class ContactDetailsComponent {
 
     this.contactForm = this.fb.group({
       contactPerson: ['', [Validators.required, Validators.minLength(3)]],
-      businessName: ['', Validators.required],
+      businessName: [''],
       // city: ['', Validators.required],
       loanRequirement: ['', [numericOrEmptyValidator]], // Optional, but if provided must be numeric
       isGstRegistered: ['Yes'], // Optional
       emailId: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required, Validators.pattern(/^\+91\s?\d{10}$/)]]
+      mobile: [
+        '',
+        [Validators.required, Validators.pattern(/^\+91\s?\d{10}$/)],
+      ],
     });
   }
 
+  ngOnInit(): void {
+    this.loanType = this.loanService.getLoanType();
+    this.updateValidatorsBasedOnLoanType();
+  }
+  updateValidatorsBasedOnLoanType() {
+    console.log(this.loanType);
+    if (this.loanType === 'Business Loan') {
+      this.contactForm
+        .get('businessName')
+        ?.setValidators([Validators.required]);
+    } else {
+      this.contactForm.get('businessName')?.clearValidators();
+      this.contactForm.get('isGstRegistered')?.clearValidators();
+    }
+
+    this.contactForm.get('businessName')?.updateValueAndValidity();
+    this.contactForm.get('isGstRegistered')?.updateValueAndValidity();
+  }
   // onSubmit() {
   //   if (this.contactForm.valid) {
   //     console.log('Form submitted successfully', this.contactForm.value);
@@ -76,12 +102,12 @@ export class ContactDetailsComponent {
     // ✅ Combine contact form + service data
     const formData = {
       ...this.contactForm.value,
-      eligibility: "eligible",
+      eligibility: 'eligible',
       productType: this.loanService.getLoanType(),
       businessEntity: this.loanService.getEntityType(),
       businessVintage: this.loanService.getEntityVintage(),
       businessTurnover: this.loanService.getEntityTurnover(),
-      accountId: this.accountId
+      accountId: this.accountId,
     };
 
     console.log('Full Loan Application Data:', formData);
@@ -96,10 +122,11 @@ export class ContactDetailsComponent {
       },
       error: (error: any) => {
         console.error(error);
-        const errorMessage = error?.error?.message || '❌ Failed to subscribe. Please try again.';
+        const errorMessage =
+          error?.error?.message || '❌ Failed to subscribe. Please try again.';
         alert(errorMessage);
         this.loading = false;
-      }
+      },
     });
   }
   goHome() {

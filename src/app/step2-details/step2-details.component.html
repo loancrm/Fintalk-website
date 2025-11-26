@@ -4,23 +4,41 @@
 <div class="back-btn" (click)="goBack()">← Back</div>
 <div *ngIf="loanType === 'Business Loan'">
   <h2>Choose the Business Entity</h2>
-<p>Select a Business Entity below to continue</p>
+  <p>Select a Business Entity below to continue</p>
 
-<div class="loan-grid">
-  <div
-    class="loan-card"
-    *ngFor="let entity of entityTypes"
-    [class.active]="selectedEntity === entity.name"
-    (click)="selectEntity(entity.name)"
-  >
-    <div class="icon mb-3">
-      <img [src]="entity.icon" alt="{{ entity.title }}" />
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let entity of entityTypes"
+      [class.active]="selectedEntity === entity.name"
+      (click)="selectEntity(entity.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="entity.icon" alt="{{ entity.title }}" />
+      </div>
+      <h3>{{ entity.title }}</h3>
+      <!-- <p>{{ entity.description }}</p> -->
     </div>
-    <h3>{{ entity.title }}</h3>
-    <!-- <p>{{ entity.description }}</p> -->
   </div>
 </div>
 
+<div *ngIf="loanType === 'Personal Loan'">
+  <h2>Monthly Income</h2>
+  <p>Select your monthly income range</p>
 
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let income of incomeRanges"
+      [class.active]="selectedIncome === income.name"
+      (click)="selectIncome(income.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="income.icon" alt="{{ income.title }}" />
+      </div>
 
+      <h3>{{ income.title }}</h3>
+      <!-- <p>{{ income.description }}</p> -->
+    </div>
+  </div>
 </div>
