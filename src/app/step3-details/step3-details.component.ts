@@ -12,7 +12,47 @@ export class Step3DetailsComponent {
 
   selectedVintage: string | null = null;
   loanType: any;
+  selectedIncome: string | null = null;
+  selectedCourseLevel: any;
 
+  incomeRanges = [
+    {
+      name: 'Below 15000',
+      title: 'Below ₹15,000',
+      icon: 'assets/img/svgs/0-3.svg',
+      description: 'For income less than ₹15,000 per month.',
+    },
+    {
+      name: '15000_25000',
+      title: '₹15,000 - ₹25,000',
+      icon: 'assets/img/svgs/3-5.svg',
+      description: 'Suitable for basic salaried earners.',
+    },
+    {
+      name: '25000_40000',
+      title: '₹25,000 - ₹40,000',
+      icon: 'assets/img/svgs/6-8.svg',
+      description: 'Ideal for mid-level income group.',
+    },
+    {
+      name: '40000_60000',
+      title: '₹40,000 - ₹60,000',
+      icon: 'assets/img/svgs/10+.svg',
+      description: 'Well-qualified income bracket.',
+    },
+    {
+      name: '60000_100000',
+      title: '₹60,000 - ₹1,00,000',
+      icon: 'assets/img/svgs/10+.svg',
+      description: 'Strong earning capacity category.',
+    },
+    {
+      name: 'Above_100000',
+      title: 'Above ₹1,00,000',
+      icon: 'assets/img/svgs/10+.svg',
+      description: 'High income earning group.',
+    },
+  ];
   breadcrumbItems = [
     { label: 'Home', route: '/' },
     { label: 'Apply', route: '/apply' },
@@ -53,12 +93,15 @@ export class Step3DetailsComponent {
     },
   ];
   selectedExperience: string | null = null;
-  constructor(private loanService: LoanApplicationService) {}
+  constructor(private loanService: LoanApplicationService) { }
   ngOnInit() {
     this.loanType = this.loanService.getLoanType();
     // ✅ Restore previous entity selection if exists
+    this.selectedCourseLevel = this.loanService.getCourseLevel();
     this.selectedExperience = this.loanService.getExperience();
     this.selectedVintage = this.loanService.getEntityVintage();
+    this.selectedIncome = this.loanService.getIncome();
+
   }
 
   VinatgeTypes = [
@@ -87,7 +130,38 @@ export class Step3DetailsComponent {
       description: 'Hybrid business type.',
     },
   ];
+  courseLevels = [
+    {
+      name: 'ug',
+      title: 'Undergraduate (UG)',
+      icon: 'assets/img/svgs/ug.svg',
+      description: 'Bachelor-level programs like B.Tech, MBBS, BBA, B.Com, etc.'
+    },
+    {
+      name: 'pg',
+      title: 'Postgraduate (PG)',
+      icon: 'assets/img/svgs/pg.svg',
+      description: 'Master’s courses such as M.Tech, MBA, MS, M.Sc, etc.'
+    },
+    {
+      name: 'diploma',
+      title: 'Diploma / Certification',
+      icon: 'assets/img/svgs/diploma.svg',
+      description: 'Short-term or long-term diploma or certification programs.'
+    },
+    {
+      name: 'phd',
+      title: 'PhD / Research',
+      icon: 'assets/img/svgs/phd.svg',
+      description: 'Doctorate and advanced research programs.'
+    }
+  ];
 
+  selectIncome(entity: string) {
+    this.selectedIncome = entity;
+    this.loanService.setMonthlyIncome(entity);
+    this.next.emit(); // move to final review page
+  }
   selectEntity(entity: string) {
     this.selectedVintage = entity;
     this.loanService.setEntityVintage(entity);
@@ -103,5 +177,11 @@ export class Step3DetailsComponent {
   }
   goBack() {
     this.back.emit(); // 👈 notify parent to go to previous step
+  }
+
+  selectCourseLevel(level: string) {
+    this.selectedCourseLevel = level;
+    this.loanService.setCourseLevel(level);
+    this.next.emit(); // move to final review page
   }
 }

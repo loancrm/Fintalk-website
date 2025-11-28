@@ -2402,3 +2402,12 @@ h2 {
 .contactimgs {
   margin-top: 100px;
 }
+.typing-text {
+  font-weight: 700;
+  color: #3ECE9A;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}

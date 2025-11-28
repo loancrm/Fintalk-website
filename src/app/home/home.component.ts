@@ -203,6 +203,7 @@ and quick business loan options with minimal documentation.`
     email: '',
     mobile: ''
   };
+  showAllFaqs = false;
 
   services = [
     { name: 'Business Loans', selected: false },
@@ -219,12 +220,23 @@ and quick business loan options with minimal documentation.`
     { title: 'Over Draft Limit', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },
     { title: 'Professional Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' }
   ];
+  words: string[] = ['Business', 'Personal', 'Education', 'Profession'];
+  displayText = '';
+  wordIndex = 0;
+  charIndex = 0;
+  isDeleting = false;
+  typingSpeed = 150; // typing speed
+  deletingSpeed = 100; // deleting speed
+  delayBetweenWords = 1200; // pause before deleting
 
+  currentWord: string = '';
+  // wordIndex = 0;
   currentCardIndex = 0; // The index of the current card being viewed
   scrollInterval: any; // Interval for auto-scrolling
   numVisibleItems: number = 1;
   constructor(private http: HttpClient, private apiService: ApiserviceService, private router: Router, private fb: FormBuilder, private api: ApiserviceService) { }
   ngOnInit(): void {
+    this.typeWriter();
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -245,7 +257,38 @@ and quick business loan options with minimal documentation.`
       this.isTransitioning = true;
     }, 50);
   }
+  get limitedFaqs() {
+    return this.showAllFaqs ? this.faqs : this.faqs.slice(0, 4);
+  }
 
+  toggleShowAll() {
+    this.showAllFaqs = !this.showAllFaqs;
+  }
+  typeWriter() {
+    const current = this.words[this.wordIndex];
+
+    if (this.isDeleting) {
+      this.displayText = current.substring(0, this.charIndex--);
+    } else {
+      this.displayText = current.substring(0, this.charIndex++);
+    }
+
+    // When word typed fully
+    if (!this.isDeleting && this.charIndex === current.length + 1) {
+      this.isDeleting = true;
+      setTimeout(() => this.typeWriter(), this.delayBetweenWords);
+      return;
+    }
+
+    // When word fully deleted
+    if (this.isDeleting && this.charIndex === 0) {
+      this.isDeleting = false;
+      this.wordIndex = (this.wordIndex + 1) % this.words.length;
+    }
+
+    const speed = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
+    setTimeout(() => this.typeWriter(), speed);
+  }
   pauseScroll() {
     const scrollContent = document.querySelector('.scroll-content') as HTMLElement;
     if (scrollContent) {

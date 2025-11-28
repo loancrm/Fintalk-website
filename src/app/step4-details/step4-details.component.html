@@ -43,3 +43,45 @@
     Next
   </button>
 </div>
+
+<div *ngIf="loanType === 'Professional Loan'">
+  <h2>Choose the Work Experience</h2>
+  <p>Select a Business Vintage below to continue</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let exp of workExpRanges"
+      [class.active]="selectedExperience === exp.name"
+      (click)="selectExperience(exp.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="exp.icon" alt="{{ exp.title }}" />
+      </div>
+
+      <h3>{{ exp.title }}</h3>
+      <!-- <p>{{ exp.description }}</p> -->
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loanType === 'Education Loan'">
+  <h2>Co Applicant Monthly Income</h2>
+  <p>Select your monthly income range</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let income of incomeRanges"
+      [class.active]="selectedIncome === income.name"
+      (click)="selectIncome(income.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="income.icon" alt="{{ income.title }}" />
+      </div>
+
+      <h3>{{ income.title }}</h3>
+      <!-- <p>{{ income.description }}</p> -->
+    </div>
+  </div>
+</div>

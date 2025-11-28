@@ -20,7 +20,7 @@ export class Step2DetailsComponent {
     { label: 'Business Entity', isActive: true },
   ];
 
-  constructor(private loanService: LoanApplicationService) {}
+  constructor(private loanService: LoanApplicationService) { }
 
   entityTypes = [
     {
@@ -88,11 +88,53 @@ export class Step2DetailsComponent {
     },
   ];
 
+  selectedProfession: string = '';
+  selectedEducationType: string = '';
+  professions = [
+    {
+      name: 'doctor',
+      title: 'Doctor',
+      icon: 'assets/img/svgs/professional.svg',
+      description: 'Medical professionals including MBBS, MD, BDS, etc.'
+    },
+    {
+      name: 'architect',
+      title: 'Architect',
+      icon: 'assets/img/svgs/professional.svg',
+      description: 'Licensed architects working independently or in firms.'
+    },
+    {
+      name: 'chartered_accountant',
+      title: 'Chartered Accountant',
+      icon: 'assets/img/svgs/professional.svg',
+      description: 'Qualified CA professionals with practice or employment.'
+    }
+  ];
+
+
+  educationTypes = [
+    {
+      name: 'abroad_education',
+      title: 'Abroad Education',
+      icon: 'assets/img/svgs/abroad.svg',
+      description: 'Education in countries like USA, UK, Canada, Australia, or Europe.'
+    },
+    {
+      name: 'indian_education',
+      title: 'Indian Education',
+      icon: 'assets/img/svgs/educational.svg',
+      description: 'Education within India across universities and professional institutes.'
+    }
+  ];
+
   ngOnInit() {
     // ✅ Restore previous entity selection if exists
     this.loanType = this.loanService.getLoanType();
+    console.log('Loan Type in Step 2:', this.loanType);
     this.selectedEntity = this.loanService.getEntityType();
+    this.selectedProfession = this.loanService.getProfession() ?? '';
     this.selectedIncome = this.loanService.getIncome();
+    this.selectedEducationType = this.loanService.getEducationType() ?? '';
   }
 
   selectEntity(entity: string) {
@@ -101,6 +143,17 @@ export class Step2DetailsComponent {
     this.next.emit(); // move to final review page
   }
 
+  selectProfession(profession: string) {
+    this.selectedProfession = profession;
+    this.loanService.setProfession(profession);
+    this.next.emit(); // move to final review page
+  }
+
+  selectEducationType(exp: string) {
+    this.selectedEducationType = exp;
+    this.loanService.setEducationType(exp);
+    this.next.emit(); // move to final review page
+  }
   selectIncome(entity: string) {
     this.selectedIncome = entity;
     this.loanService.setMonthlyIncome(entity);

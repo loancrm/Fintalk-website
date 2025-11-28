@@ -43,3 +43,47 @@
     </div>
   </div>
 </div>
+
+
+<div *ngIf="loanType === 'Professional Loan'">
+  <h2>Monthly Income</h2>
+  <p>Select your monthly income range</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let income of incomeRanges"
+      [class.active]="selectedIncome === income.name"
+      (click)="selectIncome(income.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="income.icon" alt="{{ income.title }}" />
+      </div>
+
+      <h3>{{ income.title }}</h3>
+      <!-- <p>{{ income.description }}</p> -->
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="loanType === 'Education Loan'">
+  <h2>Course Level</h2>
+  <p>Select your course level</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let level of courseLevels"
+      [class.active]="selectedCourseLevel === level.name"
+      (click)="selectCourseLevel(level.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="level.icon" alt="{{ level.title }}" />
+      </div>
+
+      <h3>{{ level.title }}</h3>
+      <!-- <p>{{ level.description }}</p> -->
+    </div>
+  </div>
+</div>

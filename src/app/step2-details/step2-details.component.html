@@ -42,3 +42,44 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="loanType === 'Professional Loan'">
+  <h2>Profession</h2>
+  <p>Select your profession</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let prof of professions"
+      [class.active]="selectedProfession === prof.name"
+      (click)="selectProfession(prof.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="prof.icon" alt="{{ prof.title }}" />
+      </div>
+
+      <h3>{{ prof.title }}</h3>
+      <!-- <p>{{ prof.description }}</p> -->
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loanType === 'Education Loan'">
+  <h2>Type of Education</h2>
+  <p>Select whether you want to study in India or Abroad</p>
+
+  <div class="loan-grid">
+    <div
+      class="loan-card"
+      *ngFor="let edu of educationTypes"
+      [class.active]="selectedEducationType === edu.name"
+      (click)="selectEducationType(edu.name)"
+    >
+      <div class="icon mb-3">
+        <img [src]="edu.icon" alt="{{ edu.title }}" />
+      </div>
+
+      <h3>{{ edu.title }}</h3>
+    </div>
+  </div>
+</div>
