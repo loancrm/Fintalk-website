@@ -134,25 +134,25 @@ export class Step3DetailsComponent {
     {
       name: 'ug',
       title: 'Undergraduate (UG)',
-      icon: 'assets/img/svgs/ug.svg',
+      icon: 'assets/img/svgs/education1.svg',
       description: 'Bachelor-level programs like B.Tech, MBBS, BBA, B.Com, etc.'
     },
     {
       name: 'pg',
       title: 'Postgraduate (PG)',
-      icon: 'assets/img/svgs/pg.svg',
+      icon: 'assets/img/svgs/education2.svg',
       description: 'Master’s courses such as M.Tech, MBA, MS, M.Sc, etc.'
     },
     {
       name: 'diploma',
       title: 'Diploma / Certification',
-      icon: 'assets/img/svgs/diploma.svg',
+      icon: 'assets/img/svgs/education3.svg',
       description: 'Short-term or long-term diploma or certification programs.'
     },
     {
       name: 'phd',
       title: 'PhD / Research',
-      icon: 'assets/img/svgs/phd.svg',
+      icon: 'assets/img/svgs/education4.svg',
       description: 'Doctorate and advanced research programs.'
     }
   ];
