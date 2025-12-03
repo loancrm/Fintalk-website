@@ -166,11 +166,7 @@
 
       <div class="form-group half">
         <label>Enter Phone Number</label>
-        <input
-          type="text"
-          formControlName="mobile"
-          placeholder="+91 00000 00000"
-        />
+        <input type="text" formControlName="mobile" placeholder="0000000000" />
         <small
           *ngIf="
             contactForm.get('mobile')?.touched &&

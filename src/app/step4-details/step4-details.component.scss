@@ -3,7 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 24px;
- /* Aligns cards properly */
+  /* Aligns cards properly */
 }
 
 @media (max-width: 1024px) {
@@ -59,18 +59,26 @@
 }
 
 .next-btn {
-  margin-top: 20px;
-  background: #2d9cdb;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
   border: none;
+  border-radius: 8px;
+  background-color: #00bfa6;
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .next-btn:disabled {
-  background: #aaa;
+  background-color: #cbd5e1;
+  cursor: not-allowed;
 }
+
+.next-btn:not(:disabled):hover {
+  background-color: #00a58f;
+}
+
 .loan-card h3 {
   font-size: 15px;
   font-family: Inter;

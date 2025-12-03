@@ -1,11 +1,9 @@
-
-
 .scroll-top-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
-  background-color:#171E32;
+  background-color: #171e32;
   color: #ffffff;
   border: 1px solid white;
   border-radius: 50%;
@@ -41,10 +39,6 @@
   background: #37517e;
 }
 
-
-
-
-
 #preloader:before {
   content: "";
   position: fixed;
@@ -68,3 +62,41 @@
     transform: rotate(360deg);
   }
 }
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px; /* above scroll button */
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.whatsapp-float i {
+  font-size: 24px;
+}
+
+// .scroll-top-button {
+//   position: fixed;
+//   bottom: 20px;
+//   right: 20px;
+//   background-color: #000;
+//   color: white;
+//   padding: 14px;
+//   border-radius: 50%;
+//   font-size: 20px;
+//   cursor: pointer;
+//   opacity: 0;
+//   transition: opacity 0.3s ease-in-out;
+// }
+
+// .scroll-top-button.show {
+//   opacity: 1;
+// }

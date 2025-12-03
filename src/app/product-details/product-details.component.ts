@@ -19,7 +19,7 @@ export class ProductDetailsComponent {
       subtitle:
         'Empower your business growth with fast and flexible funding options.',
       features: [
-        'Business loans from ₹1 Lakh to ₹5 Crore.',
+        'Business loans from ₹10 Lakh to ₹5 Crore.',
         'Repay comfortably with flexible tenures up to 84 months.',
         'Instant eligibility check and 24-hour disbursal.',
         'No collateral or security required.',
@@ -91,23 +91,23 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       funded, a goal achieved.`,
       statsData: [
         {
-          icon: 'assets/icons/money.png',
-          value: '₹13 Crore+',
+          icon: 'assets/img/svgs/funds.svg',
+          value: '₹500 Crore+',
           title: 'Funds Disbursed',
           text: 'Helping businesses achieve their goals with quick and reliable funding.',
         },
         {
-          icon: 'assets/icons/customers.png',
-          value: '10,000+',
+          icon: 'assets/img/svgs/customer.svg',
+          value: '20,000+',
           title: 'Happy Customers',
           text: 'Trusted by entrepreneurs and business owners across India.',
         },
-        {
-          icon: 'assets/icons/loans.png',
-          value: '25,000+',
-          title: 'Loans Processed',
-          text: 'Fast, secure, and transparent loan processing for every business type.',
-        },
+        // {
+        //   icon: 'assets/icons/loans.png',
+        //   value: '25,000+',
+        //   title: 'Loans Processed',
+        //   text: 'Fast, secure, and transparent loan processing for every business type.',
+        // },
       ],
     },
     'personal-loan': {
@@ -116,8 +116,8 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       subtitle:
         'Get instant financial support for any personal need — without collateral or lengthy paperwork.',
       features: [
-        'Personal loans from ₹50,000 to ₹25 Lakh.',
-        'Flexible repayment tenure up to 60 months.',
+        'Personal loans from ₹50,000 to ₹1 crore.',
+        'Flexible repayment tenure up to 84 months.',
         'Quick approval and 24-hour disbursal.',
         'No security or guarantor required.',
       ],
@@ -188,23 +188,23 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
 
       statsData: [
         {
-          icon: 'assets/icons/money.png',
-          value: '₹8 Crore+',
+          icon: 'assets/img/svgs/funds.svg',
+          value: '₹100 Crore+',
           title: 'Funds Disbursed',
           text: 'Empowering individuals to achieve their personal goals with ease.',
         },
         {
-          icon: 'assets/icons/customers.png',
-          value: '7,500+',
+          icon: 'assets/img/svgs/customer.svg',
+          value: '800+',
           title: 'Happy Borrowers',
           text: 'Thousands of customers rely on Fintalk for quick and hassle-free personal loans.',
         },
-        {
-          icon: 'assets/icons/loans.png',
-          value: '15,000+',
-          title: 'Loans Processed',
-          text: 'Fast, transparent, and flexible personal loan solutions for every need.',
-        },
+        // {
+        //   icon: 'assets/icons/loans.png',
+        //   value: '15,000+',
+        //   title: 'Loans Processed',
+        //   text: 'Fast, transparent, and flexible personal loan solutions for every need.',
+        // },
       ],
     },
     'professional-loan': {
@@ -213,7 +213,7 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       subtitle:
         'Flexible financing designed for professionals to grow their practice and achieve success.',
       features: [
-        'Loans from ₹1 Lakh to ₹50 Lakh for working professionals.',
+        'Loans from ₹1 Lakh to ₹1 Crore for working professionals.',
         'Hassle-free documentation and instant eligibility check.',
         'Flexible repayment tenure up to 84 months.',
         'No collateral or guarantor required.',
@@ -285,23 +285,23 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
 
       statsData: [
         {
-          icon: 'assets/icons/money.png',
-          value: '₹9 Crore+',
-          title: 'Loans Disbursed',
+          icon: 'assets/img/svgs/funds.svg',
+          value: '₹250 Crore+',
+          title: 'Funds Disbursed',
           text: 'Supporting professionals across industries with quick and reliable financing.',
         },
         {
-          icon: 'assets/icons/customers.png',
-          value: '6,000+',
+          icon: 'assets/img/svgs/customer.svg',
+          value: '2,500+',
           title: 'Happy Professionals',
           text: 'Trusted by experts who rely on Fintalk to finance their growth journey.',
         },
-        {
-          icon: 'assets/icons/loans.png',
-          value: '12,000+',
-          title: 'Loans Processed',
-          text: 'Simplifying financial access for India’s skilled professionals.',
-        },
+        // {
+        //   icon: 'assets/icons/loans.png',
+        //   value: '12,000+',
+        //   title: 'Loans Processed',
+        //   text: 'Simplifying financial access for India’s skilled professionals.',
+        // },
       ],
     },
     'education-loan': {
@@ -310,7 +310,8 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       subtitle:
         'Empowering students to pursue their dreams with flexible and affordable education financing.',
       features: [
-        'Education loans from ₹50,000 to ₹25 Lakh.',
+        // 'Education loans from ₹50,000 to ₹25 Lakh.',
+        'Unlock opportunities with career-building education loans.',
         'Covers tuition, living, travel, and study material expenses.',
         'Flexible repayment options after course completion.',
         'Quick approval with minimal documentation.',
@@ -380,24 +381,24 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       statsSubtitle: `Every loan we provide opens the door to new opportunities — helping students build brighter futures across the world.`,
 
       statsData: [
-        {
-          icon: 'assets/icons/money.png',
-          value: '₹5 Crore+',
-          title: 'Funds Disbursed',
-          text: 'Supporting students in achieving their academic goals in India and abroad.',
-        },
-        {
-          icon: 'assets/icons/customers.png',
-          value: '3,000+',
-          title: 'Students Supported',
-          text: 'Proudly helping learners take the next big step in their educational journey.',
-        },
-        {
-          icon: 'assets/icons/loans.png',
-          value: '6,500+',
-          title: 'Loans Processed',
-          text: 'Fast, transparent, and student-friendly education loan processing.',
-        },
+        // {
+        //   icon: 'assets/img/svgs/funds.svg',
+        //   value: '₹5 Crore+',
+        //   title: 'Funds Disbursed',
+        //   text: 'Supporting students in achieving their academic goals in India and abroad.',
+        // },
+        // {
+        //   icon: 'assets/img/svgs/customer.svg',
+        //   value: '3,000+',
+        //   title: 'Students Supported',
+        //   text: 'Proudly helping learners take the next big step in their educational journey.',
+        // },
+        // {
+        //   icon: 'assets/icons/loans.png',
+        //   value: '6,500+',
+        //   title: 'Loans Processed',
+        //   text: 'Fast, transparent, and student-friendly education loan processing.',
+        // },
       ],
     },
   };

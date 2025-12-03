@@ -29,4 +29,19 @@ export class LoanEligibleComponent implements OnInit {
   ngOnInit(): void {
     this.loanType = this.loanService.getLoanType();
   }
+  getLoanAmount(type: string) {
+  switch (type?.toLowerCase()) {
+    case 'business loan':
+      return 75;
+    case 'professional loan':
+      return 75;
+    case 'personal loan':
+      return 50;
+    case 'educational loan':
+      return null; // hide line
+    default:
+      return null;
+  }
+}
+
 }

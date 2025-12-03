@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoanApplicationService {
-  constructor() { }
+  constructor() {}
 
   private selectedLoanType: string | null = null;
   private selectedEntityType: string | null = null;
@@ -73,6 +73,9 @@ export class LoanApplicationService {
   }
   getExperience() {
     return this.experience;
+  }
+  getCompanyName() {
+    return this.selectedCompany;
   }
   getIncome() {
     return this.selectedMonthlyIncome;

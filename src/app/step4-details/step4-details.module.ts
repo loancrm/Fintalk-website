@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Step4DetailsComponent } from './step4-details.component';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
 import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     FormsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    InputTextModule,
   ],
   exports:[
     Step4DetailsComponent

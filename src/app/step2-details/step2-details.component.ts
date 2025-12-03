@@ -20,7 +20,7 @@ export class Step2DetailsComponent {
     { label: 'Business Entity', isActive: true },
   ];
 
-  constructor(private loanService: LoanApplicationService) { }
+  constructor(private loanService: LoanApplicationService) {}
 
   entityTypes = [
     {
@@ -53,31 +53,31 @@ export class Step2DetailsComponent {
     {
       name: 'Below 15000',
       title: 'Below ₹15,000',
-      icon: 'assets/img/svgs/0-3.svg',
+      icon: 'assets/img/svgs/coins.svg',
       description: 'For income less than ₹15,000 per month.',
     },
     {
       name: '15000_25000',
       title: '₹15,000 - ₹25,000',
-      icon: 'assets/img/svgs/3-5.svg',
+      icon: 'assets/img/svgs/3crore.svg',
       description: 'Suitable for basic salaried earners.',
     },
     {
       name: '25000_40000',
       title: '₹25,000 - ₹40,000',
-      icon: 'assets/img/svgs/6-8.svg',
+      icon: 'assets/img/svgs/5 crore.svg',
       description: 'Ideal for mid-level income group.',
     },
     {
       name: '40000_60000',
       title: '₹40,000 - ₹60,000',
-      icon: 'assets/img/svgs/10+.svg',
+      icon: 'assets/img/svgs/10crore.svg',
       description: 'Well-qualified income bracket.',
     },
     {
       name: '60000_100000',
       title: '₹60,000 - ₹1,00,000',
-      icon: 'assets/img/svgs/10+.svg',
+      icon: 'assets/img/svgs/10+crore.svg',
       description: 'Strong earning capacity category.',
     },
     {
@@ -95,36 +95,37 @@ export class Step2DetailsComponent {
       name: 'doctor',
       title: 'Doctor',
       icon: 'assets/img/svgs/professional.svg',
-      description: 'Medical professionals including MBBS, MD, BDS, etc.'
+      description: 'Medical professionals including MBBS, MD, BDS, etc.',
     },
     {
       name: 'architect',
       title: 'Architect',
-      icon: 'assets/img/svgs/professional.svg',
-      description: 'Licensed architects working independently or in firms.'
+      icon: 'assets/img/svgs/partner.svg',
+      description: 'Licensed architects working independently or in firms.',
     },
     {
       name: 'chartered_accountant',
       title: 'Chartered Accountant',
-      icon: 'assets/img/svgs/professional.svg',
-      description: 'Qualified CA professionals with practice or employment.'
-    }
+      icon: 'assets/img/svgs/ca.svg',
+      description: 'Qualified CA professionals with practice or employment.',
+    },
   ];
-
 
   educationTypes = [
     {
       name: 'abroad_education',
       title: 'Abroad Education',
       icon: 'assets/img/svgs/abroad.svg',
-      description: 'Education in countries like USA, UK, Canada, Australia, or Europe.'
+      description:
+        'Education in countries like USA, UK, Canada, Australia, or Europe.',
     },
     {
       name: 'indian_education',
       title: 'Indian Education',
       icon: 'assets/img/svgs/educational.svg',
-      description: 'Education within India across universities and professional institutes.'
-    }
+      description:
+        'Education within India across universities and professional institutes.',
+    },
   ];
 
   ngOnInit() {

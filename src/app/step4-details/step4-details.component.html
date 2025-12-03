@@ -1,5 +1,5 @@
 <!-- Breadcrumb -->
-<app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+<!-- <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb> -->
 
 <div class="back-btn" (click)="goBack()">← Back</div>
 
@@ -22,31 +22,34 @@
     </div>
   </div>
 </div>
-<div *ngIf="loanType === 'Personal Loan'">
+<div class="loan-form" *ngIf="loanType === 'Personal Loan'">
   <h2>Enter Your Company Name</h2>
   <p>Please provide your company name to continue</p>
 
-  <div class="form-group">
+  <div class="p-field d-flex justify-content-center align-items-center">
     <input
+      id="companyName"
       type="text"
+      pInputText
       [(ngModel)]="companyName"
       placeholder="Enter company name"
       class="company-input"
     />
   </div>
-
-  <button
-    class="next-btn"
-    [disabled]="!companyName"
-    (click)="submitCompanyName()"
-  >
-    Next
-  </button>
+  <div style="text-align: right">
+    <button
+      class="next-btn"
+      [disabled]="!companyName"
+      (click)="submitCompanyName()"
+    >
+      Next
+    </button>
+  </div>
 </div>
 
 <div *ngIf="loanType === 'Professional Loan'">
   <h2>Choose the Work Experience</h2>
-  <p>Select a Business Vintage below to continue</p>
+  <p>Select a Work Experience below to continue</p>
 
   <div class="loan-grid">
     <div

@@ -66,21 +66,19 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       text: `My Loan process was completed simple with Fintalk. From application to
 approval, everything was smooth and transparent. I received my business loan
 within 48 hours.`,
-      name: 'Ramesh',
-      position: 'Business Owner, Secunderabad'
+      name: 'Darshan',
+      position: 'Business Owner, Hyderabad'
     },
     {
       text: `I am a doctor; I need quick financial support for my training. Fintalk’s team was
 helpful and well-organized the entire process was smooth and stress-free.`,
-      name: 'Priya',
+      name: 'Tulasi Priya',
       position: 'Doctor, Vizag'
     },
     {
-      text: `Fintalk identifies what business owner’s requirement. The flexible repayment
-options and quick approvals helped me to expand my operations without any
-disturbance.`,
-      name: 'Tharun',
-      position: 'Entrepreneur, Mumbai'
+      text: `Fintalk truly understood my personal financial needs. Their quick approval and flexible repayment options helped me manage my expenses smoothly without any stress.`,
+      name: 'Ravi Kumar',
+      position: 'Software Engineer, Bangalore'
     },
     {
       text: `I applied for an education loan through Fintalk that was shocked at how fast and
@@ -116,12 +114,13 @@ easy it was. Their guidance made my study abroad journey possible.`,
     'assets/img/clients/clix.png',
     'assets/img/clients/hero.png',
     'assets/img/clients/poona.png',
-    'assets/img/clients/arka.png',
+    'assets/img/clients/jio.png',
+    // 'assets/img/clients/arka.png',
     'assets/img/clients/bandhan.png',
     // 'assets/img/clients/mas.png',
     'assets/img/clients/chola.png',
     'assets/img/clients/fed.png',
-    'assets/img/clients/finplex.png',
+    // 'assets/img/clients/finplex.png',
     'assets/img/clients/godrej.png',
     'assets/img/clients/protium.png',
     'assets/img/clients/iifl.png',
@@ -165,7 +164,7 @@ document and credit verification.`
 are required.`
     },
     {
-      question: 'fintalk have data security?',
+      question: 'Fintalk have data security?',
       answer:
         `Yeah! Fintalk have data security and privacy using innovative encryption
 technology throughout the loan process.`
@@ -183,7 +182,7 @@ upload documents, and get immediate updates on your loan status.`
 ₹10 Lakhs to ₹10 Cr for personal or business needs.`
     },
     {
-      question: 'can I check my loan status online?',
+      question: 'Can I check my loan status online?',
       answer:
         `Yes! you can easily track your loan application status online or connect with our
 backing team for real-time updates.`

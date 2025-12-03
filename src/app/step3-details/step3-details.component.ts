@@ -19,31 +19,31 @@ export class Step3DetailsComponent {
     {
       name: 'Below 15000',
       title: 'Below ₹15,000',
-      icon: 'assets/img/svgs/0-3.svg',
+      icon: 'assets/img/svgs/coins.svg',
       description: 'For income less than ₹15,000 per month.',
     },
     {
       name: '15000_25000',
       title: '₹15,000 - ₹25,000',
-      icon: 'assets/img/svgs/3-5.svg',
+      icon: 'assets/img/svgs/3crore.svg',
       description: 'Suitable for basic salaried earners.',
     },
     {
       name: '25000_40000',
       title: '₹25,000 - ₹40,000',
-      icon: 'assets/img/svgs/6-8.svg',
+      icon: 'assets/img/svgs/5 crore.svg',
       description: 'Ideal for mid-level income group.',
     },
     {
       name: '40000_60000',
       title: '₹40,000 - ₹60,000',
-      icon: 'assets/img/svgs/10+.svg',
+      icon: 'assets/img/svgs/10crore.svg',
       description: 'Well-qualified income bracket.',
     },
     {
       name: '60000_100000',
       title: '₹60,000 - ₹1,00,000',
-      icon: 'assets/img/svgs/10+.svg',
+      icon: 'assets/img/svgs/10+crore.svg',
       description: 'Strong earning capacity category.',
     },
     {
@@ -70,25 +70,25 @@ export class Step3DetailsComponent {
     {
       name: '1_2_years',
       title: '1 - 2 Years',
-      icon: 'assets/img/svgs/0-3.svg',
+      icon: 'assets/img/svgs/2.svg',
       description: 'Basic professional experience.',
     },
     {
       name: '2_5_years',
       title: '2 - 5 Years',
-      icon: 'assets/img/svgs/0-3.svg',
+      icon: 'assets/img/svgs/3.svg',
       description: 'Mid-level work experience category.',
     },
     {
       name: '5_10_years',
       title: '5 - 10 Years',
-      icon: 'assets/img/svgs/0-3.svg',
+      icon: 'assets/img/svgs/4.svg',
       description: 'Experienced professional range.',
     },
     {
       name: '10_plus_years',
       title: '10+ Years',
-      icon: 'assets/img/svgs/0-3.svg',
+      icon: 'assets/img/svgs/5.svg',
       description: 'Highly experienced professional.',
     },
   ];

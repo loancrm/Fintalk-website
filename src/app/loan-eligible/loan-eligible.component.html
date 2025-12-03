@@ -7,7 +7,10 @@
       <span class="first-line">Congratulations, you are Eligible For</span>
       <span class="second-line">
         <span class="loan-type">{{ loanType }}</span>
-        <span class="loan-amount">of up to ₹50 Lakhs.</span>
+
+        <span class="loan-amount" *ngIf="getLoanAmount(loanType) !== null">
+          of up to ₹{{ getLoanAmount(loanType) }} Lakhs.
+        </span>
       </span>
     </h2>
 

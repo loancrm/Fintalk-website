@@ -15,6 +15,8 @@ export class ContactDetailsComponent implements OnInit {
   @Output() submitted = new EventEmitter<void>();
   isSubmitted = false;
   accountId: any = 1234567;
+  // accountId: any = 1270983;
+
   breadcrumbItems = [
     { label: 'Home', route: '/' },
     { label: 'Apply', route: '/apply' },
@@ -54,10 +56,7 @@ export class ContactDetailsComponent implements OnInit {
       loanRequirement: ['', [numericOrEmptyValidator]], // Optional, but if provided must be numeric
       isGstRegistered: ['Yes'], // Optional
       emailId: ['', [Validators.required, Validators.email]],
-      mobile: [
-        '',
-        [Validators.required, Validators.pattern(/^\+91\s?\d{10}$/)],
-      ],
+      mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
     });
   }
 
@@ -100,14 +99,66 @@ export class ContactDetailsComponent implements OnInit {
 
     this.loading = true;
     // ✅ Combine contact form + service data
+    // const formData = {
+    //   ...this.contactForm.value,
+    //   eligibility: 'eligible',
+    //   productType: this.loanService.getLoanType(),
+    //   businessEntity: this.loanService.getEntityType(),
+    //   businessVintage: this.loanService.getEntityVintage(),
+    //   businessTurnover: this.loanService.getEntityTurnover(),
+
+    //   //pfl
+    //   profession: this.loanService.getProfession(),
+    //   monthlyIncome: this.loanService.getIncome(),
+    //   workExperience: this.loanService.getExperience(),
+    //   educationType: this.loanService.getEducationType(),
+    //   courseLevel: this.loanService.getCourseLevel(),
+    //   companyName: this.loanService.getCompanyName(),
+    //   accountId: this.accountId,
+    // };
+
+    const productType = this.loanService.getLoanType();
+
+    let extraFields: any = {};
+
+    if (productType === 'Business Loan') {
+      extraFields = {
+        businessEntity: this.loanService.getEntityType(),
+        businessVintage: this.loanService.getEntityVintage(),
+        businessTurnover: this.loanService.getEntityTurnover(),
+      };
+    }
+
+    if (productType === 'Personal Loan') {
+      extraFields = {
+        monthlyIncome: this.loanService.getIncome(),
+        workExperience: this.loanService.getExperience(),
+        companyName: this.loanService.getCompanyName(),
+      };
+    }
+
+    if (productType === 'Professional Loan') {
+      extraFields = {
+        profession: this.loanService.getProfession(),
+        monthlyIncome: this.loanService.getIncome(),
+        workExperience: this.loanService.getExperience(),
+      };
+    }
+
+    if (productType === 'Education Loan') {
+      extraFields = {
+        educationType: this.loanService.getEducationType(),
+        courseLevel: this.loanService.getCourseLevel(),
+        monthlyIncome: this.loanService.getIncome(),
+      };
+    }
+
     const formData = {
       ...this.contactForm.value,
       eligibility: 'eligible',
-      productType: this.loanService.getLoanType(),
-      businessEntity: this.loanService.getEntityType(),
-      businessVintage: this.loanService.getEntityVintage(),
-      businessTurnover: this.loanService.getEntityTurnover(),
+      productType,
       accountId: this.accountId,
+      ...extraFields,
     };
 
     console.log('Full Loan Application Data:', formData);
