@@ -1,4 +1,11 @@
-import { Component, HostListener, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -8,7 +15,7 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('productCardsContainer') productCardsContainer!: ElementRef;
@@ -17,49 +24,57 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       title: 'Business Loans',
       slug: 'business-loan',
       icon: 'assets/img/svgs/business.svg',
-      description: 'Access fast and reliable business loans that support entrepreneurs to grow, develop, and manage operations effortlessly.'
+      description:
+        'Get quick and collateral-free business loans to help entrepreneurs and SMEs expand, manage operations, increase working capital, or upgrade infrastructure—with fast approvals and flexible repayment options.',
     },
     {
       title: 'Personal Loans',
       slug: 'personal-loan',
       icon: 'assets/img/svgs/personal.svg',
-      description: 'Quick, support for personal needs, emergencies, or lifestyle needs.'
+      description:
+        'Easy and fast personal loans for emergencies, lifestyle needs, travel, medical expenses, or family requirements. No collateral required and instant eligibility checks.',
     },
     {
       title: 'Professional Loans',
       slug: 'professional-loan',
       icon: 'assets/img/svgs/professional.svg',
-      description: 'This is Planned for engineers, chartered accountants, doctors and other specialists to support their professions or practices.'
+      description:
+        'Tailored loan solutions for doctors, engineers, CAs, architects, and other self-employed professionals—to upgrade clinics, buy equipment, or expand practice.',
     },
     {
       title: 'Educational Loans',
       slug: 'education-loan',
       icon: 'assets/img/svgs/educational.svg',
-      description: 'Helping students who are pursuing quality education in India or abroad with simple and manageable repayment opportunities.'
-    }
+      description:
+        'Flexible education loans for students pursuing studies in India or abroad, covering tuition fees, accommodation, travel, and other academic expenses—with easy EMIs and quick disbursement.',
+    },
   ];
 
   steps = [
     {
       title: 'Fill the Application Form',
-      description: 'Submit your simple online application in minutes and start your loan journey quickly, professionally, and without any difficult forms.',
-      icon: 'assets/img/svgs/fill.svg'
+      description:
+        'Submit a simple online application in just a few minutes. Start your loan journey quickly—no complicated steps or lengthy forms.',
+      icon: 'assets/img/svgs/fill.svg',
     },
     {
       title: 'Upload Documents',
-      description: 'Submit your required documents online with comfort and secure, ensuring a smooth and fast loan approval process.',
-      icon: 'assets/img/svgs/upload.svg'
+      description:
+        'Upload your required documents online with ease. The process is secure, paperless, and designed for fast verification.',
+      icon: 'assets/img/svgs/upload.svg',
     },
     {
       title: 'Credit Analysis',
-      description: 'Our team carefully examine your financial profile, credit history, and income to confirm the right loan solution for your needs.',
-      icon: 'assets/img/svgs/credit.svg'
+      description:
+        'Our experts review your credit score, income, and financial profile to confirm the best loan option for you.',
+      icon: 'assets/img/svgs/credit.svg',
     },
     {
-      title: 'Loan Approval',
-      description: 'After confirmation of documents and credits, get fast and transparent loan approval, and verifying timely access to your funds.',
-      icon: 'assets/img/svgs/approval.svg'
-    }
+      title: 'Loan Approval & Disbursement',
+      description:
+        'Once your documents are verified, receive quick approval and get your funds disbursed smoothly—directly into your bank account.',
+      icon: 'assets/img/svgs/approval.svg',
+    },
   ];
   testimonials = [
     {
@@ -67,25 +82,25 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 approval, everything was smooth and transparent. I received my business loan
 within 48 hours.`,
       name: 'Darshan',
-      position: 'Business Owner, Hyderabad'
+      position: 'Business Owner, Hyderabad',
     },
     {
       text: `I am a doctor; I need quick financial support for my training. Fintalk’s team was
 helpful and well-organized the entire process was smooth and stress-free.`,
       name: 'Tulasi Priya',
-      position: 'Doctor, Vizag'
+      position: 'Doctor, Vizag',
     },
     {
       text: `Fintalk truly understood my personal financial needs. Their quick approval and flexible repayment options helped me manage my expenses smoothly without any stress.`,
       name: 'Ravi Kumar',
-      position: 'Software Engineer, Bangalore'
+      position: 'Software Engineer, Bangalore',
     },
     {
       text: `I applied for an education loan through Fintalk that was shocked at how fast and
 easy it was. Their guidance made my study abroad journey possible.`,
       name: 'Venkatesh',
-      position: 'Student, AP'
-    }
+      position: 'Student, AP',
+    },
   ];
 
   currentIndex = 1; // Start at 1 because index 0 is the cloned last slide
@@ -139,60 +154,55 @@ easy it was. Their guidance made my study abroad journey possible.`,
   faqs = [
     {
       question: 'What is Fintalk means?',
-      answer:
-        `Fintalk is trustable digital loaning platform that provides a quick and unsecured
-loans including Business, Personal, Professional, and Educational Loans with a
-fast and clear online process.`
+      answer: `Fintalk is a trusted loan assistance platform that helps customers
+ get quick, transparent, and hassle-free financial solutions such as educationn loans,
+ business loans, personal loans, and professional loans.
+
+`,
     },
     {
-      question: 'Who apply loans in Fintalk?',
-      answer:
-        `Mostly these loans are applicable for Entrepreneurs, professionals, business
-owners, salaried individuals, and students are apply for these loans, depending
-on their financial needs and eligibility.`
+      question: 'Who can apply for a loan through Fintalk?',
+      answer: `Anyone who needs financial support can apply, including:
+Students (education loans), Business owners & startups (business loans), Salaried individuals (personal loans), Self-employed professionals (professional loans).
+ If you require fast approvals and smooth documentation, Fintalk is for you.
+`,
     },
     {
       question: 'How quick can I get a loan Approval?',
-      answer:
-        `With Fintalk Automated system, loans are approved within 24–48 hours after
-document and credit verification.`
+      answer: `Loan approval timelines depend on your profile and documentation, but most Fintalk customers receive:
+Pre-assessment within 24 hours, Final approval within 2–5 working days. We ensure the process remains fast, simple, and transparent.`,
     },
     {
-      question: "which documents are needed to apply for loans?",
-      answer:
-        `simple KYC documents, bank statements, income proofs and business proofs
-are required.`
+      question: 'What documents are required to apply for a loan?',
+      answer: `Documents may vary by loan type, but generally include: Identity proof (Aadhaar / PAN), Address proof, Income proof / bank statements, Academic documents (for education loans), Business proof (for business loans). Our team guides you throughout the documentation process so nothing feels confusing.
+
+`,
     },
     {
       question: 'Fintalk have data security?',
-      answer:
-        `Yeah! Fintalk have data security and privacy using innovative encryption
-technology throughout the loan process.`
+      answer: `Yeah! Fintalk have data security and privacy using innovative encryption
+technology throughout the loan process.`,
     },
     {
       question: 'Can I apply for a loan through online?',
-      answer:
-        `sure. You can apply through online in our website fill a simple application form,
-upload documents, and get immediate updates on your loan status.`
+      answer: `sure. You can apply through online in our website fill a simple application form,
+upload documents, and get immediate updates on your loan status.`,
     },
     {
       question: 'How much loan amount can I get?',
-      answer:
-        `Dependent on eligibility and profits, you can get a loan amount ranging from
-₹10 Lakhs to ₹10 Cr for personal or business needs.`
+      answer: `Dependent on eligibility and profits, you can get a loan amount ranging from
+₹10 Lakhs to ₹10 Cr for personal or business needs.`,
     },
     {
       question: 'Can I check my loan status online?',
-      answer:
-        `Yes! you can easily track your loan application status online or connect with our
-backing team for real-time updates.`
+      answer: `Yes! you can easily track your loan application status online or connect with our
+backing team for real-time updates.`,
     },
     {
       question: 'startups or new businesses apply for these loans?',
-      answer:
-        `Absolutely. Fintalk support startups and businesses by providing the flexible
-and quick business loan options with minimal documentation.`
-    }
+      answer: `Absolutely. Fintalk support startups and businesses by providing the flexible
+and quick business loan options with minimal documentation.`,
+    },
   ];
   loading = false;
   message = '';
@@ -200,7 +210,7 @@ and quick business loan options with minimal documentation.`
   formData = {
     name: '',
     email: '',
-    mobile: ''
+    mobile: '',
   };
   showAllFaqs = false;
 
@@ -208,16 +218,41 @@ and quick business loan options with minimal documentation.`
     { name: 'Business Loans', selected: false },
     { name: 'Personal Loans', selected: false },
     { name: 'Educational Loans', selected: false },
-    { name: 'Professional Loans', selected: false }
+    { name: 'Professional Loans', selected: false },
   ];
   accountId: any = 1234567;
   // Product Cards Data
   productCards = [
-    { title: 'Business Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },
-    { title: 'Personal Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },
-    { title: 'Educational Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },
-    { title: 'Over Draft Limit', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' },
-    { title: 'Professional Loan', description: 'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.', imageUrl: 'assets/img/productimagsss.svg' }
+    {
+      title: 'Business Loan',
+      description:
+        'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.',
+      imageUrl: 'assets/img/productimagsss.svg',
+    },
+    {
+      title: 'Personal Loan',
+      description:
+        'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.',
+      imageUrl: 'assets/img/productimagsss.svg',
+    },
+    {
+      title: 'Educational Loan',
+      description:
+        'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.',
+      imageUrl: 'assets/img/productimagsss.svg',
+    },
+    {
+      title: 'Over Draft Limit',
+      description:
+        'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.',
+      imageUrl: 'assets/img/productimagsss.svg',
+    },
+    {
+      title: 'Professional Loan',
+      description:
+        'A Business loan is a term loan offered by Banks/NBFCs for amounts up to 50 Lakhs, generally for short tenures of up to 5 years.',
+      imageUrl: 'assets/img/productimagsss.svg',
+    },
   ];
   words: string[] = ['Business', 'Personal', 'Education', 'Profession'];
   displayText = '';
@@ -233,7 +268,13 @@ and quick business loan options with minimal documentation.`
   currentCardIndex = 0; // The index of the current card being viewed
   scrollInterval: any; // Interval for auto-scrolling
   numVisibleItems: number = 1;
-  constructor(private http: HttpClient, private apiService: ApiserviceService, private router: Router, private fb: FormBuilder, private api: ApiserviceService) { }
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiserviceService,
+    private router: Router,
+    private fb: FormBuilder,
+    private api: ApiserviceService
+  ) {}
   ngOnInit(): void {
     this.typeWriter();
     this.contactForm = this.fb.group({
@@ -289,7 +330,9 @@ and quick business loan options with minimal documentation.`
     setTimeout(() => this.typeWriter(), speed);
   }
   pauseScroll() {
-    const scrollContent = document.querySelector('.scroll-content') as HTMLElement;
+    const scrollContent = document.querySelector(
+      '.scroll-content'
+    ) as HTMLElement;
     if (scrollContent) {
       scrollContent.style.animationPlayState = 'paused';
     }
@@ -302,7 +345,9 @@ and quick business loan options with minimal documentation.`
   resumeScroll() {
     // Resume after 2 seconds delay
     this.scrollResumeTimeout = setTimeout(() => {
-      const scrollContent = document.querySelector('.scroll-content') as HTMLElement;
+      const scrollContent = document.querySelector(
+        '.scroll-content'
+      ) as HTMLElement;
       if (scrollContent) {
         scrollContent.style.animationPlayState = 'running';
       }
@@ -317,7 +362,6 @@ and quick business loan options with minimal documentation.`
       clearInterval(this.scrollInterval); // Clear the interval when the component is destroyed
     }
     clearInterval(this.intervalId);
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -350,7 +394,8 @@ and quick business loan options with minimal documentation.`
   }
 
   showNextCard(): void {
-    this.currentCardIndex = (this.currentCardIndex + 1) % this.productCards.length;
+    this.currentCardIndex =
+      (this.currentCardIndex + 1) % this.productCards.length;
     this.scrollToCurrentCard();
   }
 
@@ -362,7 +407,6 @@ and quick business loan options with minimal documentation.`
       container.scrollTop = currentCard.offsetTop; // Scroll to the card
     }
   }
-
 
   startAutoSlide() {
     this.intervalId = setInterval(() => {
@@ -443,32 +487,29 @@ and quick business loan options with minimal documentation.`
     this.message = '';
 
     const selectedServices = this.services
-      .filter(s => s.selected)
-      .map(s => s.name);
+      .filter((s) => s.selected)
+      .map((s) => s.name);
 
     const formData = {
       ...this.contactForm.value,
       services: selectedServices,
-      accountId: this.accountId
+      accountId: this.accountId,
     };
 
     this.apiService.createContactRequests(formData).subscribe({
       next: (res: any) => {
         alert(res.message || 'Thank you for contacting us!');
         this.contactForm.reset();
-        this.services.forEach(s => (s.selected = false));
+        this.services.forEach((s) => (s.selected = false));
         this.loading = false;
       },
       error: (error: any) => {
         console.error(error);
-        const errorMessage = error?.error?.message || '❌ Failed to subscribe. Please try again.';
+        const errorMessage =
+          error?.error?.message || '❌ Failed to subscribe. Please try again.';
         alert(errorMessage);
         this.loading = false;
-      }
+      },
     });
   }
-
-
-
-
 }

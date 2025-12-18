@@ -48,14 +48,14 @@
                   (keydown)="preventInvalidKeys($event)"
                   (paste)="preventInvalidPaste($event)"
                   (input)="limitInputLength($event)"
-                  maxlength="8"
-                  max="10000000"
+                  maxlength="9"
+                  max="100000000"
                 />
               </div>
               <p-slider
                 [(ngModel)]="loanAmount"
-                [min]="50000"
-                [max]="10000000"
+                [min]="5000"
+                [max]="100000000"
                 [step]="10000"
                 [style]="{ width: '100%' }"
               ></p-slider>
@@ -155,7 +155,7 @@
               label="Calculate EMI"
               class="w-100 p-button-raised p-button-rounded"
               style="
-                background-color: #F1F9F5;
+                background-color: #f1f9f5;
                 border: 1px solid #4faf9f;
                 color: #4faf9f;
                 box-shadow: none;
@@ -216,9 +216,9 @@
             icon="pi pi-download"
             class="p-button-text p-button-sm p-button-secondary"
             style="
-                 background-color: #F1F9F5;
-                border: 1px solid #4faf9f;
-                color: #4faf9f;
+              background-color: #f1f9f5;
+              border: 1px solid #4faf9f;
+              color: #4faf9f;
               box-shadow: none;
               font-size: 18px;
             "
@@ -311,15 +311,15 @@
                   (keydown)="preventInvalidKeys($event)"
                   (paste)="preventInvalidPaste($event)"
                   (input)="limitInputLengthfordiminishing($event, 'personal')"
-                  maxlength="8"
-                  max="10000000"
+                  maxlength="9"
+                  max="100000000"
                 />
               </div>
               <p-slider
                 [(ngModel)]="diminishingloanAmount"
                 [min]="50000"
-                [max]="10000000"
-                [step]="10000"
+                [max]="100000000"
+                [step]="100000"
                 [style]="{ width: '100%' }"
               ></p-slider>
             </div>
@@ -420,7 +420,7 @@
               label="Calculate EMI"
               class="w-100 p-button-raised p-button-rounded"
               style="
-                    background-color: #F1F9F5;
+                background-color: #f1f9f5;
                 border: 1px solid #4faf9f;
                 color: #4faf9f;
                 box-shadow: none;
@@ -485,9 +485,9 @@
             icon="pi pi-download"
             class="p-button-text p-button-sm p-button-secondary"
             style="
-                background-color: #F1F9F5;
-                border: 1px solid #4faf9f;
-                color: #4faf9f;
+              background-color: #f1f9f5;
+              border: 1px solid #4faf9f;
+              color: #4faf9f;
               box-shadow: none;
               font-size: 18px;
             "

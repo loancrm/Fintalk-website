@@ -14,40 +14,40 @@ export class ProductDetailsComponent {
 
   productsContent: any = {
     'business-loan': {
-      title: 'Is your Business to Grow-Fintalk Here for YOU',
+      title: 'Is Your Business Ready to Grow? Fintalk Is Here for You',
       secondtitle: 'Unsecured Loans For Your Business',
       subtitle:
-        'Empower your business growth with fast and flexible funding options.',
+        'Empower your business growth with fast, flexible, and fully unsecured loan options.',
       features: [
         'Business loans from ₹10 Lakh to ₹5 Crore.',
         'Repay comfortably with flexible tenures up to 84 months.',
-        'Instant eligibility check and 24-hour disbursal.',
+        'Get Unsecured Business Loans with quick approval',
+        'Simple eligibility check & minimal documentation.',
+        'Flexible loan amounts for all business types',
         'No collateral or security required.',
       ],
-      secondheading: `Running or extend a business often need timely financial support. At Fintalk,
-we specially made business loan solutions to help Entrepreneurs, Startups,
-and small and medium enterprises (SMEs) manage cash flow, put money
-into infrastructure, hire staff, purchase catalogue, or expand operations.`,
+      secondheading: `Running or expanding your business often requires immediate financial support. At Fintalk, we offer fast and flexible unsecured business loans designed for small businesses, startups, and self-employed professionals.
+      With a simple documentation process and quick approval, our loans help you manage daily operations, purchase inventory, or expand your business without worrying about collateral`,
       processSteps: [
         {
           image: 'assets/img/svgs/process/step1.svg',
           title: 'Apply Online',
-          text: 'Submit a simple online application with your basic business and financial details.',
+          text: 'Submit your basic details through our easy online form.',
         },
         {
           image: 'assets/img/svgs/process/step2.svg',
           title: 'Quick Verification',
-          text: 'Our team reviews your documents instantly to assess your eligibility and loan amount.',
+          text: 'Our team verifies your information and documents promptly.',
         },
         {
           image: 'assets/img/svgs/process/step3.svg',
           title: 'Instant Approval',
-          text: 'Get loan approval within 24 hours based on your business performance and credit profile.',
+          text: 'Once verified, your loan gets approved quickly.',
         },
         {
           image: 'assets/img/svgs/process/step4.svg',
           title: 'Fast Disbursal',
-          text: 'Funds are transferred directly to your account so you can focus on growing your business.',
+          text: 'Funds are transferred directly to your bank account.',
         },
       ],
       aboutImage: 'assets/img/svgs/bl/about.svg',
@@ -111,23 +111,23 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       ],
     },
     'personal-loan': {
-      title: 'Turn Your Dreams Into Reality with Fintalk',
+      title: 'Turn Your Dreams Into Reality with Fintalk Personal Loans',
       secondtitle: 'Personal Loans Made Simple and Fast',
       subtitle:
-        'Get instant financial support for any personal need — without collateral or lengthy paperwork.',
+        'Get instant financial support for any personal need — without collateral, heavy paperwork, or delays.',
       features: [
         'Personal loans from ₹50,000 to ₹1 crore.',
         'Flexible repayment tenure up to 84 months.',
-        'Quick approval and 24-hour disbursal.',
-        'No security or guarantor required.',
+        'Quick approval and 24/7 online application.',
+        'No security or collateral required.',
       ],
-      secondheading: `Whether it’s for medical emergencies, home renovation, education, travel, or debt consolidation — Fintalk’s Personal Loan offers you the freedom to fulfill your needs instantly. Enjoy quick approvals, minimal documentation, and flexible repayment options that fit your lifestyle.`,
+      secondheading: `Whether it’s for medical emergencies, home expenses, travel plans, or lifestyle needs, Fintalk’s instant personal loans give you quick access to funds without collateral.Our seamless digital process, minimal documentation, and quick approval ensure your personal loan is processed instantly. Enjoy flexible EMIs and secure online application options designed to fit your financial needs.`,
 
       processSteps: [
         {
           image: 'assets/img/svgs/process/step1.svg',
           title: 'Check Eligibility',
-          text: 'Enter your income and basic details to check your eligibility instantly.',
+          text: 'Enter your income and basic details to instantly check your personal loan eligibility.',
         },
         {
           image: 'assets/img/svgs/process/step2.svg',
@@ -137,12 +137,12 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
         {
           image: 'assets/img/svgs/process/step3.svg',
           title: 'Get Instant Approval',
-          text: 'Our system evaluates your profile and provides approval within 24 hours.',
+          text: 'Our system evaluates your profile and provides quick loan approval within minutes.',
         },
         {
           image: 'assets/img/svgs/process/step4.svg',
           title: 'Receive Funds',
-          text: 'Loan amount is credited directly to your bank account for immediate use.',
+          text: 'Loan amount is transferred safely to your bank account — usually within 24 hours.',
         },
       ],
 
@@ -208,38 +208,43 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       ],
     },
     'professional-loan': {
-      title: 'Empower Your Career with Fintalk',
-      secondtitle: 'Professional Loans for Doctors, CAs, Architects & More',
+      title: 'Empower Your Career with Fintalk Professional Loans',
+      secondtitle:
+        'Professional Loans for Doctors, CAs, Architects & Working Professionals',
       subtitle:
-        'Flexible financing designed for professionals to grow their practice and achieve success.',
+        'Our flexible financing solutions help professionals grow their practice, upgrade infrastructure, and manage business expenses with ease.',
       features: [
         'Loans from ₹1 Lakh to ₹1 Crore for working professionals.',
-        'Hassle-free documentation and instant eligibility check.',
+        'Instant eligibility check and hassle-free documentation',
+
         'Flexible repayment tenure up to 84 months.',
         'No collateral or guarantor required.',
+        'Apply confidently and take your profession to the next level.',
       ],
-      secondheading: `Fintalk’s Professional Loan is crafted to help skilled professionals — such as doctors, chartered accountants, architects, consultants, and freelancers — expand their practice, upgrade equipment, or manage cash flow. With easy approvals and quick disbursals, we make financing simpler for achievers like you.`,
+      secondheading: `Fintalk’s Professional Loan is designed for skilled professionals—such as doctors, chartered accountants, architects, consultants, and freelancers—who want to expand their practice, upgrade equipment, improve cash flow, or grow their business.
+With instant approvals, minimal documentation, and fast disbursal, we make financing simple for achievers like you.
+`,
 
       processSteps: [
         {
           image: 'assets/img/svgs/process/step1.svg',
           title: 'Submit Your Details',
-          text: 'Provide basic personal and professional details to initiate your loan application.',
+          text: 'Enter your basic personal and professional information to initiate your application.',
         },
         {
           image: 'assets/img/svgs/process/step2.svg',
           title: 'Upload Documents',
-          text: 'Upload your KYC, income proof, and professional credentials securely online.',
+          text: 'Securely upload KYC, income proof, and professional credentials online',
         },
         {
           image: 'assets/img/svgs/process/step3.svg',
           title: 'Instant Evaluation',
-          text: 'Our advanced system evaluates your profile and credit score instantly.',
+          text: 'Our advanced system evaluates your profile and gives quick approval.',
         },
         {
           image: 'assets/img/svgs/process/step4.svg',
           title: 'Get Funded',
-          text: 'Receive your approved loan amount directly in your account within 24 hours.',
+          text: 'Receive your approved loan amount directly in your bank account—usually within 24 hours.',
         },
       ],
 
@@ -305,39 +310,43 @@ into infrastructure, hire staff, purchase catalogue, or expand operations.`,
       ],
     },
     'education-loan': {
-      title: 'Invest in Your Future with Fintalk',
+      title: 'Invest in Your Future with Fintalk Education Loans',
       secondtitle: 'Education Loans Made Simple & Accessible',
       subtitle:
-        'Empowering students to pursue their dreams with flexible and affordable education financing.',
+        'Empowering students to pursue their dreams with flexible, fast, and affordable education financing.',
       features: [
         // 'Education loans from ₹50,000 to ₹25 Lakh.',
-        'Unlock opportunities with career-building education loans.',
-        'Covers tuition, living, travel, and study material expenses.',
-        'Flexible repayment options after course completion.',
-        'Quick approval with minimal documentation.',
+        'Unlock opportunities with student-friendly education loans.',
+        'Finance tuition, living expenses, travel, study material & more.',
+        'Simple documentation and instant eligibility check.',
+        'Flexible repayment plans designed for students.',
+        'Ideal for higher studies in India or abroad',
       ],
-      secondheading: `At Fintalk, we believe education should never be limited by finances. Our education loan solutions are designed to support students in pursuing higher studies — in India or abroad — without financial stress. With fast approvals, transparent processing, and flexible repayment, we make your learning journey easier.`,
+      secondheading: `At Fintalk, we believe education should never be limited by finances.
+Our student loan solutions are built to support higher studies—whether you're planning to study in India or abroad.
+With low interest rates, fast processing, and flexible repayment options, we make your learning journey easier and stress-free.
+.`,
 
       processSteps: [
         {
           image: 'assets/img/svgs/process/step1.svg',
           title: 'Apply Online',
-          text: 'Submit your basic academic and financial details through our quick online form.',
+          text: 'Fill your basic academic and financial details through our online form.',
         },
         {
           image: 'assets/img/svgs/process/step2.svg',
           title: 'Submit Documents',
-          text: 'Provide KYC documents, admission proof, and academic records for easy verification.',
+          text: 'Upload your KYC, admission letter, fee structure, income proof, and academic records securely.',
         },
         {
           image: 'assets/img/svgs/process/step3.svg',
           title: 'Get Instant Approval',
-          text: 'Once verified, your education loan gets approved within 24–48 hours.',
+          text: 'Our system evaluates your profile instantly. Most applications get approved within 24–48 hours.',
         },
         {
           image: 'assets/img/svgs/process/step4.svg',
           title: 'Receive Funds',
-          text: 'Funds are disbursed directly to your institution or account as per requirement.',
+          text: 'Loan amount is disbursed directly to your institution or to you as per requirement.',
         },
       ],
 

@@ -135,7 +135,7 @@
 
   background: url("../../assets/img/svgs/home.svg") no-repeat center center;
   background-size: cover; /* Makes the image cover the entire section */
-  min-height: 100vh; /* Full screen height */
+  min-height: 75vh; /* Full screen height */
   display: flex;
   align-items: center; /* Vertically center the content */
   justify-content: center; /* Horizontally center the content */
@@ -312,7 +312,7 @@
   max-width: 100%;
   overflow: hidden;
   background: #fff;
-  padding: 20px 0;
+  // padding: 20px 0;
   position: relative;
 }
 
@@ -1941,7 +1941,7 @@ h2 {
 }
 
 .hero-image {
-  max-width: 100%;
+  max-width: 40%;
   height: auto;
 }
 .leftcontent {
