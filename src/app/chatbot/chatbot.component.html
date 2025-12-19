@@ -1,0 +1,85 @@
+<div class="chatbot-container">
+  <!-- Chatbot Button -->
+  <button class="chatbot-toggle" (click)="toggleChat()" [class.open]="isOpen">
+    <i class="pi pi-comments" *ngIf="!isOpen"></i>
+    <i class="pi pi-times" *ngIf="isOpen"></i>
+  </button>
+
+  <!-- Chat Window -->
+  <div class="chatbot-window" [class.open]="isOpen">
+    <div class="chatbot-header">
+      <div class="header-content">
+        <div class="bot-avatar">
+          <img src="assets/img/logo.png" alt="Fintalk Logo" />
+        </div>
+        <div class="header-text">
+          <h3>Fini</h3>
+          <p>Let's talk</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="restart-btn" (click)="restartChat()" title="Restart Chat" *ngIf="messages.length > 0 && currentStep > 0">
+          <i class="pi pi-refresh"></i>
+        </button>
+        <button class="back-btn-header" (click)="goBackOneStep()" title="Go Back" *ngIf="showBackButton">
+          <i class="pi pi-arrow-left"></i>
+        </button>
+        <button class="close-btn" (click)="toggleChat()">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="chatbot-messages" #chatContainer>
+      <div
+        *ngFor="let message of messages"
+        class="message"
+        [class.bot-message]="message.type === 'bot'"
+        [class.user-message]="message.type === 'user'"
+      >
+        <div class="message-content">
+          <div class="message-text" [innerHTML]="formatMessage(message.content)"></div>
+          <div class="message-time">
+            {{ message.timestamp | date: 'shortTime' }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Options Buttons -->
+      <div *ngIf="messages.length > 0 && messages[messages.length - 1].options" class="options-container">
+        <button
+          *ngFor="let option of messages[messages.length - 1].options"
+          class="option-button"
+          (click)="handleOptionClick(option)"
+        >
+          {{ option }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="chatbot-input" *ngIf="canShowInput()">
+      <form (submit)="handleInputSubmit($event)">
+        <input
+          type="text"
+          placeholder="Type your answer..."
+          class="message-input"
+          autocomplete="off"
+          #messageInput
+          (keydown)="onKeyDown($event)"
+        />
+        <button type="submit" class="send-button">
+          <i class="pi pi-send"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- WhatsApp Quick Action -->
+    <div class="whatsapp-quick-action" *ngIf="isOpen">
+      <button class="whatsapp-btn" (click)="openWhatsApp()" title="Chat on WhatsApp">
+        <i class="pi pi-whatsapp"></i>
+        <span>WhatsApp</span>
+      </button>
+    </div>
+  </div>
+</div>

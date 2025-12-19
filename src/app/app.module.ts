@@ -21,9 +21,11 @@ import { Step2DetailsModule } from "./step2-details/step2-details.module";
 import { ContactDetailsModule } from "./contact-details/contact-details.module";
 import { ProductDetailsModule } from "./product-details/product-details.module";
 import { EmicalculatorModule } from "./emicalculator/emicalculator.module";
+import { ChatbotComponent } from './chatbot/chatbot.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ChatbotComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -42,7 +44,8 @@ import { EmicalculatorModule } from "./emicalculator/emicalculator.module";
     HttpClientModule,
     ContactDetailsModule,
     ProductDetailsModule,
-    EmicalculatorModule
+    EmicalculatorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
