@@ -1,15 +1,18 @@
+<!-- Defer header/footer/chatbot on /apply route to prioritize LCP element rendering -->
 <app-header></app-header>
 
 <router-outlet></router-outlet>
 
 <!-- End #main -->
 
-<app-footer></app-footer>
+<!-- Defer footer and chatbot on /apply route for faster LCP -->
+<app-footer *ngIf="!isApplyRoute"></app-footer>
 <!-- Preloader -->
 <div id="preloader" *ngIf="loading">
   <!-- <div class="spinner"></div> -->
 </div>
-<app-chatbot></app-chatbot>
+<!-- Chatbot deferred on /apply route to prioritize LCP -->
+<app-chatbot *ngIf="!isApplyRoute"></app-chatbot>
 <!-- <button
   type="button"
   (click)="scrollToTop()"

@@ -20,6 +20,19 @@ export class HeaderComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
+    // Defer Bootstrap JS loading to after initial render for better LCP
+    // Use requestIdleCallback for non-critical initialization
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        this.loadBootstrap();
+      }, { timeout: 2000 });
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => this.loadBootstrap(), 100);
+    }
+  }
+
+  private loadBootstrap(): void {
     // Load Bootstrap JS dynamically (non-blocking)
     this.bootstrapLoader.loadBootstrap().then((bootstrap) => {
       // Initialize Bootstrap collapse instance after Bootstrap loads
@@ -30,7 +43,7 @@ export class HeaderComponent implements AfterViewInit {
       }
     }).catch(() => {
       // Fallback: Bootstrap failed to load, use manual toggle
-      console.warn('Bootstrap JS not available, using fallback');
+      // Silently fail - no console.warn to avoid blocking
     });
   }
 

@@ -10,14 +10,21 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 export class AppComponent {
   title = 'fintalk';
   loading: boolean = false;
-
-
   isScrolled: boolean = false;
+  isApplyRoute: boolean = false;
+
   constructor(private router: Router) {
+    // Check initial route
+    this.isApplyRoute = this.router.url === '/apply';
+    
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.loading = true;
+        // Update route check for conditional rendering
+        this.isApplyRoute = event.url === '/apply' || event.url.startsWith('/apply?');
       } else if (event instanceof NavigationEnd) {
+        // Update route check
+        this.isApplyRoute = event.url === '/apply' || event.url.startsWith('/apply?');
         // Give a slight delay to smooth the transition
         setTimeout(() => {
           this.loading = false;

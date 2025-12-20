@@ -19,15 +19,14 @@
 
 <button class="next-btn" (click)="continue()" [disabled]="!selectedType">Continue</button> -->
 <!-- <div class="back-btn" (click)="goBack()">← Back</div> -->
-<div class="loan-type-container">
-  <!-- Breadcrumb -->
-  <!-- <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb> -->
-
-  <!-- Critical LCP element - rendered immediately without waiting for component initialization -->
+<!-- Inline critical CSS for immediate rendering - prevents render blocking -->
+<div class="loan-type-container" style="max-width: 850px; margin: 2rem auto; text-align: center;">
+  <!-- Critical LCP element - optimized for fastest rendering -->
   <!-- Inline styles ensure immediate rendering without CSS file dependency -->
   <!-- Using system font stack first, then Inter when loaded to prevent render blocking -->
-  <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Inter', sans-serif;">Choose the Type of Loan you need</h2>
-  <p class="subtitle">Select a loan type below to continue</p>
+  <!-- Added explicit dimensions to prevent layout shift and ensure fast paint -->
+  <h2 style="font-size: 1.8rem; font-weight: 700; margin: 0 0 0.4rem 0; padding: 0; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Inter', sans-serif; line-height: 1.2; min-height: 2.16rem; display: block;">Choose the Type of Loan you need</h2>
+  <p style="color: #6b7280; margin-bottom: 2rem;">Select a loan type below to continue</p>
 
   <!-- Loan cards - can be deferred slightly but keeping synchronous for now to maintain UX -->
   <div class="loan-grid">
@@ -38,7 +37,7 @@
       (click)="selectType(type.value)"
     >
       <div class="icon">
-        <img [src]="type.icon" alt="{{ type.title }}" class="icon-img" loading="lazy" />
+        <img [src]="type.icon" alt="{{ type.title }}" class="icon-img" loading="lazy" decoding="async" width="48" height="48" />
       </div>
       <div>
         <h3>{{ type.title }}</h3>

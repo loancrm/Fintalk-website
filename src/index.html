@@ -7,10 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fintalk – Fast & Easy Unsecured Loans</title>
 
-    <!-- Optimized Google Fonts loading - deferred to reduce 3rd party impact -->
-    <!-- Preconnect early for faster font loading when needed -->
+    <!-- Resource hints for faster LCP -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Preload critical resources for faster LCP -->
+    <!-- Note: Angular build will hash these filenames, but preload hints help browser prioritize -->
+    <!-- Main JS bundle - critical for rendering Angular app -->
+    <link rel="modulepreload" href="/main.js" as="script" crossorigin />
+    <!-- Critical CSS - helps browser prioritize style loading -->
+    <link rel="preload" href="/styles.css" as="style" />
+    <!-- Preload apply route module for faster navigation -->
+    <link rel="prefetch" href="/apply" as="document" />
+    <!-- Preload critical SVG icons for loan types -->
+    <link rel="preload" href="assets/img/svgs/business.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="assets/img/svgs/professional.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="assets/img/svgs/personal.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="assets/img/svgs/educational.svg" as="image" type="image/svg+xml" />
+
+    <!-- Optimized Google Fonts loading - deferred to reduce 3rd party impact -->
     <!-- Load font stylesheet asynchronously using media trick - non-blocking -->
     <!-- Font loads after critical content, system fonts used as immediate fallback -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all'; this.onload=null;" />

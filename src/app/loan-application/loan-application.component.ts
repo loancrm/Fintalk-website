@@ -25,7 +25,7 @@ export class LoanApplicationComponent {
   prevStep() {
     if (this.currentStep > 1) {
       this.currentStep--;
-      this.showContactDetails = false;
+    this.showContactDetails = false;
       this.updateProgress();
     }
   }
