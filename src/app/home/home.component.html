@@ -91,6 +91,7 @@
           src="../../assets/img/svgs/banner.svg"
           alt="Loan Banner"
           class="hero-image floating-img"
+          fetchpriority="high"
         />
       </div>
     </div>
@@ -113,14 +114,28 @@
           *ngFor="let image of images"
           class="logo-slide d-flex justify-content-center align-items-center"
         >
-          <img [src]="image" alt="Bank Logo" class="image-carousel" />
+          <img
+            [src]="image"
+            alt="Bank Logo"
+            class="image-carousel"
+            loading="lazy"
+            width="225"
+            height="88"
+          />
         </div>
         <!-- Duplicate for seamless loop -->
         <div
           *ngFor="let image of images"
           class="logo-slide d-flex justify-content-center align-items-center"
         >
-          <img [src]="image" alt="Bank Logo" class="image-carousel" />
+          <img
+            [src]="image"
+            alt="Bank Logo"
+            class="image-carousel"
+            loading="lazy"
+            width="225"
+            height="88"
+          />
         </div>
       </div>
     </div>
@@ -186,6 +201,7 @@
         src="../../assets/img/svgs/about.svg"
         alt="About Us"
         class="img-fluid about-img"
+        loading="lazy"
       />
     </div>
 
@@ -294,6 +310,7 @@
               [src]="product.icon"
               alt="{{ product.title }}"
               class="icon-img"
+              loading="lazy"
             />
           </div>
           <div class="text-start mt-2">
@@ -321,6 +338,7 @@
           src="../../assets/img/svgs/process.svg"
           alt="Process Illustration"
           class="illustration"
+          loading="lazy"
         />
       </div>
 
@@ -328,7 +346,7 @@
       <div class="process-right">
         <div class="process-step" *ngFor="let step of steps">
           <div class="process-box">
-            <img [src]="step.icon" alt="Step Icon" class="icon-img" />
+            <img [src]="step.icon" alt="Step Icon" class="icon-img" loading="lazy" />
           </div>
           <div class="step-text">
             <h3>{{ step.title }}</h3>
@@ -371,7 +389,7 @@
         <div class="slide" *ngFor="let item of testimonials">
           <div class="testimonial-card">
             <div class="quote">
-              <img src="../../assets/img/svgs/quotation.svg" alt="Quote Icon" />
+              <img src="../../assets/img/svgs/quotation.svg" alt="Quote Icon" loading="lazy" />
             </div>
             <p class="text">{{ item.text }}</p>
             <div class="author">

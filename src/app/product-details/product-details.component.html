@@ -20,7 +20,7 @@
   <div class="banner-right">
     <div class="image-grid">
       <div *ngFor="let img of content.images" class="grid-item">
-        <img [src]="img" alt="Loan Image" />
+        <img [src]="img" alt="Loan Image" loading="lazy" />
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 
 <div class="loan-section container-fluid" *ngIf="content">
   <div class="loan-left">
-    <img [src]="content.aboutImage" alt="Loan Image" class="loan-image" />
+    <img [src]="content.aboutImage" alt="Loan Image" class="loan-image" loading="lazy" />
   </div>
 
   <div class="loan-right">
@@ -57,7 +57,7 @@
       <div class="timeline">
         <div class="timeline-item" *ngFor="let step of content?.processSteps">
           <div class="icon-box">
-            <img [src]="step.image" [alt]="step.title" />
+            <img [src]="step.image" [alt]="step.title" loading="lazy" />
           </div>
           <div class="content">
             <h4>{{ step.title }}</h4>
@@ -80,6 +80,7 @@
         *ngIf="content?.processImage"
         [src]="content?.processImage"
         alt="process visual"
+        loading="lazy"
       />
     </div>
   </div>
@@ -98,7 +99,7 @@
         *ngFor="let item of content?.statsData; let last = last"
       >
         <div class="icon">
-          <img [src]="item.icon" [alt]="item.title" />
+          <img [src]="item.icon" [alt]="item.title" loading="lazy" />
         </div>
         <h3>{{ item.value }}</h3>
         <h4>{{ item.title }}</h4>
