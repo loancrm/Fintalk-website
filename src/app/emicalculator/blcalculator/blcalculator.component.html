@@ -1,10 +1,15 @@
-<p-tabView
-  [(activeIndex)]="activeTab"
-  (onChange)="onTabChange()"
+<p-tabs
+  [(value)]="activeTab"
+  (valueChange)="onTabChange()"
   class="custom-tabview"
 >
-  <!-- Flat Rate Tab -->
-  <p-tabPanel header="Flat Rate">
+  <p-tablist>
+    <p-tab [value]="0">Flat Rate</p-tab>
+    <p-tab [value]="1">Diminishing Rate</p-tab>
+  </p-tablist>
+  <p-tabpanels>
+    <!-- Flat Rate Tab -->
+    <p-tabpanel [value]="0">
     <div class="container my-5">
       <h2 class="text-center mb-4 fw-bold heading">
         Buisness Loan - Flat Rate EMI Calculator
@@ -266,10 +271,10 @@
         </p-table>
       </div>
     </div>
-  </p-tabPanel>
+    </p-tabpanel>
 
-  <!-- Diminishing Rate Tab -->
-  <p-tabPanel header="Diminishing Rate">
+    <!-- Diminishing Rate Tab -->
+    <p-tabpanel [value]="1">
     <div class="container my-5">
       <h2 class="text-center mb-4 fw-bold heading">
         Buisness Loan - Diminishing Rate EMI Calculator
@@ -535,5 +540,6 @@
         </p-table>
       </div>
     </div>
-  </p-tabPanel>
-</p-tabView>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>

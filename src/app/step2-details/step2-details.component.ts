@@ -2,9 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-  selector: 'app-step2-details',
-  templateUrl: './step2-details.component.html',
-  styleUrls: ['./step2-details.component.scss'],
+    selector: 'app-step2-details',
+    templateUrl: './step2-details.component.html',
+    styleUrls: ['./step2-details.component.scss'],
+    standalone: false
 })
 export class Step2DetailsComponent {
   @Output() next = new EventEmitter<void>();

@@ -39,12 +39,12 @@
   box-shadow: 0 0 0 0.2rem rgba(41, 65, 91, 0.3);
 }
 /* Center and style tab headers */
-:host ::ng-deep .custom-tabview .p-tabview-nav {
+:host ::ng-deep .custom-tabview .p-tablist {
   justify-content: center; /* centers the tabs */
   margin-top: 20px;
 }
 
-:host ::ng-deep .custom-tabview .p-tabview-nav li .p-tabview-nav-link {
+:host ::ng-deep .custom-tabview .p-tab {
   font-weight: 600;
   font-size: 16px;
   padding: 10px 20px;
@@ -52,22 +52,12 @@
   transition: all 0.3s ease;
 }
 
-:host
-  ::ng-deep
-  .custom-tabview
-  .p-tabview-nav
-
-  .p-tabview-nav-link {
+:host ::ng-deep .custom-tabview .p-tab {
   color: #4faf9f; /* highlight color */
   background: #fff;
   font-weight: bold;
 }
-:host
-  ::ng-deep
-  .custom-tabview
-  .p-tabview-nav
-  li.p-highlight
-  .p-tabview-nav-link {
+:host ::ng-deep .custom-tabview .p-tab.p-tab-active {
   background: #4faf9f; /* highlight color */
   color: #fff;
   font-weight: bold;
@@ -128,12 +118,12 @@
   }
 
   // Tab view styles
-  :host ::ng-deep .custom-tabview .p-tabview-nav {
+  :host ::ng-deep .custom-tabview .p-tablist {
     flex-wrap: wrap;
     margin-top: 15px;
   }
 
-  :host ::ng-deep .custom-tabview .p-tabview-nav li .p-tabview-nav-link {
+  :host ::ng-deep .custom-tabview .p-tab {
     font-size: 14px;
     padding: 8px 15px;
   }
@@ -212,7 +202,7 @@
     font-size: 13px !important;
   }
 
-  :host ::ng-deep .custom-tabview .p-tabview-nav li .p-tabview-nav-link {
+  :host ::ng-deep .custom-tabview .p-tab {
     font-size: 12px;
     padding: 6px 12px;
   }

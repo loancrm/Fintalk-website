@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-apply',
-  templateUrl: './apply.component.html',
-  styleUrls: ['./apply.component.scss']
+    selector: 'app-apply',
+    templateUrl: './apply.component.html',
+    styleUrls: ['./apply.component.scss'],
+    standalone: false
 })
 export class ApplyComponent {
   form!: FormGroup;

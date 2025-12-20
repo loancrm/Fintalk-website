@@ -6,16 +6,18 @@ import {
   AfterViewInit,
   OnDestroy,
 } from '@angular/core';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import Swiper from 'swiper';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiserviceService } from '../apiservice.service';
-SwiperCore.use([Navigation, Pagination, Autoplay]);
+Swiper.use([Navigation, Pagination, Autoplay]);
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('productCardsContainer') productCardsContainer!: ElementRef;
