@@ -5,9 +5,10 @@ import { LoanApplicationService } from '../loan-application.service';
 import { ApiserviceService } from '../apiservice.service';
 
 @Component({
-  selector: 'app-contact-details',
-  templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.scss'],
+    selector: 'app-contact-details',
+    templateUrl: './contact-details.component.html',
+    styleUrls: ['./contact-details.component.scss'],
+    standalone: false
 })
 export class ContactDetailsComponent implements OnInit {
   @Output() back = new EventEmitter<void>();

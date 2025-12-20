@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-  selector: 'app-loan-eligible',
-  templateUrl: './loan-eligible.component.html',
-  styleUrls: ['./loan-eligible.component.scss']
+    selector: 'app-loan-eligible',
+    templateUrl: './loan-eligible.component.html',
+    styleUrls: ['./loan-eligible.component.scss'],
+    standalone: false
 })
 export class LoanEligibleComponent implements OnInit {
    loanType: any ; // dynamic loan type (e.g., "Business Loan")

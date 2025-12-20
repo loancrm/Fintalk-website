@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 declare var bootstrap: any;
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    standalone: false
 })
 export class HeaderComponent implements AfterViewInit {
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;

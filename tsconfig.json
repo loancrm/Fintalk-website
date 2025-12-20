@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -12,11 +13,12 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
-      "@primeuix/themes/*": ["node_modules/@primeuix/themes/dist/*"]
+      "@primeuix/themes/*": ["node_modules/@primeuix/themes/dist/*"],
+      "@primeuix/utils/*": ["node_modules/@primeuix/utils/*"]
     },
     "importHelpers": true,
     "target": "ES2022",
