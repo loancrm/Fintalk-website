@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ApplyComponent } from './apply.component';
 
 import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     InputTextModule,
     CheckboxModule,
-    DropdownModule,
+    SelectModule,
   ],
   exports:[
     ApplyComponent

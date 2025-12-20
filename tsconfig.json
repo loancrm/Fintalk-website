@@ -18,7 +18,7 @@
     "moduleResolution": "bundler",
     "paths": {
       "@primeuix/themes/*": ["node_modules/@primeuix/themes/dist/*"],
-      "@primeuix/utils/*": ["node_modules/@primeuix/utils/*"]
+      "@primeuix/utils/*": ["node_modules/@primeuix/utils/dist/*"]
     },
     "importHelpers": true,
     "target": "ES2022",
