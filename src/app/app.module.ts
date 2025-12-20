@@ -14,7 +14,7 @@ import { ProductDetailModule } from "./product-detail/product-detail.module";
 import { FooterModule } from "./footer/footer.module";
 import { ProcessModule } from "./process/process.module";
 import { ApplyModule } from "./apply/apply.module";
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LoanApplicationModule } from "./loan-application/loan-application.module";
 import { Step1LoanTypeModule } from "./step1-loan-type/step1-loan-type.module";
 import { Step2DetailsModule } from "./step2-details/step2-details.module";
@@ -23,31 +23,32 @@ import { ProductDetailsModule } from "./product-details/product-details.module";
 import { EmicalculatorModule } from "./emicalculator/emicalculator.module";
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { FormsModule } from '@angular/forms';
-
-@NgModule({
-  declarations: [AppComponent, ChatbotComponent],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HeaderModule,
-    ButtonModule,
-    HomeModule,
-    ProductDetailModule,
-    FooterModule,
-    ProcessModule,
-    LoanApplicationModule,
-    Step1LoanTypeModule,
-    ApplyModule,
-    Step2DetailsModule,
-    HttpClientModule,
-    ContactDetailsModule,
-    ProductDetailsModule,
-    EmicalculatorModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
+@NgModule({ declarations: [AppComponent, ChatbotComponent],
+    bootstrap: [AppComponent], imports: [CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HeaderModule,
+        ButtonModule,
+        HomeModule,
+        ProductDetailModule,
+        FooterModule,
+        ProcessModule,
+        LoanApplicationModule,
+        Step1LoanTypeModule,
+        ApplyModule,
+        Step2DetailsModule,
+        ContactDetailsModule,
+        ProductDetailsModule,
+        EmicalculatorModule,
+        FormsModule], providers: [
+            provideHttpClient(withInterceptorsFromDi()),
+            providePrimeNG({
+                theme: {
+                    preset: Aura
+                }
+            })
+        ] })
 export class AppModule { }
