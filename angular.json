@@ -81,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fintalk:build:production"
+              "buildTarget": "fintalk:build:production"
             },
             "development": {
-              "browserTarget": "fintalk:build:development"
+              "buildTarget": "fintalk:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fintalk:build"
+            "buildTarget": "fintalk:build"
           }
         },
         "test": {
