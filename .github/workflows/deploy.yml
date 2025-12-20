@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: dist/fintalk/browser
+          local-dir: dist/fintalk/browser/
           server-dir: ./
           exclude: |
             **/files/**
