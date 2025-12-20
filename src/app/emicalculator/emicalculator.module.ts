@@ -5,6 +5,7 @@ import { BlcalculatorModule } from './blcalculator/blcalculator.module';
 import { PlcalculatorModule } from './plcalculator/plcalculator.module';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,10 @@ import { FormsModule } from '@angular/forms';
     BlcalculatorModule,
     ButtonModule,
     FormsModule,
-    PlcalculatorModule
+    PlcalculatorModule,
+    RouterModule.forChild([
+      { path: '', component: EmicalculatorComponent }
+    ])
   ],
   exports:[
     EmicalculatorComponent

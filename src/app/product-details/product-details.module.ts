@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from './product-details.component';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +13,9 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    RouterModule.forChild([
+      { path: '', component: ProductDetailsComponent }
+    ])
   ],
   exports:[
     ProductDetailsComponent

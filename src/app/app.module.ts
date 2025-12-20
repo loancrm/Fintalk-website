@@ -10,17 +10,11 @@ import { ButtonModule } from "primeng/button";
 import { CommonModule } from "@angular/common";
 import { HeaderModule } from "./header/header.module";
 import { HomeModule } from "./home/home.module";
-import { ProductDetailModule } from "./product-detail/product-detail.module";
 import { FooterModule } from "./footer/footer.module";
-import { ProcessModule } from "./process/process.module";
-import { ApplyModule } from "./apply/apply.module";
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LoanApplicationModule } from "./loan-application/loan-application.module";
-import { Step1LoanTypeModule } from "./step1-loan-type/step1-loan-type.module";
-import { Step2DetailsModule } from "./step2-details/step2-details.module";
-import { ContactDetailsModule } from "./contact-details/contact-details.module";
-import { ProductDetailsModule } from "./product-details/product-details.module";
-import { EmicalculatorModule } from "./emicalculator/emicalculator.module";
+// Removed eager loading of non-critical modules to reduce initial bundle size
+// These are now lazy loaded: ProductDetailsModule, EmicalculatorModule, etc.
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { FormsModule } from '@angular/forms';
 import { providePrimeNG } from 'primeng/config';
@@ -33,16 +27,8 @@ import Aura from '@primeuix/themes/aura';
         HeaderModule,
         ButtonModule,
         HomeModule,
-        ProductDetailModule,
         FooterModule,
-        ProcessModule,
         LoanApplicationModule,
-        Step1LoanTypeModule,
-        ApplyModule,
-        Step2DetailsModule,
-        ContactDetailsModule,
-        ProductDetailsModule,
-        EmicalculatorModule,
         FormsModule], providers: [
             provideHttpClient(withInterceptorsFromDi()),
             providePrimeNG({
