@@ -64,14 +64,10 @@
               ],
               "outputHashing": "all",
               "optimization": {
-                "scripts": {
-                  "minify": true,
-                  "optimize": true
-                },
+                "scripts": true,
                 "styles": {
                   "minify": true,
-                  "inlineCritical": true,
-                  "optimize": true
+                  "inlineCritical": true
                 },
                 "fonts": true
               },
