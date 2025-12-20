@@ -3,7 +3,7 @@
   <ng-container *ngIf="!showContactDetails">
     <p class="step-info" *ngIf="currentStep !== 5">Step {{ currentStep }} of {{ totalSteps }}</p>
     <div class="progress-bar" *ngIf="currentStep !== 5">
-      <div class="progress" [style.width.%]="progressWidth()"></div>
+      <div class="progress" [style.width.%]="progressPercentage"></div>
     </div>
 
     <ng-container [ngSwitch]="currentStep">

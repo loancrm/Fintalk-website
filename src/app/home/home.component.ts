@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiserviceService } from '../apiservice.service';
+import { CssLoaderService } from '../css-loader.service';
 Swiper.use([Navigation, Pagination, Autoplay]);
 @Component({
     selector: 'app-home',
@@ -275,9 +276,14 @@ and quick business loan options with minimal documentation.`,
     private apiService: ApiserviceService,
     private router: Router,
     private fb: FormBuilder,
-    private api: ApiserviceService
+    private api: ApiserviceService,
+    private cssLoader: CssLoaderService
   ) {}
   ngOnInit(): void {
+    // Load Swiper CSS dynamically (only on home page) to reduce unused CSS
+    this.cssLoader.loadCss('assets/css/swiper-bundle.min.css', 'swiper-css').catch(() => {
+      console.warn('Swiper CSS failed to load');
+    });
     this.typeWriter();
     this.contactForm = this.fb.group({
       name: ['', Validators.required],

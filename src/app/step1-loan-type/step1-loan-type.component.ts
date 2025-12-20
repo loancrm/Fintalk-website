@@ -47,13 +47,13 @@ export class Step1LoanTypeComponent {
     }
   ];
 
-  constructor(private loanService: LoanApplicationService) { }
+  constructor(private loanService: LoanApplicationService) {
+    // Initialize selectedType in constructor for faster rendering
+    this.selectedType = this.loanService.getLoanType();
+  }
 
   ngOnInit() {
-    // ✅ Restore previous entity selection if exists
-    this.selectedType = this.loanService.getLoanType();
-    console.log(this.selectedType)
-
+    // Component already initialized in constructor for faster LCP
   }
   selectType(type: string) {
     this.selectedType = type;
@@ -64,5 +64,9 @@ export class Step1LoanTypeComponent {
 
   continue() {
     if (this.selectedType) this.next.emit();
+  }
+
+  trackByLoanType(index: number, type: any): string {
+    return type.value;
   }
 }

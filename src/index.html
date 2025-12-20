@@ -7,9 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fintalk – Fast & Easy Unsecured Loans</title>
 
-    <!-- Preconnect to Google Fonts for faster loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Optimized Google Fonts loading - deferred to reduce 3rd party impact -->
+    <!-- Preconnect early for faster font loading when needed -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <!-- Load font stylesheet asynchronously using media trick - non-blocking -->
+    <!-- Font loads after critical content, system fonts used as immediate fallback -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all'; this.onload=null;" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" />
+    </noscript>
 
     <meta
       name="description"

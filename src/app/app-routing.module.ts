@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes, PreloadAllModules } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
 import { ProcessComponent } from "./process/process.component";
@@ -31,7 +31,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: "enabled",
-      onSameUrlNavigation: "reload"
+      onSameUrlNavigation: "reload",
+      preloadingStrategy: PreloadAllModules // Preload modules for faster navigation
   })
   ],
   exports: [RouterModule]

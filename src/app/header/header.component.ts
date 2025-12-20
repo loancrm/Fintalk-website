@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BootstrapLoaderService } from '../bootstrap-loader.service';
 
 declare var bootstrap: any;
 
@@ -13,15 +14,24 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
   private collapseInstance: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private bootstrapLoader: BootstrapLoaderService
+  ) { }
 
   ngAfterViewInit(): void {
-    // Initialize Bootstrap collapse instance
-    if (this.navbarCollapse && typeof bootstrap !== 'undefined') {
-      this.collapseInstance = new bootstrap.Collapse(this.navbarCollapse.nativeElement, {
-        toggle: false
-      });
-    }
+    // Load Bootstrap JS dynamically (non-blocking)
+    this.bootstrapLoader.loadBootstrap().then((bootstrap) => {
+      // Initialize Bootstrap collapse instance after Bootstrap loads
+      if (this.navbarCollapse && bootstrap) {
+        this.collapseInstance = new bootstrap.Collapse(this.navbarCollapse.nativeElement, {
+          toggle: false
+        });
+      }
+    }).catch(() => {
+      // Fallback: Bootstrap failed to load, use manual toggle
+      console.warn('Bootstrap JS not available, using fallback');
+    });
   }
 
   scrollToSection(sectionId: string) {
