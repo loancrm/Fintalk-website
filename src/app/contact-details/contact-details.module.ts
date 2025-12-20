@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ContactDetailsComponent } from './contact-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 
 
 
@@ -18,7 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     RouterModule,
     BreadcrumbModule,
-    DropdownModule
+    SelectModule 
   ],
   exports:[
     ContactDetailsComponent

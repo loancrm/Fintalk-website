@@ -207,7 +207,7 @@
           <span class="optional-text">(Optional)</span></label
         >
 
-        <p-dropdown
+        <p-select
           formControlName="isGstRegistered"
           [options]="gstOptions"
           optionLabel="label"
@@ -216,7 +216,7 @@
           [style]="{ width: '100%' }"
           styleClass="custom-dropdown"
         >
-        </p-dropdown>
+        </p-select>
 
         <small
           *ngIf="

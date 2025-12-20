@@ -4,9 +4,10 @@ import jsPDF from 'jspdf';
 import { Location } from '@angular/common';
 import autoTable from 'jspdf-autotable';
 @Component({
-  selector: 'app-blcalculator',
-  templateUrl: './blcalculator.component.html',
-  styleUrls: ['./blcalculator.component.scss'],
+    selector: 'app-blcalculator',
+    templateUrl: './blcalculator.component.html',
+    styleUrls: ['./blcalculator.component.scss'],
+    standalone: false
 })
 export class BlcalculatorComponent {
   // Flat Loan
