@@ -1,26 +1,50 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BootstrapLoaderService } from '../bootstrap-loader.service';
 
 declare var bootstrap: any;
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    standalone: false
 })
 export class HeaderComponent implements AfterViewInit {
   @ViewChild('navbarCollapse') navbarCollapse!: ElementRef;
   private collapseInstance: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private bootstrapLoader: BootstrapLoaderService
+  ) { }
 
   ngAfterViewInit(): void {
-    // Initialize Bootstrap collapse instance
-    if (this.navbarCollapse && typeof bootstrap !== 'undefined') {
-      this.collapseInstance = new bootstrap.Collapse(this.navbarCollapse.nativeElement, {
-        toggle: false
-      });
+    // Defer Bootstrap JS loading to after initial render for better LCP
+    // Use requestIdleCallback for non-critical initialization
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        this.loadBootstrap();
+      }, { timeout: 2000 });
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => this.loadBootstrap(), 100);
     }
+  }
+
+  private loadBootstrap(): void {
+    // Load Bootstrap JS dynamically (non-blocking)
+    this.bootstrapLoader.loadBootstrap().then((bootstrap) => {
+      // Initialize Bootstrap collapse instance after Bootstrap loads
+      if (this.navbarCollapse && bootstrap) {
+        this.collapseInstance = new bootstrap.Collapse(this.navbarCollapse.nativeElement, {
+          toggle: false
+        });
+      }
+    }).catch(() => {
+      // Fallback: Bootstrap failed to load, use manual toggle
+      // Silently fail - no console.warn to avoid blocking
+    });
   }
 
   scrollToSection(sectionId: string) {

@@ -22,11 +22,9 @@ export class LoanApplicationService {
   }
 
   getLoanType() {
-    console.log(this.selectedLoanType);
     return this.selectedLoanType;
   }
   getEntityTurnover() {
-    console.log(this.selectedTurnover);
     return this.selectedTurnover;
   }
   setEntityType(entity: string) {

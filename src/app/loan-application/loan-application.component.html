@@ -1,12 +1,14 @@
-<div class="loan-container">
+<!-- Inline critical CSS for immediate rendering - prevents render blocking -->
+<div class="loan-container" style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; min-height: 400px;">
   <!-- Show steps and progress bar only if not viewing contact details -->
   <ng-container *ngIf="!showContactDetails">
     <p class="step-info" *ngIf="currentStep !== 5">Step {{ currentStep }} of {{ totalSteps }}</p>
     <div class="progress-bar" *ngIf="currentStep !== 5">
-      <div class="progress" [style.width.%]="progressWidth()"></div>
+      <div class="progress" [style.width.%]="progressPercentage"></div>
     </div>
 
     <ng-container [ngSwitch]="currentStep">
+      <!-- Step 1 - Critical LCP element, render immediately -->
       <app-step1-loan-type
         *ngSwitchCase="1"
         (next)="nextStep()"

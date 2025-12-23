@@ -5,8 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { RouterModule, Routes } from '@angular/router';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
-import { TabMenuModule } from 'primeng/tabmenu';
-import { TabPanel, TabViewModule } from 'primeng/tabview';
+import { TabsModule } from 'primeng/tabs';
+import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ApexChartsModule } from '../../apex-charts/apex-charts.module';
 
@@ -20,10 +20,10 @@ import { ApexChartsModule } from '../../apex-charts/apex-charts.module';
      ApexChartsModule,
     // RouterModule.forChild(routes),
     SliderModule,
-  TabViewModule,
+    TabsModule,
     TableModule,
-    TabMenuModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ],
   exports:[
     BlcalculatorComponent

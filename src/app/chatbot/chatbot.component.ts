@@ -19,9 +19,10 @@ interface ConversationStep {
 }
 
 @Component({
-  selector: 'app-chatbot',
-  templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.scss']
+    selector: 'app-chatbot',
+    templateUrl: './chatbot.component.html',
+    styleUrls: ['./chatbot.component.scss'],
+    standalone: false
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;

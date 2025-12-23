@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import autoTable from 'jspdf-autotable';
 @Component({
-  selector: 'app-plcalculator',
-  templateUrl: './plcalculator.component.html',
-  styleUrls: ['./plcalculator.component.scss']
+    selector: 'app-plcalculator',
+    templateUrl: './plcalculator.component.html',
+    styleUrls: ['./plcalculator.component.scss'],
+    standalone: false
 })
 export class PlcalculatorComponent {
   loanAmount: number = 500000;

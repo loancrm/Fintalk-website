@@ -2,9 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-  selector: 'app-step1-loan-type',
-  templateUrl: './step1-loan-type.component.html',
-  styleUrls: ['./step1-loan-type.component.scss']
+    selector: 'app-step1-loan-type',
+    templateUrl: './step1-loan-type.component.html',
+    styleUrls: ['./step1-loan-type.component.scss'],
+    standalone: false
 })
 export class Step1LoanTypeComponent {
   @Output() next = new EventEmitter<void>();
@@ -46,13 +47,13 @@ export class Step1LoanTypeComponent {
     }
   ];
 
-  constructor(private loanService: LoanApplicationService) { }
+  constructor(private loanService: LoanApplicationService) {
+    // Initialize selectedType in constructor for faster rendering
+    this.selectedType = this.loanService.getLoanType();
+  }
 
   ngOnInit() {
-    // ✅ Restore previous entity selection if exists
-    this.selectedType = this.loanService.getLoanType();
-    console.log(this.selectedType)
-
+    // Component already initialized in constructor for faster LCP
   }
   selectType(type: string) {
     this.selectedType = type;
@@ -63,5 +64,9 @@ export class Step1LoanTypeComponent {
 
   continue() {
     if (this.selectedType) this.next.emit();
+  }
+
+  trackByLoanType(index: number, type: any): string {
+    return type.value;
   }
 }
