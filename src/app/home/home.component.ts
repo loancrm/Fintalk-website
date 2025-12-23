@@ -122,9 +122,9 @@ easy it was. Their guidance made my study abroad journey possible.`,
     'assets/img/clients/idfc.png',
     'assets/img/clients/indus.png',
     'assets/img/clients/tata.png',
-    'assets/img/clients/muthoot.png',
-    'assets/img/clients/lending.png',
-    'assets/img/clients/neo.png',
+    // 'assets/img/clients/muthoot.png',
+    // 'assets/img/clients/lending.png',
+    // 'assets/img/clients/neo.png',
     'assets/img/clients/edel.png',
     'assets/img/clients/clix.png',
     'assets/img/clients/hero.png',
@@ -142,7 +142,7 @@ easy it was. Their guidance made my study abroad journey possible.`,
     // 'assets/img/clients/mahindra.png',
     'assets/img/clients/indifi.png',
     // 'assets/img/clients/kinara.png',
-    'assets/img/clients/karur.png',
+    // 'assets/img/clients/karur.png',
     'assets/img/clients/lt.png',
     // 'assets/img/clients/unity.png',
     'assets/img/clients/piramal.png',
@@ -351,7 +351,7 @@ and quick business loan options with minimal documentation.`,
       if (scrollContent) {
         scrollContent.style.animationPlayState = 'running';
       }
-    }, 2000); // 2 second delay
+    }, 1000); // 2 second delay
   }
 
   ngOnDestroy(): void {

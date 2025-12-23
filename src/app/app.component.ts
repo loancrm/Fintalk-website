@@ -20,7 +20,7 @@ export class AppComponent {
         // Give a slight delay to smooth the transition
         setTimeout(() => {
           this.loading = false;
-        }, 300);
+        }, 200);
       }
     });
   }

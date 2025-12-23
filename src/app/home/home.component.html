@@ -1,59 +1,4 @@
-<!-- <section id="home" class="d-flex align-items-center">
-  <div class="container">
-    <div class="row">
-     <div
-  class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-1 order-lg-1"
-  data-aos="fade-up"
-  data-aos-delay="200"
->
-  <h1 class="custom-heading">Fast, Easy, and Reliable Unsecured Loans</h1>
-  <h2 class="custom-subheading">
-    Get quick access to funds without collateral. Transparent, flexible, and hassle-free.
-  </h2>
-  <div class="d-flex justify-content-center justify-content-lg-start">
-    <a href="#about" class="btn-get-started scrollto">Get Started</a>
-  </div>
-</div>
-      <div
-        class="col-lg-6 order-1 order-lg-2 home-img bannerimggg"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-      >
-      <img src="assets/img/image.png" class="img-fluid animated" alt="" /> -->
-<!-- <img src="../../assets/img/bannerimg2.svg" alt="" class="resized-image"> -->
-<!-- <img src="../../assets/img/bannercolorbg.svg" alt="">
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- <section
-  id="home"
-  class="home-section d-flex align-items-center justify-content-center"
->
-  <div class="container text-center">
-    <h1 class="headingname">Unsecured Loans For Your Business</h1>
-
-    <h5 class="customubheading">
-      Fast, Flexible Business Loans from 10 L to 5 Cr. Repay on your terms, up
-      to 84 months.
-    </h5>
-
-
-    <div class="d-flex justify-content-center gap-3 mt-4">
-      <a routerLink="/apply" class="btn btn-custom-outline">
-        Apply Now
-      </a>
-
-      <a
-        (click)="scrollToSection('contactus')"
-        class="btn btn-primary btn-custom-filled"
-        >Contact Us</a
-      >
-    </div>
-  </div>
-</section> -->
-
-<section id="home" class="home-section pt-5">
+<section id="home" class=" pt-5">
   <div class="container-fluid">
     <div class="row align-items-center">
       <!-- LEFT CONTENT -->
@@ -65,11 +10,13 @@
         </h1>
 
         <h5 class="customubheading mt-3">
-          <!-- Fast, flexible loans up to ₹5 Cr with easy EMIs and repayment options
-          up to 84 months. -->
-          Borrow up to ₹75 Lakhs with low interest rates, fast approvals, and
+          Fast, flexible loans up to ₹5 Cr with easy EMIs and repayment options
+          up to 84 months with low interest rates fast approvals, and easy EMI
+          options— whether you need funds for business growth, personal use, or
+          higher education.
+          <!-- Borrow up to ₹75 Lakhs with low interest rates, fast approvals, and
           easy EMI options— whether you need funds for business growth, personal
-          use, or higher education.
+          use, or higher education. -->
         </h5>
 
         <div
@@ -80,7 +27,7 @@
             (click)="scrollToSection('contactus')"
             class="btn btn-primary btn-custom-filled"
           >
-            Talk to a Loan Specialist
+            Talk to a Loan Consultant
           </a>
         </div>
       </div>
@@ -96,37 +43,31 @@
     </div>
   </div>
 </section>
-
-<section
-  data-aos="zoom-in"
-  data-aos-duration="1500"
-  class="section-bg carouselsect"
->
-  <div class="carousel-container">
-    <div class="scroll-wrapper">
+<section >
+<div class="carousel-container">
+  <div class="scroll-wrapper">
+    <div
+      class="scroll-content"
+      (mouseenter)="pauseScroll()"
+      (mouseleave)="resumeScroll()"
+    >
       <div
-        class="scroll-content"
-        (mouseenter)="pauseScroll()"
-        (mouseleave)="resumeScroll()"
+        *ngFor="let image of images"
+        class="logo-slide d-flex justify-content-center align-items-center"
       >
-        <div
-          *ngFor="let image of images"
-          class="logo-slide d-flex justify-content-center align-items-center"
-        >
-          <img [src]="image" alt="Bank Logo" class="image-carousel" />
-        </div>
-        <!-- Duplicate for seamless loop -->
-        <div
-          *ngFor="let image of images"
-          class="logo-slide d-flex justify-content-center align-items-center"
-        >
-          <img [src]="image" alt="Bank Logo" class="image-carousel" />
-        </div>
+        <img [src]="image" alt="Bank Logo" class="image-carousel" />
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div
+        *ngFor="let image of images"
+        class="logo-slide d-flex justify-content-center align-items-center"
+      >
+        <img [src]="image" alt="Bank Logo" class="image-carousel" />
       </div>
     </div>
   </div>
+</div>
 </section>
-
 <!-- <section
   id="aboutUs"
   class="Card aboutusbox d-flex flex-lg-row flex-sm-column section"
