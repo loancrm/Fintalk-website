@@ -2,10 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-    selector: 'app-step1-loan-type',
-    templateUrl: './step1-loan-type.component.html',
-    styleUrls: ['./step1-loan-type.component.scss'],
-    standalone: false
+  selector: 'app-step1-loan-type',
+  templateUrl: './step1-loan-type.component.html',
+  styleUrls: ['./step1-loan-type.component.scss'],
+  standalone: false,
 })
 export class Step1LoanTypeComponent {
   @Output() next = new EventEmitter<void>();
@@ -14,37 +14,38 @@ export class Step1LoanTypeComponent {
   breadcrumbItems = [
     { label: 'Home', route: '/' },
     { label: 'Apply', route: '/apply' },
-    { label: 'Choose Loan Type', isActive: true }
+    { label: 'Choose Loan Type', isActive: true },
   ];
 
   loanTypes = [
     {
-      value: 'Business Loan',
+      value: 'businessLoan',
       title: 'Business Loan',
-      description: 'For Business Expansion, Working Capital and other Business needs',
+      description:
+        'For Business Expansion, Working Capital and other Business needs',
       icon: 'assets/img/svgs/business.svg',
-
     },
     {
-      value: 'Professional Loan',
+      value: 'professionalLoans',
       title: 'Professional Loan',
-      description: 'Specialized Loans for Certified Professionals like Doctors and Architects.',
+      description:
+        'Specialized Loans for Certified Professionals like Doctors and Architects.',
       icon: 'assets/img/svgs/professional.svg',
     },
     {
-      value: 'Personal Loan',
+      value: 'personalLoan',
       title: 'Personal Loan',
-      description: 'For Personal Expenses, Wedding, Travel or debt Consolidation',
+      description:
+        'For Personal Expenses, Wedding, Travel or debt Consolidation',
       icon: 'assets/img/svgs/personal.svg',
-
     },
     {
-      value: 'Education Loan',
+      value: 'educationalLoan',
       title: 'Education Loan',
-      description: 'For Higher Studies, Tuition Fees and other Educational needs',
+      description:
+        'For Higher Studies, Tuition Fees and other Educational needs',
       icon: 'assets/img/svgs/educational.svg',
-
-    }
+    },
   ];
 
   constructor(private loanService: LoanApplicationService) {
@@ -59,7 +60,6 @@ export class Step1LoanTypeComponent {
     this.selectedType = type;
     this.loanService.setLoanType(type);
     this.next.emit(); // navigate to next step (Contact Details)
-
   }
 
   continue() {

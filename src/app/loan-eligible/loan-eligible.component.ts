@@ -2,13 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-    selector: 'app-loan-eligible',
-    templateUrl: './loan-eligible.component.html',
-    styleUrls: ['./loan-eligible.component.scss'],
-    standalone: false
+  selector: 'app-loan-eligible',
+  templateUrl: './loan-eligible.component.html',
+  styleUrls: ['./loan-eligible.component.scss'],
+  standalone: false,
 })
 export class LoanEligibleComponent implements OnInit {
-   loanType: any ; // dynamic loan type (e.g., "Business Loan")
+  loanType: any;
   @Output() next = new EventEmitter<void>();
   @Output() contactUs = new EventEmitter<void>();
   isSubmitted = false;
@@ -19,10 +19,15 @@ export class LoanEligibleComponent implements OnInit {
     { label: 'Business Entity' },
     { label: 'Business Vintage' },
     { label: 'Business Turnover' },
-    { label: 'Eligibility', isActive: true }
+    { label: 'Eligibility', isActive: true },
   ];
-
-  constructor(private loanService: LoanApplicationService) { }
+  loanTypeDisplayMap: any = {
+    businessLoan: 'Business Loan',
+    personalLoan: 'Personal Loan',
+    professionalLoans: 'Professional Loan',
+    educationalLoan: 'Education Loan',
+  };
+  constructor(private loanService: LoanApplicationService) {}
 
   onContactClick() {
     this.contactUs.emit(); // navigate to next step (Contact Details)
@@ -30,19 +35,19 @@ export class LoanEligibleComponent implements OnInit {
   ngOnInit(): void {
     this.loanType = this.loanService.getLoanType();
   }
-  getLoanAmount(type: string) {
-  switch (type?.toLowerCase()) {
-    case 'business loan':
-      return 75;
-    case 'professional loan':
-      return 75;
-    case 'personal loan':
-      return 50;
-    case 'educational loan':
-      return null; // hide line
-    default:
-      return null;
-  }
-}
 
+  getLoanAmount(type: string) {
+    switch (type) {
+      case 'businessLoan':
+        return 75;
+      case 'professionalLoans':
+        return 75;
+      case 'personalLoan':
+        return 50;
+      case 'educationalLoan':
+        return null; // hide line
+      default:
+        return null;
+    }
+  }
 }

@@ -2,10 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-    selector: 'app-step3-details',
-    templateUrl: './step3-details.component.html',
-    styleUrls: ['./step3-details.component.scss'],
-    standalone: false
+  selector: 'app-step3-details',
+  templateUrl: './step3-details.component.html',
+  styleUrls: ['./step3-details.component.scss'],
+  standalone: false,
 })
 export class Step3DetailsComponent {
   @Output() next = new EventEmitter<void>();
@@ -13,7 +13,7 @@ export class Step3DetailsComponent {
 
   selectedVintage: string | null = null;
   loanType: any;
-  selectedIncome: string | null = null;
+  selectedIncome: string = '';
   selectedCourseLevel: any;
 
   incomeRanges = [
@@ -93,8 +93,8 @@ export class Step3DetailsComponent {
       description: 'Highly experienced professional.',
     },
   ];
-  selectedExperience: string | null = null;
-  constructor(private loanService: LoanApplicationService) { }
+  selectedExperience: string = '';
+  constructor(private loanService: LoanApplicationService) {}
   ngOnInit() {
     this.loanType = this.loanService.getLoanType();
     // ✅ Restore previous entity selection if exists
@@ -102,7 +102,6 @@ export class Step3DetailsComponent {
     this.selectedExperience = this.loanService.getExperience();
     this.selectedVintage = this.loanService.getEntityVintage();
     this.selectedIncome = this.loanService.getIncome();
-
   }
 
   VinatgeTypes = [
@@ -136,26 +135,27 @@ export class Step3DetailsComponent {
       name: 'ug',
       title: 'Undergraduate (UG)',
       icon: 'assets/img/svgs/education1.svg',
-      description: 'Bachelor-level programs like B.Tech, MBBS, BBA, B.Com, etc.'
+      description:
+        'Bachelor-level programs like B.Tech, MBBS, BBA, B.Com, etc.',
     },
     {
       name: 'pg',
       title: 'Postgraduate (PG)',
       icon: 'assets/img/svgs/education2.svg',
-      description: 'Master’s courses such as M.Tech, MBA, MS, M.Sc, etc.'
+      description: 'Master’s courses such as M.Tech, MBA, MS, M.Sc, etc.',
     },
     {
       name: 'diploma',
       title: 'Diploma / Certification',
       icon: 'assets/img/svgs/education3.svg',
-      description: 'Short-term or long-term diploma or certification programs.'
+      description: 'Short-term or long-term diploma or certification programs.',
     },
     {
       name: 'phd',
       title: 'PhD / Research',
       icon: 'assets/img/svgs/education4.svg',
-      description: 'Doctorate and advanced research programs.'
-    }
+      description: 'Doctorate and advanced research programs.',
+    },
   ];
 
   selectIncome(entity: string) {
@@ -183,6 +183,16 @@ export class Step3DetailsComponent {
   selectCourseLevel(level: string) {
     this.selectedCourseLevel = level;
     this.loanService.setCourseLevel(level);
+    this.next.emit(); // move to final review page
+  }
+
+  submitMonthlyIncome() {
+    this.loanService.setMonthlyIncome(this.selectedIncome);
+    this.next.emit(); // move to final review page
+  }
+
+  submitExperience() {
+    this.loanService.setWorkExperience(this.selectedExperience);
     this.next.emit(); // move to final review page
   }
 }

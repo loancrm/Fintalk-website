@@ -110,8 +110,8 @@
       </div>
 
       <!-- Business Name -->
-      <!-- Business Name (Visible only for Business Loan) -->
-      <div class="form-group full" *ngIf="loanType === 'Business Loan'">
+      <!-- Business Name (Visible only for businessLoan) -->
+      <div class="form-group full" *ngIf="loanType === 'businessLoan'">
         <label>Business Name</label>
         <input
           type="text"
@@ -200,8 +200,8 @@
         </small>
       </div>
 
-      <!-- GST Registered (Visible only for Business Loan) -->
-      <div class="form-group half" *ngIf="loanType === 'Business Loan'">
+      <!-- GST Registered (Visible only for businessLoan) -->
+      <div class="form-group half" *ngIf="loanType === 'businessLoan'">
         <label
           >Is GST Registered?
           <span class="optional-text">(Optional)</span></label

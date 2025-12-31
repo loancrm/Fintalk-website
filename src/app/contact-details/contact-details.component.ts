@@ -67,7 +67,7 @@ export class ContactDetailsComponent implements OnInit {
   }
   updateValidatorsBasedOnLoanType() {
     console.log(this.loanType);
-    if (this.loanType === 'Business Loan') {
+    if (this.loanType === 'businessLoan') {
       this.contactForm
         .get('businessName')
         ?.setValidators([Validators.required]);
@@ -122,7 +122,7 @@ export class ContactDetailsComponent implements OnInit {
 
     let extraFields: any = {};
 
-    if (productType === 'Business Loan') {
+    if (productType === 'businessLoan') {
       extraFields = {
         businessEntity: this.loanService.getEntityType(),
         businessVintage: this.loanService.getEntityVintage(),
@@ -130,7 +130,7 @@ export class ContactDetailsComponent implements OnInit {
       };
     }
 
-    if (productType === 'Personal Loan') {
+    if (productType === 'personalLoan') {
       extraFields = {
         monthlyIncome: this.loanService.getIncome(),
         workExperience: this.loanService.getExperience(),
@@ -138,7 +138,7 @@ export class ContactDetailsComponent implements OnInit {
       };
     }
 
-    if (productType === 'Professional Loan') {
+    if (productType === 'professionalLoans') {
       extraFields = {
         profession: this.loanService.getProfession(),
         monthlyIncome: this.loanService.getIncome(),
@@ -146,7 +146,7 @@ export class ContactDetailsComponent implements OnInit {
       };
     }
 
-    if (productType === 'Education Loan') {
+    if (productType === 'educationalLoan') {
       extraFields = {
         educationType: this.loanService.getEducationType(),
         courseLevel: this.loanService.getCourseLevel(),

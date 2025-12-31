@@ -2,14 +2,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-    selector: 'app-step4-details',
-    templateUrl: './step4-details.component.html',
-    styleUrls: ['./step4-details.component.scss'],
-    standalone: false
+  selector: 'app-step4-details',
+  templateUrl: './step4-details.component.html',
+  styleUrls: ['./step4-details.component.scss'],
+  standalone: false,
 })
 export class Step4DetailsComponent {
   @Output() next = new EventEmitter<void>();
-  selectedExperience: string | null = null;
+  selectedExperience: string = '';
   incomeRanges = [
     {
       name: 'Below 15000',
@@ -60,19 +60,19 @@ export class Step4DetailsComponent {
     {
       name: '1_2_years',
       title: '1 - 2 Years',
-        icon: 'assets/img/svgs/3-5.svg',
+      icon: 'assets/img/svgs/3-5.svg',
       description: 'Basic professional experience.',
     },
     {
       name: '2_5_years',
       title: '2 - 5 Years',
-       icon: 'assets/img/svgs/6-8.svg',
+      icon: 'assets/img/svgs/6-8.svg',
       description: 'Mid-level work experience category.',
     },
     {
       name: '5_10_years',
       title: '5 - 10 Years',
-       icon: 'assets/img/svgs/10+.svg',
+      icon: 'assets/img/svgs/10+.svg',
       description: 'Experienced professional range.',
     },
     {
@@ -82,7 +82,7 @@ export class Step4DetailsComponent {
       description: 'Highly experienced professional.',
     },
   ];
-  selectedIncome: string | null = null;
+  selectedIncome: string = '';
 
   selectedTurnover: string | null = null;
   loanType: any;
@@ -96,7 +96,7 @@ export class Step4DetailsComponent {
   ];
 
   companyName: string = '';
-  constructor(private loanService: LoanApplicationService) { }
+  constructor(private loanService: LoanApplicationService) {}
   ngOnInit() {
     this.selectedIncome = this.loanService.getIncome();
     this.loanType = this.loanService.getLoanType();
@@ -107,32 +107,32 @@ export class Step4DetailsComponent {
   }
   TurnoverTypes = [
     {
-      name: 'Less than 1 Crore',
-      title: 'Less than 1 Crore',
+      name: 'upto 1 crore',
+      title: 'Upto 1 Crore',
       icon: 'assets/img/svgs/coins.svg',
       description: 'Single-owner business model.',
     },
     {
-      name: '1 to 3 Crores',
-      title: '1 to 3 Crores',
+      name: '1 - 3 crores',
+      title: '1 - 3 Crores',
       icon: 'assets/img/svgs/3crore.svg',
       description: 'Run your business with partners.',
     },
     {
-      name: '3 to 5 Crores',
-      title: '3 to 5 Crores',
+      name: '3 - 5 crores',
+      title: '3 - 5 Crores',
       icon: 'assets/img/svgs/5 crore.svg',
       description: 'Incorporated company structure.',
     },
     {
-      name: '5 to 10 Crores',
-      title: '5 to 10 Crores',
+      name: '5 - 10 crores',
+      title: '5 - 10 Crores',
       icon: 'assets/img/svgs/10crore.svg',
       description: 'Hybrid business type.',
     },
     {
-      name: 'More than 10 Crores',
-      title: 'More than 10 Crores',
+      name: 'above 10 crores',
+      title: 'Above 10 Crores',
       icon: 'assets/img/svgs/10+crore.svg',
       description: 'Incorporated company structure.',
     },
@@ -162,6 +162,15 @@ export class Step4DetailsComponent {
   selectIncome(entity: string) {
     this.selectedIncome = entity;
     this.loanService.setMonthlyIncome(entity);
+    this.next.emit(); // move to final review page
+  }
+  submitMonthlyIncome() {
+    this.loanService.setMonthlyIncome(this.selectedIncome);
+    this.next.emit(); // move to final review page
+  }
+
+  submitExperience() {
+    this.loanService.setWorkExperience(this.selectedExperience);
     this.next.emit(); // move to final review page
   }
 }

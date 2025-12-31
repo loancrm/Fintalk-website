@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewChecked,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 
@@ -19,15 +25,15 @@ interface ConversationStep {
 }
 
 @Component({
-    selector: 'app-chatbot',
-    templateUrl: './chatbot.component.html',
-    styleUrls: ['./chatbot.component.scss'],
-    standalone: false
+  selector: 'app-chatbot',
+  templateUrl: './chatbot.component.html',
+  styleUrls: ['./chatbot.component.scss'],
+  standalone: false,
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   @ViewChild('messageInput') private messageInput!: ElementRef;
-  
+
   isOpen = false;
   messages: Message[] = [];
   currentStep = 0;
@@ -36,54 +42,42 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     accountId: 1234567
   };
   loading = false;
-  conversationHistory: Array<{step: number, field: string, value: any}> = [];
+  conversationHistory: Array<{ step: number; field: string; value: any }> = [];
   showBackButton = false;
 
   loanTypes = [
     'Business Loan',
     'Professional Loan',
     'Personal Loan',
-    'Education Loan'
+    'Education Loan',
   ];
 
   businessEntities = [
     'Sole Proprietor',
     'Partnership',
     'Private Limited',
-    'Limited Liability Company'
+    'Limited Liability Company',
   ];
 
-  professions = [
-    'doctor',
-    'architect',
-    'chartered_accountant'
-  ];
+  professions = ['doctor', 'architect', 'ca'];
 
-  educationTypes = [
-    'abroad_education',
-    'indian_education'
-  ];
+  educationTypes = ['abroad_education', 'indian_education'];
 
-  courseLevels = [
-    'ug',
-    'pg',
-    'diploma',
-    'phd'
-  ];
+  courseLevels = ['ug', 'pg', 'diploma', 'phd'];
 
   businessVintages = [
     '0 to 3 Years',
     '3 to 6 Years',
     '6 to 10 Years',
-    '10+ Years'
+    '10+ Years',
   ];
 
   businessTurnovers = [
-    'Less than 1 Crore',
-    '1 to 3 Crores',
-    '3 to 5 Crores',
-    '5 to 10 Crores',
-    'More than 10 Crores'
+    'Upto 1 Crore',
+    '1 - 3 Crores',
+    '3 - 5 Crores',
+    '5 - 10 Crores',
+    'Above 10 Crores',
   ];
 
   incomeRanges = [
@@ -92,21 +86,18 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     '25000_40000',
     '40000_60000',
     '60000_100000',
-    'Above_100000'
+    'Above_100000',
   ];
 
-  workExperiences = [
-    '0_1_year',
-    '1_2_years',
-    '2_5_years',
-    '5_10_years',
-    '10_plus_years'
-  ];
+  // workExperiences = [
+  //   '0_1_year',
+  //   '1_2_years',
+  //   '2_5_years',
+  //   '5_10_years',
+  //   '10_plus_years',
+  // ];
 
-  constructor(
-    private router: Router,
-    private apiService: ApiserviceService
-  ) {}
+  constructor(private router: Router, private apiService: ApiserviceService) {}
 
   ngOnInit() {
     // Don't auto-start conversation
@@ -120,8 +111,12 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     try {
       if (this.chatContainer) {
         const container = this.chatContainer.nativeElement;
-        const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 100;
-        
+        const isNearBottom =
+          container.scrollHeight -
+            container.scrollTop -
+            container.clientHeight <
+          100;
+
         // Only auto-scroll if user is already near bottom or if forced
         if (force || isNearBottom) {
           setTimeout(() => {
@@ -129,7 +124,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
           }, 50);
         }
       }
-    } catch(err) { }
+    } catch (err) {}
   }
 
   toggleChat() {
@@ -141,89 +136,153 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   startConversation() {
-    this.addBotMessage("👋 Welcome! I'm here to help you apply for a loan. Let's start your incredible journey!", ["Let's Begin!"]);
+    this.addBotMessage(
+      "👋 Welcome! I'm here to help you apply for a loan. Let's start your incredible journey!",
+      ["Let's Begin!"]
+    );
   }
 
   getConversationFlow(): ConversationStep[] {
     const flow: ConversationStep[] = [
       {
-        question: "Great! What type of loan are you looking for?",
+        question: 'Great! What type of loan are you looking for?',
         field: 'productType',
-        options: this.loanTypes
-      }
+        options: this.loanTypes,
+      },
     ];
 
     // Add loan-type-specific questions
-    if (this.formData.productType === 'Business Loan') {
+    if (this.formData.productType === 'businessLoan') {
       flow.push(
         {
           question: "What's your business entity type?",
           field: 'businessEntity',
-          options: this.businessEntities
+          options: this.businessEntities,
         },
         {
-          question: "How long has your business been operating?",
+          question: 'How long has your business been operating?',
           field: 'businessVintage',
-          options: this.businessVintages
+          options: this.businessVintages,
         },
         {
           question: "What's your annual business turnover?",
           field: 'businessTurnover',
-          options: this.businessTurnovers
+          options: this.businessTurnovers,
         }
       );
-    } else if (this.formData.productType === 'Professional Loan') {
+    } else if (this.formData.productType === 'professionalLoans') {
       flow.push(
         {
           question: "What's your profession?",
           field: 'profession',
-          options: ['Doctor', 'Architect', 'Chartered Accountant']
+          options: ['Doctor', 'Architect', 'Chartered Accountant'],
         },
         {
-          question: "What's your monthly income?",
+          question: "What's your monthly income? (Enter amount in ₹)",
           field: 'monthlyIncome',
-          options: ['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', '₹40,000 - ₹60,000', '₹60,000 - ₹1,00,000', 'Above ₹1,00,000']
+          validation: (value: string) => {
+            if (!value) return false;
+            return /^[0-9]+$/.test(value) && Number(value) >= 5000;
+          },
         },
+        // {
+        //   question: 'How many years of work experience do you have?',
+        //   field: 'workExperience',
+        //   options: [
+        //     '0 - 1 Year',
+        //     '1 - 2 Years',
+        //     '2 - 5 Years',
+        //     '5 - 10 Years',
+        //     '10+ Years',
+        //   ],
+        // },
         {
-          question: "How many years of work experience do you have?",
+          question: 'How many years of work experience do you have?',
           field: 'workExperience',
-          options: ['0 - 1 Year', '1 - 2 Years', '2 - 5 Years', '5 - 10 Years', '10+ Years']
+          validation: (value: string) => {
+            if (!value) return false;
+            return (
+              /^[0-9]+$/.test(value) &&
+              Number(value) >= 0 &&
+              Number(value) <= 50
+            );
+          },
         }
       );
-    } else if (this.formData.productType === 'Personal Loan') {
+    } else if (this.formData.productType === 'personalLoan') {
       flow.push(
+        // {
+        //   question: "What's your monthly income?",
+        //   field: 'monthlyIncome',
+        //   // options: ['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', '₹40,000 - ₹60,000', '₹60,000 - ₹1,00,000', 'Above ₹1,00,000']
+        // },
         {
-          question: "What's your monthly income?",
+          question: "What's your monthly income? (Enter amount in ₹)",
           field: 'monthlyIncome',
-          options: ['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', '₹40,000 - ₹60,000', '₹60,000 - ₹1,00,000', 'Above ₹1,00,000']
+          validation: (value: string) => {
+            if (!value) return false;
+            return /^[0-9]+$/.test(value) && Number(value) >= 5000;
+          },
         },
+        // {
+        //   question: 'How many years of work experience do you have?',
+        //   field: 'workExperience',
+        //   options: [
+        //     '0 - 1 Year',
+        //     '1 - 2 Years',
+        //     '2 - 5 Years',
+        //     '5 - 10 Years',
+        //     '10+ Years',
+        //   ],
+        // },
         {
-          question: "How many years of work experience do you have?",
+          question: 'How many years of work experience do you have?',
           field: 'workExperience',
-          options: ['0 - 1 Year', '1 - 2 Years', '2 - 5 Years', '5 - 10 Years', '10+ Years']
+          validation: (value: string) => {
+            if (!value) return false;
+            return (
+              /^[0-9]+$/.test(value) &&
+              Number(value) >= 0 &&
+              Number(value) <= 50
+            );
+          },
         },
         {
-          question: "What's your company name? (Optional - type 'skip' to continue)",
+          question:
+            "What's your company name? (Optional - type 'skip' to continue)",
           field: 'companyName',
-          validation: () => true // Optional field
+          validation: () => true, // Optional field
         }
       );
-    } else if (this.formData.productType === 'Education Loan') {
+    } else if (this.formData.productType === 'educationalLoan') {
       flow.push(
         {
-          question: "Where do you want to study?",
+          question: 'Where do you want to study?',
           field: 'educationType',
-          options: ['Abroad Education', 'Indian Education']
+          options: ['Abroad Education', 'Indian Education'],
         },
         {
           question: "What's the course level?",
           field: 'courseLevel',
-          options: ['Undergraduate (UG)', 'Postgraduate (PG)', 'Diploma / Certification', 'PhD / Research']
+          options: [
+            'Undergraduate (UG)',
+            'Postgraduate (PG)',
+            'Diploma / Certification',
+            'PhD / Research',
+          ],
         },
+        // {
+        //   question: "What's your monthly income? (or family income)",
+        //   field: 'monthlyIncome',
+        //   options: ['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', '₹40,000 - ₹60,000', '₹60,000 - ₹1,00,000', 'Above ₹1,00,000']
+        // },
         {
-          question: "What's your monthly income? (or family income)",
+          question: "What's your monthly income? (Enter amount in ₹)",
           field: 'monthlyIncome',
-          options: ['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', '₹40,000 - ₹60,000', '₹60,000 - ₹1,00,000', 'Above ₹1,00,000']
+          validation: (value: string) => {
+            if (!value) return false;
+            return /^[0-9]+$/.test(value) && Number(value) >= 5000;
+          },
         }
       );
     }
@@ -233,53 +292,53 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       {
         question: "What's your full name?",
         field: 'contactPerson',
-        validation: (value: string) => value.trim().length >= 3
+        validation: (value: string) => value.trim().length >= 3,
       },
       {
         question: "What's your mobile number? (10 digits)",
         field: 'mobile',
-        validation: (value: string) => /^\d{10}$/.test(value)
+        validation: (value: string) => /^\d{10}$/.test(value),
       },
       {
         question: "What's your email address?",
         field: 'emailId',
-        validation: (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        validation: (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
       }
     );
 
-    // Business name for Business Loan
-    if (this.formData.productType === 'Business Loan') {
+    // Business name for businessLoan
+    if (this.formData.productType === 'businessLoan') {
       flow.push({
         question: "What's your business name?",
         field: 'businessName',
-        validation: (value: string) => value.trim().length > 0
-      });
-    }
-
-    flow.push(
-      {
-        question: "What's your loan requirement amount? (Optional - enter a number or skip)",
-        field: 'loanRequirement',
-        validation: (value: string) => {
-          if (!value || value.trim() === '') return true; // Optional
-          return /^[0-9]+$/.test(value);
-        }
-      }
-    );
-
-    // GST registration only for Business Loan
-    if (this.formData.productType === 'Business Loan') {
-      flow.push({
-        question: "Are you GST registered?",
-        field: 'isGstRegistered',
-        options: ['Yes', 'No']
+        validation: (value: string) => value.trim().length > 0,
       });
     }
 
     flow.push({
-      question: "🎉 Perfect! I've collected all your information. Ready to submit your application?",
+      question:
+        "What's your loan requirement amount? (Optional - enter a number or skip)",
+      field: 'loanRequirement',
+      validation: (value: string) => {
+        if (!value || value.trim() === '') return true; // Optional
+        return /^[0-9]+$/.test(value);
+      },
+    });
+
+    // GST registration only for businessLoan
+    if (this.formData.productType === 'businessLoan') {
+      flow.push({
+        question: 'Are you GST registered?',
+        field: 'isGstRegistered',
+        options: ['Yes', 'No'],
+      });
+    }
+
+    flow.push({
+      question:
+        "🎉 Perfect! I've collected all your information. Ready to submit your application?",
       field: null,
-      options: ['Submit Application', 'Review Information']
+      options: ['Submit Application', 'Review Information'],
     });
 
     return flow;
@@ -290,7 +349,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       type: 'bot',
       content,
       timestamp: new Date(),
-      options
+      options,
     });
     // Auto-scroll when new bot message is added
     setTimeout(() => {
@@ -302,7 +361,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.messages.push({
       type: 'user',
       content,
-      timestamp: new Date()
+      timestamp: new Date(),
     });
     // Auto-scroll when new user message is added
     setTimeout(() => {
@@ -322,19 +381,24 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
     const flow = this.getConversationFlow();
     const flowIndex = this.currentStep - 1; // Map step to flow index (step 1 = flow[0])
-    
+
     if (flowIndex >= flow.length || flowIndex < 0) {
       this.handleFinalStep(option);
       return;
     }
 
     const currentFlow = flow[flowIndex];
-    
+
     if (!currentFlow) {
-      console.error('No current flow at step:', this.currentStep, 'flowIndex:', flowIndex);
+      console.error(
+        'No current flow at step:',
+        this.currentStep,
+        'flowIndex:',
+        flowIndex
+      );
       return;
     }
-    
+
     if (currentFlow.field === 'isGstRegistered') {
       this.addUserMessage(option);
       this.formData['isGstRegistered'] = option;
@@ -353,9 +417,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         let valueToSave = option;
         if (currentFlow.field === 'profession') {
           const professionMap: any = {
-            'Doctor': 'doctor',
-            'Architect': 'architect',
-            'Chartered Accountant': 'chartered_accountant'
+            Doctor: 'doctor',
+            Architect: 'architect',
+            'Chartered Accountant': 'ca',
           };
           valueToSave = professionMap[option] || option;
         } else if (currentFlow.field === 'monthlyIncome') {
@@ -365,30 +429,57 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             '₹25,000 - ₹40,000': '25000_40000',
             '₹40,000 - ₹60,000': '40000_60000',
             '₹60,000 - ₹1,00,000': '60000_100000',
-            'Above ₹1,00,000': 'Above_100000'
+            'Above ₹1,00,000': 'Above_100000',
           };
           valueToSave = incomeMap[option] || option;
-        } else if (currentFlow.field === 'workExperience') {
-          const expMap: any = {
-            '0 - 1 Year': '0_1_year',
-            '1 - 2 Years': '1_2_years',
-            '2 - 5 Years': '2_5_years',
-            '5 - 10 Years': '5_10_years',
-            '10+ Years': '10_plus_years'
-          };
-          valueToSave = expMap[option] || option;
-        } else if (currentFlow.field === 'educationType') {
+        }
+        // else if (currentFlow.field === 'workExperience') {
+        //   const expMap: any = {
+        //     '0 - 1 Year': '0_1_year',
+        //     '1 - 2 Years': '1_2_years',
+        //     '2 - 5 Years': '2_5_years',
+        //     '5 - 10 Years': '5_10_years',
+        //     '10+ Years': '10_plus_years',
+        //   };
+        //   valueToSave = expMap[option] || option;
+        // }
+        else if (currentFlow.field === 'educationType') {
           const eduMap: any = {
             'Abroad Education': 'abroad_education',
-            'Indian Education': 'indian_education'
+            'Indian Education': 'indian_education',
           };
           valueToSave = eduMap[option] || option;
+        } else if (currentFlow.field === 'productType') {
+          const loanMap: any = {
+            'Business Loan': 'businessLoan',
+            'Personal Loan': 'personalLoan',
+            'Professional Loan': 'professionalLoans',
+            'Education Loan': 'educationalLoan',
+          };
+          valueToSave = loanMap[option] || option;
+        } else if (currentFlow.field === 'businessEntity') {
+          const entityMap: any = {
+            'Sole Proprietor': 'proprietorship',
+            Partnership: 'partnership',
+            'Private Limited': 'privateLimited',
+            'Limited Liability Company': 'llp',
+          };
+          valueToSave = entityMap[option] || option;
+        } else if (currentFlow.field === 'businessTurnover') {
+          const turnoverMap: any = {
+            'Upto 1 Crore': 'upto 1 crore',
+            '1 - 3 Crores': '1 - 3 crores',
+            '3 - 5 Crores': '3 - 5 crores',
+            '5 - 10 Crores': '5 - 10 crores',
+            'Above 10 Crores': 'above 10 crores',
+          };
+          valueToSave = turnoverMap[option] || option;
         } else if (currentFlow.field === 'courseLevel') {
           const courseMap: any = {
             'Undergraduate (UG)': 'ug',
             'Postgraduate (PG)': 'pg',
             'Diploma / Certification': 'diploma',
-            'PhD / Research': 'phd'
+            'PhD / Research': 'phd',
           };
           valueToSave = courseMap[option] || option;
         }
@@ -397,9 +488,17 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         this.conversationHistory.push({
           step: this.currentStep,
           field: currentFlow.field,
-          value: valueToSave
+          value: valueToSave,
         });
-        console.log('Saved field:', currentFlow.field, '=', valueToSave, '(displayed as:', option, ')');
+        console.log(
+          'Saved field:',
+          currentFlow.field,
+          '=',
+          valueToSave,
+          '(displayed as:',
+          option,
+          ')'
+        );
         console.log('Current formData:', this.formData);
       }
       this.currentStep++;
@@ -417,20 +516,32 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   handleUserInput(input: string) {
     const flow = this.getConversationFlow();
     const flowIndex = this.currentStep - 1; // Map step to flow index (step 1 = flow[0])
-    
+
     if (flowIndex >= flow.length || flowIndex < 0) {
-      console.log('Step out of bounds:', this.currentStep, 'flowIndex:', flowIndex, 'Flow length:', flow.length);
+      console.log(
+        'Step out of bounds:',
+        this.currentStep,
+        'flowIndex:',
+        flowIndex,
+        'Flow length:',
+        flow.length
+      );
       this.handleFinalStep('Submit Application');
       return;
     }
 
     const currentFlow = flow[flowIndex];
-    
+
     if (!currentFlow) {
-      console.error('No current flow at step:', this.currentStep, 'flowIndex:', flowIndex);
+      console.error(
+        'No current flow at step:',
+        this.currentStep,
+        'flowIndex:',
+        flowIndex
+      );
       return;
     }
-    
+
     if (!currentFlow.field) {
       console.log('No field for current step:', this.currentStep);
       return;
@@ -439,8 +550,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.addUserMessage(input);
 
     // Handle optional fields that can be skipped
-    if ((input.toLowerCase() === 'skip' || input.trim() === '') && 
-        (currentFlow.field === 'loanRequirement' || currentFlow.field === 'companyName')) {
+    if (
+      (input.toLowerCase() === 'skip' || input.trim() === '') &&
+      (currentFlow.field === 'loanRequirement' ||
+        currentFlow.field === 'companyName')
+    ) {
       this.formData[currentFlow.field] = '';
       console.log('Skipped optional field:', currentFlow.field);
       this.currentStep++;
@@ -451,7 +565,10 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     }
 
     if (currentFlow.validation && !currentFlow.validation(input)) {
-      this.addBotMessage(`❌ Invalid input. Please try again.\n${currentFlow.question}`, currentFlow.options);
+      this.addBotMessage(
+        `❌ Invalid input. Please try again.\n${currentFlow.question}`,
+        currentFlow.options
+      );
       return;
     }
 
@@ -460,11 +577,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.conversationHistory.push({
       step: this.currentStep,
       field: currentFlow.field,
-      value: input
+      value: input,
     });
     console.log('Saved field:', currentFlow.field, '=', input);
     console.log('Current formData:', JSON.stringify(this.formData, null, 2));
-    
+
     this.currentStep++;
     this.updateBackButtonVisibility();
 
@@ -482,26 +599,38 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   askNextQuestion() {
     const flow = this.getConversationFlow();
     const flowIndex = this.currentStep - 1; // Map step to flow index (step 1 = flow[0])
-    
-    console.log('Asking next question. Current step:', this.currentStep, 'flowIndex:', flowIndex, 'Flow length:', flow.length);
+
+    console.log(
+      'Asking next question. Current step:',
+      this.currentStep,
+      'flowIndex:',
+      flowIndex,
+      'Flow length:',
+      flow.length
+    );
     console.log('Current formData:', this.formData);
-    
+
     this.updateBackButtonVisibility();
-    
+
     if (flowIndex >= flow.length || flowIndex < 0) {
       this.handleFinalStep('Submit Application');
       return;
     }
 
     const nextFlow = flow[flowIndex];
-    
+
     if (!nextFlow) {
-      console.error('No next flow at step:', this.currentStep, 'flowIndex:', flowIndex);
+      console.error(
+        'No next flow at step:',
+        this.currentStep,
+        'flowIndex:',
+        flowIndex
+      );
       return;
     }
-    
+
     this.addBotMessage(nextFlow.question, nextFlow.options);
-    
+
     // Focus input if it's a text input field
     setTimeout(() => {
       if (this.canShowInput() && this.messageInput) {
@@ -517,15 +646,22 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       this.submitApplication();
     } else if (option === 'Restart Chat') {
       this.startOver();
-    } else if (option === 'Connect via WhatsApp' || option === 'Yes, connect via WhatsApp') {
+    } else if (
+      option === 'Connect via WhatsApp' ||
+      option === 'Yes, connect via WhatsApp'
+    ) {
       this.openWhatsApp();
     } else if (option === 'Review Information') {
       this.showReview();
     } else if (option === 'Start Over') {
       this.startOver();
     } else if (option === 'No, thank you') {
-      this.addBotMessage("Thank you for your time! Feel free to reach out anytime if you need assistance. 😊");
-      this.addBotMessage("Would you like to start a new application?", ['Restart Chat']);
+      this.addBotMessage(
+        'Thank you for your time! Feel free to reach out anytime if you need assistance. 😊'
+      );
+      this.addBotMessage('Would you like to start a new application?', [
+        'Restart Chat',
+      ]);
     }
   }
 
@@ -546,7 +682,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   goBackOneStep() {
     if (this.currentStep <= 1) return; // Can't go back from first question
-    
+
     // Remove the last user and bot messages (remove bot question and user answer)
     let removedCount = 0;
     while (this.messages.length > 0 && removedCount < 2) {
@@ -558,14 +694,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         break;
       }
     }
-    
+
     // Remove the last conversation history entry and clear form data
     if (this.conversationHistory.length > 0) {
       const lastEntry = this.conversationHistory.pop();
       if (lastEntry && lastEntry.field) {
         // Clear the form data for that field
         delete this.formData[lastEntry.field];
-        
+
         // If going back from productType, clear all dependent fields
         if (lastEntry.field === 'productType') {
           // Clear all loan-type-specific fields
@@ -580,13 +716,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         }
       }
     }
-    
+
     // Go back one step
     this.currentStep--;
-    
+
     // Update back button visibility
     this.updateBackButtonVisibility();
-    
+
     // Re-ask the previous question
     setTimeout(() => {
       this.askNextQuestion();
@@ -598,13 +734,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   submitApplication() {
-    this.addBotMessage("📝 Submitting your application...");
+    this.addBotMessage('📝 Submitting your application...');
     this.loading = true;
 
     // Prepare data similar to contact-details component
     const formData = {
       ...this.formData,
-      eligibility: 'eligible'
+      eligibility: 'eligible',
     };
 
     // Clean up optional fields
@@ -618,7 +754,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     // Ensure required fields are present
     if (!formData.contactPerson || !formData.mobile || !formData.emailId) {
       this.loading = false;
-      this.addBotMessage("❌ Missing required information. Please complete all fields.");
+      this.addBotMessage(
+        '❌ Missing required information. Please complete all fields.'
+      );
       return;
     }
 
@@ -628,70 +766,103 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.apiService.createEnquiry(formData).subscribe({
       next: (response: any) => {
         this.loading = false;
-        this.addBotMessage("✅ Your application has been submitted successfully! Our team will contact you shortly.");
-        this.addBotMessage("Thank you for using our chatbot! Would you like to start a new application?", ['Restart Chat', 'No, thank you']);
+        this.addBotMessage(
+          '✅ Your application has been submitted successfully! Our team will contact you shortly.'
+        );
+        this.addBotMessage(
+          'Thank you for using our chatbot! Would you like to start a new application?',
+          ['Restart Chat', 'No, thank you']
+        );
       },
       error: (error: any) => {
         this.loading = false;
         console.error('Error submitting application:', error);
-        const errorMessage = error?.error?.message || '❌ Failed to submit application. Please try again.';
+        const errorMessage =
+          error?.error?.message ||
+          '❌ Failed to submit application. Please try again.';
         this.addBotMessage(errorMessage);
-        this.addBotMessage("Would you like to try again?", ['Try Again', 'Restart Chat']);
-      }
+        this.addBotMessage('Would you like to try again?', [
+          'Try Again',
+          'Restart Chat',
+        ]);
+      },
     });
   }
 
   showReview() {
     let review = "📋 Here's your information:\n\n";
     review += `Loan Type: ${this.formData.productType || 'Not provided'}\n`;
-    
-    if (this.formData.businessEntity) review += `Business Entity: ${this.formData.businessEntity}\n`;
-    if (this.formData.businessVintage) review += `Business Vintage: ${this.formData.businessVintage}\n`;
-    if (this.formData.businessTurnover) review += `Business Turnover: ${this.formData.businessTurnover}\n`;
-    if (this.formData.profession) review += `Profession: ${this.formData.profession}\n`;
-    if (this.formData.monthlyIncome) review += `Monthly Income: ${this.formData.monthlyIncome}\n`;
-    if (this.formData.workExperience) review += `Work Experience: ${this.formData.workExperience}\n`;
-    if (this.formData.educationType) review += `Education Type: ${this.formData.educationType}\n`;
-    if (this.formData.courseLevel) review += `Course Level: ${this.formData.courseLevel}\n`;
-    if (this.formData.companyName) review += `Company Name: ${this.formData.companyName}\n`;
-    
+
+    if (this.formData.businessEntity)
+      review += `Business Entity: ${this.formData.businessEntity}\n`;
+    if (this.formData.businessVintage)
+      review += `Business Vintage: ${this.formData.businessVintage}\n`;
+    if (this.formData.businessTurnover)
+      review += `Business Turnover: ${this.formData.businessTurnover}\n`;
+    if (this.formData.profession)
+      review += `Profession: ${this.formData.profession}\n`;
+    if (this.formData.monthlyIncome)
+      review += `Monthly Income: ${this.formData.monthlyIncome}\n`;
+    if (this.formData.workExperience)
+      review += `Work Experience: ${this.formData.workExperience}\n`;
+    if (this.formData.educationType)
+      review += `Education Type: ${this.formData.educationType}\n`;
+    if (this.formData.courseLevel)
+      review += `Course Level: ${this.formData.courseLevel}\n`;
+    if (this.formData.companyName)
+      review += `Company Name: ${this.formData.companyName}\n`;
+
     review += `\nContact Details:\n`;
     review += `Name: ${this.formData.contactPerson || 'Not provided'}\n`;
     review += `Mobile: ${this.formData.mobile || 'Not provided'}\n`;
     review += `Email: ${this.formData.emailId || 'Not provided'}\n`;
-    if (this.formData.businessName) review += `Business Name: ${this.formData.businessName}\n`;
-    if (this.formData.loanRequirement) review += `Loan Requirement: ${this.formData.loanRequirement}\n`;
-    review += `GST Registered: ${this.formData.isGstRegistered || 'Not provided'}\n\n`;
-    review += "Would you like to submit or make changes?";
-    
+    if (this.formData.businessName)
+      review += `Business Name: ${this.formData.businessName}\n`;
+    if (this.formData.loanRequirement)
+      review += `Loan Requirement: ${this.formData.loanRequirement}\n`;
+    review += `GST Registered: ${
+      this.formData.isGstRegistered || 'Not provided'
+    }\n\n`;
+    review += 'Would you like to submit or make changes?';
+
     this.addBotMessage(review, ['Submit Application', 'Restart Chat']);
   }
 
   openWhatsApp() {
-    const phoneNumber = "919985961300";
+    const phoneNumber = '919985961300';
     const message = this.buildWhatsAppMessage();
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
     window.open(whatsappUrl, '_blank');
-    
-    this.addBotMessage("📱 Opening WhatsApp... You can also click the WhatsApp button below anytime!");
+
+    this.addBotMessage(
+      '📱 Opening WhatsApp... You can also click the WhatsApp button below anytime!'
+    );
   }
 
   buildWhatsAppMessage(): string {
     let message = "Hello! I'm interested in applying for a loan.\n\n";
     message += `Loan Type: ${this.formData.productType || 'Not provided'}\n`;
-    
-    if (this.formData.businessEntity) message += `Business Entity: ${this.formData.businessEntity}\n`;
-    if (this.formData.businessVintage) message += `Business Vintage: ${this.formData.businessVintage}\n`;
-    if (this.formData.businessTurnover) message += `Business Turnover: ${this.formData.businessTurnover}\n`;
-    if (this.formData.profession) message += `Profession: ${this.formData.profession}\n`;
-    if (this.formData.monthlyIncome) message += `Monthly Income: ${this.formData.monthlyIncome}\n`;
-    if (this.formData.workExperience) message += `Work Experience: ${this.formData.workExperience}\n`;
-    
+
+    if (this.formData.businessEntity)
+      message += `Business Entity: ${this.formData.businessEntity}\n`;
+    if (this.formData.businessVintage)
+      message += `Business Vintage: ${this.formData.businessVintage}\n`;
+    if (this.formData.businessTurnover)
+      message += `Business Turnover: ${this.formData.businessTurnover}\n`;
+    if (this.formData.profession)
+      message += `Profession: ${this.formData.profession}\n`;
+    if (this.formData.monthlyIncome)
+      message += `Monthly Income: ${this.formData.monthlyIncome}\n`;
+    if (this.formData.workExperience)
+      message += `Work Experience: ${this.formData.workExperience}\n`;
+
     message += `\nContact:\n`;
     message += `Name: ${this.formData.contactPerson || 'Not provided'}\n`;
     message += `Mobile: ${this.formData.mobile || 'Not provided'}\n`;
     message += `Email: ${this.formData.emailId || 'Not provided'}\n\n`;
-    message += "Please assist me with the loan application process.";
+    message += 'Please assist me with the loan application process.';
     return message;
   }
 
@@ -699,7 +870,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
       event.stopPropagation();
-      
+
       const inputElement = event.target as HTMLInputElement;
       if (inputElement && inputElement.value) {
         const input = inputElement.value.trim();
@@ -714,24 +885,28 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   handleInputSubmit(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    
+
     // Get input element - could be from form submit or input keydown
     let inputElement: HTMLInputElement | null = null;
-    
+
     if (event.target instanceof HTMLInputElement) {
       // Event came from input keydown
       inputElement = event.target;
     } else if (event.target instanceof HTMLFormElement) {
       // Event came from form submit
-      inputElement = event.target.querySelector('input[type="text"]') as HTMLInputElement;
+      inputElement = event.target.querySelector(
+        'input[type="text"]'
+      ) as HTMLInputElement;
     } else {
       // Try to find input in the form
       const form = (event.target as HTMLElement).closest('form');
       if (form) {
-        inputElement = form.querySelector('input[type="text"]') as HTMLInputElement;
+        inputElement = form.querySelector(
+          'input[type="text"]'
+        ) as HTMLInputElement;
       }
     }
-    
+
     if (inputElement && inputElement.value) {
       const input = inputElement.value.trim();
       if (input) {

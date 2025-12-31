@@ -2,17 +2,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoanApplicationService } from '../loan-application.service';
 
 @Component({
-    selector: 'app-step2-details',
-    templateUrl: './step2-details.component.html',
-    styleUrls: ['./step2-details.component.scss'],
-    standalone: false
+  selector: 'app-step2-details',
+  templateUrl: './step2-details.component.html',
+  styleUrls: ['./step2-details.component.scss'],
+  standalone: false,
 })
 export class Step2DetailsComponent {
   @Output() next = new EventEmitter<void>();
   @Output() back = new EventEmitter<void>();
   loanType: any;
   selectedEntity: string | null = null;
-  selectedIncome: string | null = null;
+  selectedIncome: string = '';
 
   breadcrumbItems = [
     { label: 'Home', route: '/' },
@@ -25,25 +25,25 @@ export class Step2DetailsComponent {
 
   entityTypes = [
     {
-      name: 'Sole Proprietor',
+      name: 'proprietorship',
       title: 'Sole Proprietor',
       icon: 'assets/img/svgs/personal.svg',
       description: 'Single-owner business model.',
     },
     {
-      name: 'Partnership',
+      name: 'partnership',
       title: 'Partnership',
       icon: 'assets/img/svgs/partner.svg',
       description: 'Run your business with partners.',
     },
     {
-      name: 'Private Limited',
+      name: 'privateLimited',
       title: 'Private Limited',
       icon: 'assets/img/svgs/private.svg',
       description: 'Incorporated company structure.',
     },
     {
-      name: 'Limited Liability Company',
+      name: 'llp',
       title: 'Limited Liability Company',
       icon: 'assets/img/svgs/llp.svg',
       description: 'Hybrid business type.',
@@ -105,7 +105,7 @@ export class Step2DetailsComponent {
       description: 'Licensed architects working independently or in firms.',
     },
     {
-      name: 'chartered_accountant',
+      name: 'ca',
       title: 'Chartered Accountant',
       icon: 'assets/img/svgs/ca.svg',
       description: 'Qualified CA professionals with practice or employment.',
@@ -166,5 +166,9 @@ export class Step2DetailsComponent {
   }
   goBack() {
     this.back.emit(); // 👈 notify parent to go to previous step
+  }
+  submitMonthlyIncome() {
+    this.loanService.setMonthlyIncome(this.selectedIncome);
+    this.next.emit(); // move to final review page
   }
 }

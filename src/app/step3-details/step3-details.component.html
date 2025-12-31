@@ -3,7 +3,7 @@
 
 <div class="back-btn" (click)="goBack()">← Back</div>
 
-<div *ngIf="loanType === 'Business Loan'">
+<div *ngIf="loanType === 'businessLoan'">
   <h2>Choose the Business Vintage</h2>
   <p>Select a Business Vintage below to continue</p>
 
@@ -23,11 +23,30 @@
   </div>
 </div>
 
-<div *ngIf="loanType === 'Personal Loan'">
+<div *ngIf="loanType === 'personalLoan'">
   <h2>Choose the Job Experience</h2>
-  <p>Select a Job Experience below to continue</p>
+  <p>Enter Your Job Experience below to continue</p>
 
-  <div class="loan-grid">
+  <div class="p-field d-flex justify-content-center align-items-center">
+    <input
+      id="selectedExperience"
+      type="text"
+      pInputText
+      [(ngModel)]="selectedExperience"
+      placeholder="Enter Work Experience"
+      class="company-input"
+    />
+  </div>
+  <div style="text-align: right">
+    <button
+      class="next-btn"
+      [disabled]="!selectedExperience"
+      (click)="submitExperience()"
+    >
+      Next
+    </button>
+  </div>
+  <!-- <div class="loan-grid">
     <div
       class="loan-card"
       *ngFor="let exp of workExpRanges"
@@ -39,17 +58,16 @@
       </div>
 
       <h3>{{ exp.title }}</h3>
-      <!-- <p>{{ exp.description }}</p> -->
+      
     </div>
-  </div>
+  </div> -->
 </div>
 
-
-<div *ngIf="loanType === 'Professional Loan'">
+<div *ngIf="loanType === 'professionalLoans'">
   <h2>Monthly Income</h2>
-  <p>Select your monthly income range</p>
+  <p>Enter your monthly income</p>
 
-  <div class="loan-grid">
+  <!-- <div class="loan-grid">
     <div
       class="loan-card"
       *ngFor="let income of incomeRanges"
@@ -61,13 +79,32 @@
       </div>
 
       <h3>{{ income.title }}</h3>
-      <!-- <p>{{ income.description }}</p> -->
+
     </div>
+  </div> -->
+
+  <div class="p-field d-flex justify-content-center align-items-center">
+    <input
+      id="selectedIncome"
+      type="text"
+      pInputText
+      [(ngModel)]="selectedIncome"
+      placeholder="Enter Monthly Income"
+      class="company-input"
+    />
+  </div>
+  <div style="text-align: right">
+    <button
+      class="next-btn"
+      [disabled]="!selectedIncome"
+      (click)="submitMonthlyIncome()"
+    >
+      Next
+    </button>
   </div>
 </div>
 
-
-<div *ngIf="loanType === 'Education Loan'">
+<div *ngIf="loanType === 'educationalLoan'">
   <h2>Course Level</h2>
   <p>Select your course level</p>
 

@@ -8,11 +8,11 @@ export class LoanApplicationService {
 
   private selectedLoanType: string | null = null;
   private selectedEntityType: string | null = null;
-  private selectedMonthlyIncome: string | null = null;
+  private selectedMonthlyIncome: string = '';
 
   private selectedVintage: string | null = null;
   private selectedTurnover: string | null = null;
-  private experience: string | null = null;
+  private experience: string = '';
   private selectedProfession: string | null = null;
   private selectedEducationType: string | null = null;
   private selectedCourseLevel: string | null = null;

@@ -6,9 +6,10 @@
     <h2>
       <span class="first-line">Congratulations, you are Eligible For</span>
       <span class="second-line">
-        <span class="loan-type">{{ loanType }}</span>
-
-        <span class="loan-amount" *ngIf="getLoanAmount(loanType) !== null">
+        <span class="loan-type">
+          {{ loanTypeDisplayMap[loanType] || loanType }}
+        </span>
+        <span class="loan-a mount" *ngIf="getLoanAmount(loanType) !== null">
           of up to ₹{{ getLoanAmount(loanType) }} Lakhs.
         </span>
       </span>

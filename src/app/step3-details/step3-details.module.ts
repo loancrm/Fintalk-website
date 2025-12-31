@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Step3DetailsComponent } from './step3-details.component';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -13,7 +15,9 @@ import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
   imports: [
     CommonModule,
     RouterModule,
-    BreadcrumbModule
+    FormsModule,
+    BreadcrumbModule,
+    InputTextModule,
   ],
   exports:[
     Step3DetailsComponent
