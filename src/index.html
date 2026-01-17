@@ -5,12 +5,13 @@
 
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fintalk – Fast & Easy Unsecured Loans</title>
+    <!-- <title>Fintalk – Fast & Easy Unsecured Loans</title> -->
+    <title>Unsecured Business Loan in India – Fast Approval | TheFinTalk</title>
 
     <!-- Resource hints for faster LCP -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    
+
     <!-- Preload critical resources for faster LCP -->
     <!-- Note: Angular build will hash these filenames, but preload hints help browser prioritize -->
     <!-- Main JS bundle - critical for rendering Angular app -->
@@ -20,25 +21,57 @@
     <!-- Preload apply route module for faster navigation -->
     <link rel="prefetch" href="/apply" as="document" />
     <!-- Preload critical SVG icons for loan types -->
-    <link rel="preload" href="assets/img/svgs/business.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="assets/img/svgs/professional.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="assets/img/svgs/personal.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="assets/img/svgs/educational.svg" as="image" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="assets/img/svgs/business.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link
+      rel="preload"
+      href="assets/img/svgs/professional.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link
+      rel="preload"
+      href="assets/img/svgs/personal.svg"
+      as="image"
+      type="image/svg+xml"
+    />
+    <link
+      rel="preload"
+      href="assets/img/svgs/educational.svg"
+      as="image"
+      type="image/svg+xml"
+    />
 
     <!-- Optimized Google Fonts loading - deferred to reduce 3rd party impact -->
     <!-- Load font stylesheet asynchronously using media trick - non-blocking -->
     <!-- Font loads after critical content, system fonts used as immediate fallback -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" media="print" onload="this.media='all'; this.onload=null;" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      media="print"
+      onload="this.media='all'; this.onload=null;"
+    />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      />
     </noscript>
 
-    <meta
+    <!-- <meta
       name="description"
       content="Fintalk offers unsecured business loans, personal loans, professional loans, and education loans with fast approval and an easy online loan process."
+    /> -->
+    <meta
+      name="description"
+      content="Apply for unsecured business loans in India with fast approval, minimal documents & competitive interest rates. Check eligibility now."
     />
     <meta
-      content="unsecured loans, business loans, personal loans, professional loans, education loans, educational loans, fast loan approval, instant loan process, loan for individuals, loan for businesses, easy loan application,
+      content="unsecured business loan India, unsecured loans, business loans, personal loans, professional loans, education loans, educational loans, fast loan approval, instant loan process, loan for individuals, loan for businesses, easy loan application,
       The Fintalk, Fintalk loan services, Loan products by Fintalk, Fintalk finance solutions, Personal finance help, Financial guidance, Financial insights, Loan tips, Financial consultation
 "
       name="keywords"
@@ -91,10 +124,31 @@ loan loans
     <!-- Inline critical CSS for immediate rendering - prevents render blocking -->
     <style>
       /* Critical above-the-fold styles */
-      app-root { display: block; min-height: 100vh; }
-      .loan-type-container { max-width: 850px; margin: 2rem auto; text-align: center; }
-      h2 { font-size: 1.8rem; font-weight: 700; margin: 0 0 0.4rem 0; padding: 0; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.2; }
-      .loan-container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; min-height: 400px; }
+      app-root {
+        display: block;
+        min-height: 100vh;
+      }
+      .loan-type-container {
+        max-width: 850px;
+        margin: 2rem auto;
+        text-align: center;
+      }
+      h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0 0 0.4rem 0;
+        padding: 0;
+        color: #1a1a1a;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.2;
+      }
+      .loan-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        min-height: 400px;
+      }
     </style>
     <app-root></app-root>
   </body>

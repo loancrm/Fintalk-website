@@ -4,10 +4,10 @@ import jsPDF from 'jspdf';
 import { Location } from '@angular/common';
 import autoTable from 'jspdf-autotable';
 @Component({
-    selector: 'app-blcalculator',
-    templateUrl: './blcalculator.component.html',
-    styleUrls: ['./blcalculator.component.scss'],
-    standalone: false
+  selector: 'app-blcalculator',
+  templateUrl: './blcalculator.component.html',
+  styleUrls: ['./blcalculator.component.scss'],
+  standalone: false,
 })
 export class BlcalculatorComponent {
   // Flat Loan
@@ -31,7 +31,7 @@ export class BlcalculatorComponent {
   // Common
   cppCharges: string = 'AS PER CLIENT AGE ';
   pfAmount: number = 0;
-  activeTab: number = 0;
+  activeTab: any;
   piechartOptions: any;
   diminishingpiechartOptions: any;
   businessName: string = '';

@@ -5,10 +5,10 @@ import { LoanApplicationService } from '../loan-application.service';
 import { ApiserviceService } from '../apiservice.service';
 
 @Component({
-    selector: 'app-contact-details',
-    templateUrl: './contact-details.component.html',
-    styleUrls: ['./contact-details.component.scss'],
-    standalone: false
+  selector: 'app-contact-details',
+  templateUrl: './contact-details.component.html',
+  styleUrls: ['./contact-details.component.scss'],
+  standalone: false,
 })
 export class ContactDetailsComponent implements OnInit {
   @Output() back = new EventEmitter<void>();
@@ -156,6 +156,7 @@ export class ContactDetailsComponent implements OnInit {
 
     const formData = {
       ...this.contactForm.value,
+      enquirySource: 'website',
       eligibility: 'eligible',
       productType,
       accountId: this.accountId,

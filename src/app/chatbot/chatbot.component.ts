@@ -740,6 +740,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     // Prepare data similar to contact-details component
     const formData = {
       ...this.formData,
+      enquirySource: 'website',
       eligibility: 'eligible',
     };
 
