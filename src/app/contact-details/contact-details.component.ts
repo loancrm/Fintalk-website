@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoanApplicationService } from '../loan-application.service';
 import { ApiserviceService } from '../apiservice.service';
 
@@ -30,6 +30,7 @@ export class ContactDetailsComponent implements OnInit {
   ];
   loanType: any;
   contactForm: FormGroup;
+  sourceFromUrl: string = 'website';
   loading = false;
   gstOptions = [
     { label: 'Yes', value: 'Yes' },
@@ -40,7 +41,8 @@ export class ContactDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private loanService: LoanApplicationService,
     private router: Router,
-    private apiService: ApiserviceService
+    private route: ActivatedRoute,
+    private apiService: ApiserviceService,
   ) {
     // Custom validator for optional numeric field
     const numericOrEmptyValidator = (control: any) => {
@@ -63,6 +65,9 @@ export class ContactDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loanType = this.loanService.getLoanType();
+    this.route.queryParams.subscribe((params) => {
+      this.sourceFromUrl = params['source'] || 'website';
+    });
     this.updateValidatorsBasedOnLoanType();
   }
   updateValidatorsBasedOnLoanType() {
@@ -156,7 +161,7 @@ export class ContactDetailsComponent implements OnInit {
 
     const formData = {
       ...this.contactForm.value,
-      enquirySource: 'website',
+      enquirySource: this.sourceFromUrl,
       eligibility: 'eligible',
       productType,
       accountId: this.accountId,
