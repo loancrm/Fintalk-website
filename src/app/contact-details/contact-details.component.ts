@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoanApplicationService } from '../loan-application.service';
 import { ApiserviceService } from '../apiservice.service';
-
+declare var fbq: Function;
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
@@ -177,6 +177,10 @@ export class ContactDetailsComponent implements OnInit {
         this.isSubmitted = true;
         this.submitted.emit(); // Notify parent component
         this.loading = false;
+        if (this.sourceFromUrl?.toLowerCase() == 'facebook') {
+          fbq('track', 'Lead', { value: 10.0, currency: 'INR' });
+          console.log('Facebook Lead Event Fired');
+        }
       },
       error: (error: any) => {
         console.error(error);
