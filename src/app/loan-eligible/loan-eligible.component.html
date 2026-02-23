@@ -1,21 +1,19 @@
 <!-- Breadcrumb -->
 <!-- <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb> -->
 
-<div class="congrats-card">
-  <div class="content" *ngIf="!isSubmitted">
-    <h2>
-      <span class="first-line">Congratulations, you are Eligible For</span>
-      <span class="second-line">
-        <span class="loan-type">
-          {{ loanTypeDisplayMap[loanType] || loanType }}
-        </span>
-        <span class="loan-a mount" *ngIf="getLoanAmount(loanType) !== null">
-          of up to ₹{{ getLoanAmount(loanType) }} Lakhs.
-        </span>
+<div class="content" *ngIf="!isSubmitted">
+  <h2>
+    <span class="first-line">Congratulations, you are Eligible For</span>
+    <span class="second-line">
+      <span class="loan-type">
+        {{ loanTypeDisplayMap[loanType] || loanType }}
       </span>
-    </h2>
+      <span class="loan-a mount" *ngIf="getLoanAmount(loanType) !== null">
+        of up to ₹{{ getLoanAmount(loanType) }} Lakhs.
+      </span>
+    </span>
+  </h2>
 
-    <!-- <button class="contact-btn" (click)="onContactClick()">Contact Us</button> -->
-  </div>
-  <app-contact-details (submitted)="isSubmitted = true"></app-contact-details>
+  <!-- <button class="contact-btn" (click)="onContactClick()">Contact Us</button> -->
 </div>
+<!-- <app-contact-details (submitted)="isSubmitted = true"></app-contact-details> -->

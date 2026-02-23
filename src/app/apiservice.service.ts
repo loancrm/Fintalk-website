@@ -18,4 +18,10 @@ export class ApiserviceService {
   createContactRequests(data: any) {
     return this.http.post(this.BASE_URL + 'enquiries/contact-requests', data);
   }
+  sendOtp(data: any) {
+    return this.http.post(this.BASE_URL + 'enquiries/send-otp', data);
+  }
+  verifyOtp(data: any) {
+    return this.http.post(this.BASE_URL + 'enquiries/verify-otp', data);
+  }
 }

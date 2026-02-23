@@ -17,7 +17,9 @@ export class ContactDetailsComponent implements OnInit {
   isSubmitted = false;
   accountId: any = 1234567;
   // accountId: any = 1270983;
-
+  isOtpSent = false;
+  isMobileVerified = false;
+  enteredOtp: string = '';
   breadcrumbItems = [
     { label: 'Home', route: '/' },
     { label: 'Apply', route: '/apply' },
@@ -55,11 +57,12 @@ export class ContactDetailsComponent implements OnInit {
     this.contactForm = this.fb.group({
       contactPerson: ['', [Validators.required, Validators.minLength(3)]],
       businessName: [''],
-      // city: ['', Validators.required],
+      city: ['', Validators.required],
       loanRequirement: ['', [numericOrEmptyValidator]], // Optional, but if provided must be numeric
       isGstRegistered: ['Yes'], // Optional
       emailId: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      otp: [''],
     });
   }
 
@@ -158,16 +161,16 @@ export class ContactDetailsComponent implements OnInit {
         monthlyIncome: this.loanService.getIncome(),
       };
     }
+    const { otp, ...formValues } = this.contactForm.getRawValue();
 
     const formData = {
-      ...this.contactForm.value,
+      ...formValues,
       enquirySource: this.sourceFromUrl,
       eligibility: 'eligible',
       productType,
       accountId: this.accountId,
       ...extraFields,
     };
-
     console.log('Full Loan Application Data:', formData);
 
     // ✅ Optional: send to backend API
@@ -191,6 +194,51 @@ export class ContactDetailsComponent implements OnInit {
       },
     });
   }
+  sendOtp() {
+    const mobile = this.contactForm.get('mobile')?.value;
+
+    if (!mobile) return;
+
+    this.loading = true;
+
+    this.apiService.sendOtp({ mobile }).subscribe({
+      next: (response: any) => {
+        alert(response.message || 'OTP sent successfully');
+        this.isOtpSent = true;
+        this.loading = false;
+      },
+      error: (error: any) => {
+        console.error(error);
+        const errorMessage = error?.error?.error || '❌ Failed to send OTP';
+        alert(errorMessage);
+        this.loading = false;
+      },
+    });
+  }
+
+  verifyOtp() {
+    const mobile = this.contactForm.get('mobile')?.value;
+    const otp = this.contactForm.get('otp')?.value;
+
+    if (!otp || otp.length !== 4) {
+      alert('Please enter valid OTP');
+      return;
+    }
+
+    this.apiService.verifyOtp({ mobile, otp }).subscribe({
+      next: (res: any) => {
+        alert(res.message);
+        this.isMobileVerified = true;
+
+        // Disable mobile after verify
+        this.contactForm.get('mobile')?.disable();
+      },
+      error: (err: any) => {
+        alert(err?.error?.message || 'OTP verification failed');
+      },
+    });
+  }
+
   goHome() {
     this.router.navigate(['/']); // redirect to home
   }

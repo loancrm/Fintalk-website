@@ -41,6 +41,8 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     productType: undefined,
     accountId: 1234567
   };
+  isFlowStopped: boolean = false;
+  exitMessage: string = '';
   loading = false;
   conversationHistory: Array<{ step: number; field: string; value: any }> = [];
   showBackButton = false;
@@ -97,7 +99,10 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   //   '10_plus_years',
   // ];
 
-  constructor(private router: Router, private apiService: ApiserviceService) {}
+  constructor(
+    private router: Router,
+    private apiService: ApiserviceService,
+  ) {}
 
   ngOnInit() {
     // Don't auto-start conversation
@@ -138,7 +143,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   startConversation() {
     this.addBotMessage(
       "👋 Welcome! I'm here to help you apply for a loan. Let's start your incredible journey!",
-      ["Let's Begin!"]
+      ["Let's Begin!"],
     );
   }
 
@@ -150,7 +155,30 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         options: this.loanTypes,
       },
     ];
-
+    if (this.formData.productType === 'businessLoan') {
+      flow.push({
+        question: "What's your business name?",
+        field: 'businessName',
+        validation: (value: string) => value.trim().length > 0,
+      });
+    }
+    flow.push(
+      {
+        question: "What's your full name?",
+        field: 'contactPerson',
+        validation: (value: string) => value.trim().length >= 3,
+      },
+      {
+        question: "What's your mobile number? (10 digits)",
+        field: 'mobile',
+        validation: (value: string) => /^\d{10}$/.test(value),
+      },
+      {
+        question: "What's your email address?",
+        field: 'emailId',
+        validation: (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      },
+    );
     // Add loan-type-specific questions
     if (this.formData.productType === 'businessLoan') {
       flow.push(
@@ -168,7 +196,35 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
           question: "What's your annual business turnover?",
           field: 'businessTurnover',
           options: this.businessTurnovers,
-        }
+        },
+        {
+          question: 'Are you GST registered?',
+          field: 'isGstRegistered',
+          options: ['Yes', 'No'],
+        },
+        {
+          question: 'Do you currently hold a business current account?',
+          field: 'businessCurrentAccount',
+          options: ['Yes, actively used', 'Yes, but low transactions', 'No'],
+        },
+        // ✅ CIBIL SCORE
+        {
+          question: 'What is your approximate CIBIL score?',
+          field: 'cibilScore',
+          options: ['750+', '700–749', '650–699', 'Below 650', 'Not sure'],
+        },
+
+        // ✅ CREDIT HISTORY
+        {
+          question:
+            'Any past loan or credit card defaults, write-offs, settlements or overdue?',
+          field: 'creditHistory',
+          options: [
+            'No, clean history',
+            'Minor past issue (resolved)',
+            'Yes, unresolved issues',
+          ],
+        },
       );
     } else if (this.formData.productType === 'professionalLoans') {
       flow.push(
@@ -207,34 +263,17 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
               Number(value) <= 50
             );
           },
-        }
+        },
       );
     } else if (this.formData.productType === 'personalLoan') {
       flow.push(
-        // {
-        //   question: "What's your monthly income?",
-        //   field: 'monthlyIncome',
-        //   // options: ['Below ₹15,000', '₹15,000 - ₹25,000', '₹25,000 - ₹40,000', '₹40,000 - ₹60,000', '₹60,000 - ₹1,00,000', 'Above ₹1,00,000']
-        // },
-        {
-          question: "What's your monthly income? (Enter amount in ₹)",
-          field: 'monthlyIncome',
-          validation: (value: string) => {
-            if (!value) return false;
-            return /^[0-9]+$/.test(value) && Number(value) >= 5000;
-          },
+
+         {
+          question:
+            "What's your company name? (Optional - type 'skip' to continue)",
+          field: 'companyName',
+          validation: () => true,
         },
-        // {
-        //   question: 'How many years of work experience do you have?',
-        //   field: 'workExperience',
-        //   options: [
-        //     '0 - 1 Year',
-        //     '1 - 2 Years',
-        //     '2 - 5 Years',
-        //     '5 - 10 Years',
-        //     '10+ Years',
-        //   ],
-        // },
         {
           question: 'How many years of work experience do you have?',
           field: 'workExperience',
@@ -247,12 +286,81 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             );
           },
         },
+{
+          question:
+            "What's your Monthly Net Take Home Salary? (Enter amount in ₹)",
+          field: 'monthlyIncome',
+          validation: (value: string) => {
+            if (!value) return false;
+            return /^[0-9]+$/.test(value) && Number(value) >= 5000;
+          },
+        },
+
+        // 4️⃣ Total EMI
         {
           question:
-            "What's your company name? (Optional - type 'skip' to continue)",
-          field: 'companyName',
-          validation: () => true, // Optional field
-        }
+            'Please enter the total amount of EMIs you are paying every month (₹)',
+          field: 'totalEmi',
+          validation: (value: string) => {
+            if (!value) return false;
+            return /^[0-9]+$/.test(value) && Number(value) >= 0;
+          },
+        },
+
+        // 5️⃣ Payslips
+        {
+          question: 'Does your company provide pay slips every month?',
+          field: 'payslipProvided',
+          options: ['Yes', 'No'],
+        },
+
+        // 6️⃣ Salary credit
+        {
+          question:
+            'Does your company credit your salary every month to your Bank salary account?',
+          field: 'salaryCreditedToBank',
+          options: ['Yes', 'No'],
+        },
+
+        // 7️⃣ CIBIL score
+        {
+          question: 'What is your CIBIL score?',
+          field: 'cibilScore',
+          options: ['750+', '700–749', '650–699', 'Below 650', 'Not sure'],
+        },
+
+        // 8️⃣ Credit history issues
+        {
+          question:
+            'Any past loan or credit card defaults, write-offs, settlements or overdue?',
+          field: 'creditHistory',
+          options: [
+            'No, clean history',
+            'Minor past issue (resolved)',
+            'Yes, unresolved issues',
+          ],
+        },
+
+        // 9️⃣ EMI bounces
+        {
+          question: 'Any Active Loan EMI bounces in last 6 months?',
+          field: 'emiBounces',
+          options: ['None', '1–2 minor', 'Multiple'],
+        },
+
+        // 🔟 Loan amount required
+        // {
+        //   question: 'How much loan amount are you looking for?',
+        //   field: 'loanAmountRequired',
+        //   options: [
+        //     '₹5–10 Lakhs',
+        //     '₹10–20 Lakhs',
+        //     '₹20–50 Lakhs',
+        //     '₹50 Lakhs+',
+        //   ],
+        // },
+
+        // 1️⃣1️⃣ Urgency
       );
     } else if (this.formData.productType === 'educationalLoan') {
       flow.push(
@@ -283,37 +391,37 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             if (!value) return false;
             return /^[0-9]+$/.test(value) && Number(value) >= 5000;
           },
-        }
+        },
       );
     }
 
     // Add contact details (common for all)
-    flow.push(
-      {
-        question: "What's your full name?",
-        field: 'contactPerson',
-        validation: (value: string) => value.trim().length >= 3,
-      },
-      {
-        question: "What's your mobile number? (10 digits)",
-        field: 'mobile',
-        validation: (value: string) => /^\d{10}$/.test(value),
-      },
-      {
-        question: "What's your email address?",
-        field: 'emailId',
-        validation: (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
-      }
-    );
+    // flow.push(
+    //   {
+    //     question: "What's your full name?",
+    //     field: 'contactPerson',
+    //     validation: (value: string) => value.trim().length >= 3,
+    //   },
+    //   {
+    //     question: "What's your mobile number? (10 digits)",
+    //     field: 'mobile',
+    //     validation: (value: string) => /^\d{10}$/.test(value),
+    //   },
+    //   {
+    //     question: "What's your email address?",
+    //     field: 'emailId',
+    //     validation: (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    //   },
+    // );
 
     // Business name for businessLoan
-    if (this.formData.productType === 'businessLoan') {
-      flow.push({
-        question: "What's your business name?",
-        field: 'businessName',
-        validation: (value: string) => value.trim().length > 0,
-      });
-    }
+    // if (this.formData.productType === 'businessLoan') {
+    //   flow.push({
+    //     question: "What's your business name?",
+    //     field: 'businessName',
+    //     validation: (value: string) => value.trim().length > 0,
+    //   });
+    // }
 
     flow.push({
       question:
@@ -323,16 +431,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         if (!value || value.trim() === '') return true; // Optional
         return /^[0-9]+$/.test(value);
       },
-    });
+    },
+      {
+          question: 'How urgently do you need the funds?',
+          field: 'loanUrgency',
+          options: [
+            'Immediately (within 7 days)',
+            'Within 15–30 days',
+            'Flexible timeline',
+          ],
+        },
+  );
 
     // GST registration only for businessLoan
-    if (this.formData.productType === 'businessLoan') {
-      flow.push({
-        question: 'Are you GST registered?',
-        field: 'isGstRegistered',
-        options: ['Yes', 'No'],
-      });
-    }
+    // if (this.formData.productType === 'businessLoan') {
+    //   flow.push({
+    //     question: 'Are you GST registered?',
+    //     field: 'isGstRegistered',
+    //     options: ['Yes', 'No'],
+    //   });
+    // }
 
     flow.push({
       question:
@@ -394,7 +512,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         'No current flow at step:',
         this.currentStep,
         'flowIndex:',
-        flowIndex
+        flowIndex,
       );
       return;
     }
@@ -497,7 +615,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
           valueToSave,
           '(displayed as:',
           option,
-          ')'
+          ')',
         );
         console.log('Current formData:', this.formData);
       }
@@ -524,7 +642,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         'flowIndex:',
         flowIndex,
         'Flow length:',
-        flow.length
+        flow.length,
       );
       this.handleFinalStep('Submit Application');
       return;
@@ -537,7 +655,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         'No current flow at step:',
         this.currentStep,
         'flowIndex:',
-        flowIndex
+        flowIndex,
       );
       return;
     }
@@ -567,7 +685,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (currentFlow.validation && !currentFlow.validation(input)) {
       this.addBotMessage(
         `❌ Invalid input. Please try again.\n${currentFlow.question}`,
-        currentFlow.options
+        currentFlow.options,
       );
       return;
     }
@@ -606,7 +724,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       'flowIndex:',
       flowIndex,
       'Flow length:',
-      flow.length
+      flow.length,
     );
     console.log('Current formData:', this.formData);
 
@@ -624,7 +742,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         'No next flow at step:',
         this.currentStep,
         'flowIndex:',
-        flowIndex
+        flowIndex,
       );
       return;
     }
@@ -657,7 +775,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       this.startOver();
     } else if (option === 'No, thank you') {
       this.addBotMessage(
-        'Thank you for your time! Feel free to reach out anytime if you need assistance. 😊'
+        'Thank you for your time! Feel free to reach out anytime if you need assistance. 😊',
       );
       this.addBotMessage('Would you like to start a new application?', [
         'Restart Chat',
@@ -756,7 +874,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (!formData.contactPerson || !formData.mobile || !formData.emailId) {
       this.loading = false;
       this.addBotMessage(
-        '❌ Missing required information. Please complete all fields.'
+        '❌ Missing required information. Please complete all fields.',
       );
       return;
     }
@@ -768,11 +886,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       next: (response: any) => {
         this.loading = false;
         this.addBotMessage(
-          '✅ Your application has been submitted successfully! Our team will contact you shortly.'
+          '✅ Your application has been submitted successfully! Our team will contact you shortly.',
         );
         this.addBotMessage(
           'Thank you for using our chatbot! Would you like to start a new application?',
-          ['Restart Chat', 'No, thank you']
+          ['Restart Chat', 'No, thank you'],
         );
       },
       error: (error: any) => {
@@ -833,12 +951,12 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     const phoneNumber = '919985961300';
     const message = this.buildWhatsAppMessage();
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
+      message,
     )}`;
     window.open(whatsappUrl, '_blank');
 
     this.addBotMessage(
-      '📱 Opening WhatsApp... You can also click the WhatsApp button below anytime!'
+      '📱 Opening WhatsApp... You can also click the WhatsApp button below anytime!',
     );
   }
 
@@ -896,14 +1014,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     } else if (event.target instanceof HTMLFormElement) {
       // Event came from form submit
       inputElement = event.target.querySelector(
-        'input[type="text"]'
+        'input[type="text"]',
       ) as HTMLInputElement;
     } else {
       // Try to find input in the form
       const form = (event.target as HTMLElement).closest('form');
       if (form) {
         inputElement = form.querySelector(
-          'input[type="text"]'
+          'input[type="text"]',
         ) as HTMLInputElement;
       }
     }
@@ -918,6 +1036,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   canShowInput(): boolean {
+    if (this.isFlowStopped) return false;
     const flow = this.getConversationFlow();
     const flowIndex = this.currentStep - 1; // Map step to flow index (step 1 = flow[0])
     if (flowIndex >= flow.length || flowIndex < 0) return false;
@@ -927,5 +1046,20 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   formatMessage(content: string): string {
     return content.replace(/\n/g, '<br>');
+  }
+  showAutoExitMessage(message: string) {
+    this.isFlowStopped = true;
+
+    // Push bot rejection message
+    this.messages.push({
+      type: 'bot',
+      content: `⚠ ${message}`,
+      timestamp: new Date(),
+    });
+
+    // Scroll to bottom
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 100);
   }
 }

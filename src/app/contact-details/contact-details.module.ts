@@ -5,6 +5,7 @@ import { ContactDetailsComponent } from './contact-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
 import { SelectModule } from 'primeng/select';
+import { LoanEligibleModule } from '../loan-eligible/loan-eligible.module';
 
 
 
@@ -16,9 +17,10 @@ import { SelectModule } from 'primeng/select';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    LoanEligibleModule,
     RouterModule,
     BreadcrumbModule,
-    SelectModule 
+    SelectModule
   ],
   exports:[
     ContactDetailsComponent

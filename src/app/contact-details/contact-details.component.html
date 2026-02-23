@@ -84,161 +84,230 @@
     </div>
   </form>
 </div> -->
+<div class="congrats-card">
+  <div class="contact-details-card" *ngIf="!isSubmitted; else thankYouTemplate">
+    <!-- <h2><strong>Fill Up Your Details To Get Your Loan Approved</strong></h2> -->
+    <p class="fw-bold fs-6">Fill Up Your Details To Get Your Loan Approved.</p>
 
-<div class="contact-details-card" *ngIf="!isSubmitted; else thankYouTemplate">
-  <!-- <h2><strong>Fill Up Your Details To Get Your Loan Approved</strong></h2> -->
-  <p class="fw-bold fs-6">Fill Up Your Details To Get Your Loan Approved.</p>
-
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="form-grid">
-      <!-- Full Name -->
-      <div class="form-group full">
-        <label>Name</label>
-        <input
-          type="text"
-          formControlName="contactPerson"
-          placeholder="Enter Full Name"
-        />
-        <small
-          *ngIf="
-            contactForm.get('contactPerson')?.touched &&
-            contactForm.get('contactPerson')?.invalid
-          "
-        >
-          Name is required (min 3 characters)
-        </small>
-      </div>
-
-      <!-- Business Name -->
-      <!-- Business Name (Visible only for businessLoan) -->
-      <div class="form-group full" *ngIf="loanType === 'businessLoan'">
-        <label>Business Name</label>
-        <input
-          type="text"
-          formControlName="businessName"
-          placeholder="Enter Business Name"
-        />
-        <small
-          *ngIf="
-            contactForm.get('businessName')?.touched &&
-            contactForm.get('businessName')?.invalid
-          "
-        >
-          Business name is required
-        </small>
-      </div>
-
-      <!-- City -->
-      <!-- <div class="form-group full">
-        <label>Name of the City</label>
-        <input
-          type="text"
-          formControlName="city"
-          placeholder="Enter City Name"
-        />
-      </div> -->
-
-      <!-- Loan Amount + GST -->
-
-      <!-- Email + Phone -->
-      <div class="form-group half">
-        <label>Enter Email ID</label>
-        <input
-          type="email"
-          formControlName="emailId"
-          placeholder="Enter Email ID"
-        />
-        <small
-          *ngIf="
-            contactForm.get('emailId')?.touched &&
-            contactForm.get('emailId')?.invalid
-          "
-        >
-          <span *ngIf="contactForm.get('emailId')?.errors?.['required']"
-            >Email is required</span
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-grid">
+        <!-- Full Name -->
+        <div class="form-group full">
+          <label>Name</label>
+          <input
+            type="text"
+            formControlName="contactPerson"
+            placeholder="Enter Full Name"
+          />
+          <small
+            *ngIf="
+              contactForm.get('contactPerson')?.touched &&
+              contactForm.get('contactPerson')?.invalid
+            "
           >
-          <span
-            *ngIf="contactForm.get('emailId')?.errors?.['email'] && !contactForm.get('emailId')?.errors?.['required']"
-            >Please enter a valid email address</span
+            Name is required (min 3 characters)
+          </small>
+        </div>
+
+        <!-- Business Name -->
+        <!-- Business Name (Visible only for businessLoan) -->
+        <div class="form-group full" *ngIf="loanType === 'businessLoan'">
+          <label>Business Name</label>
+          <input
+            type="text"
+            formControlName="businessName"
+            placeholder="Enter Business Name"
+          />
+          <small
+            *ngIf="
+              contactForm.get('businessName')?.touched &&
+              contactForm.get('businessName')?.invalid
+            "
           >
-        </small>
-      </div>
+            Business name is required
+          </small>
+        </div>
 
-      <div class="form-group half">
-        <label>Enter Phone Number</label>
-        <input type="text" formControlName="mobile" placeholder="0000000000" />
-        <small
-          *ngIf="
-            contactForm.get('mobile')?.touched &&
-            contactForm.get('mobile')?.invalid
-          "
-        >
-          <span *ngIf="contactForm.get('mobile')?.errors?.['required']"
-            >Phone number is required</span
+        <!-- City -->
+        <div class="form-group full">
+          <label>Name of the City</label>
+          <input
+            type="text"
+            formControlName="city"
+            placeholder="Enter City Name"
+          />
+        </div>
+
+        <!-- Loan Amount + GST -->
+
+        <!-- Email + Phone -->
+        <div class="form-group half">
+          <label>Enter Email ID</label>
+          <input
+            type="email"
+            formControlName="emailId"
+            placeholder="Enter Email ID"
+          />
+          <small
+            *ngIf="
+              contactForm.get('emailId')?.touched &&
+              contactForm.get('emailId')?.invalid
+            "
           >
-          <span
-            *ngIf="contactForm.get('mobile')?.errors?.['pattern'] && !contactForm.get('mobile')?.errors?.['required']"
-            >Please enter a valid phone number
-          </span>
-        </small>
+            <span *ngIf="contactForm.get('emailId')?.errors?.['required']"
+              >Email is required</span
+            >
+            <span
+              *ngIf="
+                contactForm.get('emailId')?.errors?.['email'] &&
+                !contactForm.get('emailId')?.errors?.['required']
+              "
+              >Please enter a valid email address</span
+            >
+          </small>
+        </div>
+
+        <div class="form-group half">
+          <label>Enter Phone Number</label>
+
+          <div class="d-flex gap-2">
+            <input
+              type="text"
+              formControlName="mobile"
+              placeholder="0000000000"
+              class="form-control"
+              [readonly]="isMobileVerified"
+            />
+
+            <!-- Send OTP Button -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="sendOtp()"
+              [disabled]="
+                contactForm.get('mobile')?.invalid ||
+                isOtpSent ||
+                isMobileVerified
+              "
+            >
+              Send OTP
+            </button>
+          </div>
+
+          <!-- Validation Errors -->
+          <small
+            *ngIf="
+              contactForm.get('mobile')?.touched &&
+              contactForm.get('mobile')?.invalid
+            "
+          >
+            <span *ngIf="contactForm.get('mobile')?.errors?.['required']">
+              Phone number is required
+            </span>
+            <span
+              *ngIf="
+                contactForm.get('mobile')?.errors?.['pattern'] &&
+                !contactForm.get('mobile')?.errors?.['required']
+              "
+            >
+              Please enter a valid phone number
+            </span>
+          </small>
+        </div>
+
+        <!-- OTP Section -->
+        <div
+          class="form-group half mt-2"
+          *ngIf="isOtpSent && !isMobileVerified"
+        >
+          <label>Enter OTP</label>
+
+          <div class="d-flex gap-2">
+            <input
+              type="text"
+              formControlName="otp"
+              maxlength="4"
+              placeholder="Enter OTP"
+              class="form-control"
+            />
+
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="verifyOtp()"
+              [disabled]="contactForm.get('otp')?.value?.length != 4"
+            >
+              Verify
+            </button>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="isMobileVerified" class="text-success mt-2">
+          ✅ Mobile number verified
+        </div>
+        <div class="form-group half">
+          <label>Required Loan Amount (Optional)</label>
+          <input
+            type="text"
+            formControlName="loanRequirement"
+            placeholder="Enter Amount"
+          />
+          <small
+            *ngIf="
+              contactForm.get('loanRequirement')?.touched &&
+              contactForm.get('loanRequirement')?.invalid &&
+              contactForm.get('loanRequirement')?.errors?.['pattern']
+            "
+          >
+            Please enter a valid numeric amount
+          </small>
+        </div>
+
+        <!-- GST Registered (Visible only for businessLoan) -->
+        <div class="form-group half" *ngIf="loanType === 'businessLoan'">
+          <label
+            >Is GST Registered?
+            <span class="optional-text">(Optional)</span></label
+          >
+
+          <p-select
+            formControlName="isGstRegistered"
+            [options]="gstOptions"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Select"
+            [style]="{ width: '100%' }"
+            styleClass="custom-dropdown"
+          >
+          </p-select>
+
+          <small
+            *ngIf="
+              contactForm.get('isGstRegistered')?.touched &&
+              contactForm.get('isGstRegistered')?.invalid
+            "
+          >
+            Please select a GST registration status
+          </small>
+        </div>
       </div>
-      <div class="form-group half">
-        <label>Required Loan Amount (Optional)</label>
-        <input
-          type="text"
-          formControlName="loanRequirement"
-          placeholder="Enter Amount"
-        />
-        <small
-          *ngIf="
-            contactForm.get('loanRequirement')?.touched &&
-            contactForm.get('loanRequirement')?.invalid &&
-            contactForm.get('loanRequirement')?.errors?.['pattern']
-          "
-        >
-          Please enter a valid numeric amount
-        </small>
+
+      <!-- Buttons -->
+      <div class="actions">
+        <!-- <button type="button" class="back-btn" (click)="back.emit()">Back</button> -->
+        <button type="submit" class="submit-btn" [disabled]="!isMobileVerified">
+          Submit
+        </button>
       </div>
-
-      <!-- GST Registered (Visible only for businessLoan) -->
-      <div class="form-group half" *ngIf="loanType === 'businessLoan'">
-        <label
-          >Is GST Registered?
-          <span class="optional-text">(Optional)</span></label
-        >
-
-        <p-select
-          formControlName="isGstRegistered"
-          [options]="gstOptions"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="Select"
-          [style]="{ width: '100%' }"
-          styleClass="custom-dropdown"
-        >
-        </p-select>
-
-        <small
-          *ngIf="
-            contactForm.get('isGstRegistered')?.touched &&
-            contactForm.get('isGstRegistered')?.invalid
-          "
-        >
-          Please select a GST registration status
-        </small>
-      </div>
-    </div>
-
-    <!-- Buttons -->
-    <div class="actions">
-      <!-- <button type="button" class="back-btn" (click)="back.emit()">Back</button> -->
-      <button type="submit" class="submit-btn">Submit</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
 
 <!-- ✅ Thank-you message + Home button -->
 <ng-template #thankYouTemplate>
+  <app-loan-eligible></app-loan-eligible>
+
   <div class="">
     <div class="content">
       <h2>🎉 Thank You!</h2>

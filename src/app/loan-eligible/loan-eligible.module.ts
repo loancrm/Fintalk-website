@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { LoanEligibleComponent } from './loan-eligible.component';
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
-import { ContactDetailsModule } from '../contact-details/contact-details.module';
 
 
 
@@ -17,7 +16,6 @@ import { ContactDetailsModule } from '../contact-details/contact-details.module'
     FormsModule,
     RouterModule,
     BreadcrumbModule,
-    ContactDetailsModule
   ],
   exports: [
     LoanEligibleComponent
