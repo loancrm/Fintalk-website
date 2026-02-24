@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
-
+declare var fbq: Function;
 interface Message {
   type: 'bot' | 'user';
   content: string;
@@ -34,13 +34,15 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   @ViewChild('messageInput') private messageInput!: ElementRef;
 
+  isFullPage = false;
   isOpen = false;
   messages: Message[] = [];
   currentStep = 0;
   formData: any = {
     productType: undefined,
-    accountId: 1234567
+    accountId: 1234567,
   };
+   sourceFromUrl: string = 'website';
   isFlowStopped: boolean = false;
   exitMessage: string = '';
   loading = false;
@@ -106,8 +108,15 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     // Don't auto-start conversation
+    if (this.router.url.includes('check-eligibility')) {
+      this.isFullPage = true;
+      this.isOpen = true; // Open chat automatically
+      this.startConversation(); // Start immediately
+    }
   }
-
+get isFullPageview(): boolean {
+  return this.router.url.includes('check-eligibility');
+}
   ngAfterViewChecked() {
     // Don't auto-scroll here - let users scroll freely
   }
@@ -267,8 +276,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       );
     } else if (this.formData.productType === 'personalLoan') {
       flow.push(
-
-         {
+        {
           question:
             "What's your company name? (Optional - type 'skip' to continue)",
           field: 'companyName',
@@ -286,7 +294,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             );
           },
         },
-{
+        {
           question:
             "What's your Monthly Net Take Home Salary? (Enter amount in ₹)",
           field: 'monthlyIncome',
@@ -423,25 +431,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     //   });
     // }
 
-    flow.push({
-      question:
-        "What's your loan requirement amount? (Optional - enter a number or skip)",
-      field: 'loanRequirement',
-      validation: (value: string) => {
-        if (!value || value.trim() === '') return true; // Optional
-        return /^[0-9]+$/.test(value);
-      },
-    },
+    flow.push(
       {
-          question: 'How urgently do you need the funds?',
-          field: 'loanUrgency',
-          options: [
-            'Immediately (within 7 days)',
-            'Within 15–30 days',
-            'Flexible timeline',
-          ],
+        question:
+          "What's your loan requirement amount? (Optional - enter a number or skip)",
+        field: 'loanRequirement',
+        validation: (value: string) => {
+          if (!value || value.trim() === '') return true; // Optional
+          return /^[0-9]+$/.test(value);
         },
-  );
+      },
+      {
+        question: 'How urgently do you need the funds?',
+        field: 'loanUrgency',
+        options: [
+          'Immediately (within 7 days)',
+          'Within 15–30 days',
+          'Flexible timeline',
+        ],
+      },
+    );
 
     // GST registration only for businessLoan
     // if (this.formData.productType === 'businessLoan') {
@@ -885,6 +894,10 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.apiService.createEnquiry(formData).subscribe({
       next: (response: any) => {
         this.loading = false;
+          if (this.sourceFromUrl?.toLowerCase() == 'facebook') {
+          fbq('track', 'Lead', { value: 10.0, currency: 'INR' });
+          console.log('Facebook Lead Event Fired');
+        }
         this.addBotMessage(
           '✅ Your application has been submitted successfully! Our team will contact you shortly.',
         );

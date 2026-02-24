@@ -1,18 +1,27 @@
 <div class="chatbot-container">
   <!-- Chatbot Button -->
-  <button class="chatbot-toggle" (click)="toggleChat()" [class.open]="isOpen">
-    <i class="pi pi-comments" *ngIf="!isOpen"></i>
-    <i class="pi pi-times" *ngIf="isOpen"></i>
-  </button>
+  @if (!isFullPageview) {
+    <button class="chatbot-toggle" (click)="toggleChat()" [class.open]="isOpen">
+      @if (!isOpen) {
+        <i class="pi pi-comments"></i>
+      } @else {
+        <i class="pi pi-times"></i>
+      }
+    </button>
+  }
 
   <!-- Chat Window -->
-  <div class="chatbot-window" [class.open]="isOpen">
+  <div
+    class="chatbot-window"
+    [class.open]="isOpen"
+    [class.full-page]="isFullPage"
+  >
     <div class="chatbot-header">
       <div class="header-content">
         <div class="bot-avatar">
-          <img 
-            src="assets/img/logo.png" 
-            alt="Fintalk Logo" 
+          <img
+            src="assets/img/logo.png"
+            alt="Fintalk Logo"
             width="45"
             height="45"
             loading="lazy"
@@ -26,10 +35,20 @@
         </div>
       </div>
       <div class="header-actions">
-        <button class="restart-btn" (click)="restartChat()" title="Restart Chat" *ngIf="messages.length > 0 && currentStep > 0">
+        <button
+          class="restart-btn"
+          (click)="restartChat()"
+          title="Restart Chat"
+          *ngIf="messages.length > 0 && currentStep > 0"
+        >
           <i class="pi pi-refresh"></i>
         </button>
-        <button class="back-btn-header" (click)="goBackOneStep()" title="Go Back" *ngIf="showBackButton">
+        <button
+          class="back-btn-header"
+          (click)="goBackOneStep()"
+          title="Go Back"
+          *ngIf="showBackButton"
+        >
           <i class="pi pi-arrow-left"></i>
         </button>
         <button class="close-btn" (click)="toggleChat()">
@@ -46,15 +65,21 @@
         [class.user-message]="message.type === 'user'"
       >
         <div class="message-content">
-          <div class="message-text" [innerHTML]="formatMessage(message.content)"></div>
+          <div
+            class="message-text"
+            [innerHTML]="formatMessage(message.content)"
+          ></div>
           <div class="message-time">
-            {{ message.timestamp | date: 'shortTime' }}
+            {{ message.timestamp | date: "shortTime" }}
           </div>
         </div>
       </div>
 
       <!-- Options Buttons -->
-      <div *ngIf="messages.length > 0 && messages[messages.length - 1].options" class="options-container">
+      <div
+        *ngIf="messages.length > 0 && messages[messages.length - 1].options"
+        class="options-container"
+      >
         <button
           *ngFor="let option of messages[messages.length - 1].options"
           class="option-button"
@@ -83,8 +108,12 @@
     </div>
 
     <!-- WhatsApp Quick Action -->
-    <div class="whatsapp-quick-action" *ngIf="isOpen">
-      <button class="whatsapp-btn" (click)="openWhatsApp()" title="Chat on WhatsApp">
+    <div class="whatsapp-quick-action" *ngIf="isOpen && !isFullPageview">
+      <button
+        class="whatsapp-btn"
+        (click)="openWhatsApp()"
+        title="Chat on WhatsApp"
+      >
         <i class="pi pi-whatsapp"></i>
         <span>WhatsApp</span>
       </button>
