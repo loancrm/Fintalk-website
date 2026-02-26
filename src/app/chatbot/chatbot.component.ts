@@ -5,7 +5,7 @@ import {
   ElementRef,
   AfterViewChecked,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 declare var fbq: Function;
 interface Message {
@@ -103,6 +103,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private apiService: ApiserviceService,
   ) {}
 
@@ -113,6 +114,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       this.isOpen = true; // Open chat automatically
       this.startConversation(); // Start immediately
     }
+    this.route.queryParams.subscribe((params) => {
+      this.sourceFromUrl = params['source'] || 'website';
+    });
   }
 get isFullPageview(): boolean {
   return this.router.url.includes('check-eligibility');
@@ -867,7 +871,7 @@ get isFullPageview(): boolean {
     // Prepare data similar to contact-details component
     const formData = {
       ...this.formData,
-      enquirySource: 'website',
+        enquirySource: this.sourceFromUrl,
       eligibility: 'eligible',
     };
 
