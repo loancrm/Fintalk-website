@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class ApiserviceService {
   // private BASE_URL = 'http://localhost:5002/';
-  private BASE_URL = 'https://rest.thefintalk.in:5002/';
+  // private BASE_URL = 'https://rest.thefintalk.in:5002/';
+  private BASE_URL = 'https://api.myloancrm.com/app/';
+
 
   constructor(private http: HttpClient) {}
   createEnquiry(data: any) {
