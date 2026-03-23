@@ -181,7 +181,7 @@ export class ContactDetailsComponent implements OnInit {
         this.submitted.emit(); // Notify parent component
         this.loading = false;
         if (this.sourceFromUrl?.toLowerCase() == 'facebook') {
-          fbq('track', 'Lead', { value: 10.0, currency: 'INR' });
+          fbq('track', 'Lead');
           console.log('Facebook Lead Event Fired');
         }
       },

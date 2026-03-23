@@ -899,7 +899,7 @@ get isFullPageview(): boolean {
       next: (response: any) => {
         this.loading = false;
           if (this.sourceFromUrl?.toLowerCase() == 'facebook') {
-          fbq('track', 'Lead', { value: 10.0, currency: 'INR' });
+          fbq('track', 'Lead');
           console.log('Facebook Lead Event Fired');
         }
         this.addBotMessage(
