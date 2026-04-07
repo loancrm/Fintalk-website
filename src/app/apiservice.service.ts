@@ -1,6 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
+export interface OtpResponse {
+  success?: boolean;
+  message?: string;
+  error?: string;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -19,6 +25,19 @@ export class ApiserviceService {
   }
   createContactRequests(data: any) {
     return this.http.post(this.BASE_URL + 'enquiries/contact-requests', data);
+  }
+   sendMobileOtp(mobile: string): Observable<OtpResponse> {
+    return this.http.post<OtpResponse>(
+      this.BASE_URL + 'enquiries/send-otp',
+      { mobile }
+    );
+  }
+
+  verifyMobileOtp(mobile: string, otp: string): Observable<OtpResponse> {
+    return this.http.post<OtpResponse>(
+      this.BASE_URL + 'enquiries/verify-otp',
+      { mobile, otp }
+    );
   }
   sendOtp(data: any) {
     return this.http.post(this.BASE_URL + 'enquiries/send-otp', data);

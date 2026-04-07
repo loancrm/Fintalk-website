@@ -1,0 +1,326 @@
+<!-- <p-toast position="top-right"></p-toast> -->
+
+<section class="fw-root ">
+  <div class="fw-left">
+
+    <!-- <div class="fw-logo">
+      <div class="fw-logo-icon">F</div>
+      <div class="fw-logo-name">FinTalk</div>
+    </div> -->
+    <div class="fw-left-scroll">
+
+  <!-- KEY BENEFITS -->
+  <div class="fw-section">
+    <div class="fw-section-head">
+      <div class="fw-section-icon">
+        <i class="fas fa-bolt"></i>
+      </div>
+      <h3>Key Benefits</h3>
+    </div>
+    <ul>
+      <li>Quick loan disbursement with minimal waiting time</li>
+      <li>Competitive and lower interest rates tailored to your profile</li>
+      <li>Simple and minimal documentation process</li>
+      <li>100% digital journey with no branch visits required</li>
+    </ul>
+  </div>
+
+  <!-- LOAN FEATURES -->
+  <div class="fw-section">
+    <div class="fw-section-head">
+      <div class="fw-section-icon">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      <h3>Loan Features</h3>
+    </div>
+    <ul>
+      <li>Flexible EMI options designed to match your income</li>
+      <li>High approval chances with smart eligibility checks</li>
+      <li>Personalized loan offers based on your needs</li>
+      <li>Transparent process with zero hidden charges</li>
+    </ul>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <!-- <div class="fw-section">
+    <div class="fw-section-head">
+      <div class="fw-section-icon">
+        <i class="fas fa-cogs"></i>
+      </div>
+      <h3>How It Works</h3>
+    </div>
+    <ul>
+      <li>Fill in your basic financial details</li>
+      <li>Get instant eligibility analysis</li>
+      <li>Receive the best loan options instantly</li>
+      <li>Complete the process and get funds quickly</li>
+    </ul>
+  </div> -->
+
+  <!-- SAFE & SECURE -->
+  <div class="fw-section fw-footer-note">
+    <div class="fw-section-head">
+      <div class="fw-section-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h3>Safe & Secure</h3>
+    </div>
+
+    <p>
+      We prioritize your privacy and security by using advanced encryption and strict 
+      data protection standards. Your information is always safe, secure, and never shared 
+      without your consent.
+    </p>
+  </div>
+
+</div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="fw-right">
+
+    <!-- STEP 1: LOAN TYPE CARDS -->
+    <div *ngIf="!selectedLoan" class="fw-select-wrap">
+      <h2>What type of loan do you need?</h2>
+      <p>Choose a product to get started</p>
+
+      <div class="fw-cards">
+        <div class="fw-card personal" (click)="selectLoan('personal')">
+          <div class="fw-card-top-bar"></div>
+          <div class="fw-card-left-bar"></div>
+          <div class="fw-card-emoji">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3>Personal Loan</h3>
+          <p>For personal expenses &amp; needs</p>
+          <!-- <span class="fw-card-badge fw-badge-personal">Up to ₹40L</span> -->
+        </div>
+
+        <div class="fw-card business" (click)="selectLoan('business')">
+          <div class="fw-card-top-bar"></div>
+          <div class="fw-card-left-bar"></div>
+          <div class="fw-card-emoji">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>Business Loan</h3>
+          <p>Grow your business faster</p>
+          <!-- <span class="fw-card-badge fw-badge-business">Up to ₹2Cr</span> -->
+        </div>
+
+        <div class="fw-card professional" (click)="selectLoan('professional')">
+          <div class="fw-card-top-bar"></div>
+          <div class="fw-card-left-bar"></div>
+          <div class="fw-card-emoji">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3>Professional Loan</h3>
+          <p>For self-employed professionals</p>
+          <!-- <span class="fw-card-badge fw-badge-professional">Up to ₹75L</span> -->
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="fw-stats-row">
+        <div class="fw-stat">
+          <span class="fw-stat-num">10L+</span>
+          <span class="fw-stat-label">Happy Customers</span>
+        </div>
+        <div class="fw-stat">
+          <span class="fw-stat-num">24 Hours</span>
+          <span class="fw-stat-label">Approval Time</span>
+        </div>
+        <div class="fw-stat">
+          <span class="fw-stat-num">₹500Cr+</span>
+          <span class="fw-stat-label">Loans Disbursed</span>
+        </div>
+        <div class="fw-stat">
+          <span class="fw-stat-num">4.9★</span>
+          <span class="fw-stat-label">Customer Rating</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: FORM -->
+    <div *ngIf="selectedLoan && !isSubmitted" class="fw-form-wrap">
+
+      <!-- STEP INDICATOR -->
+      <div class="fw-steps">
+        <div class="fw-step"
+             *ngFor="let g of config?.groups; let i = index"
+             [class.active]="i === currentGroupIndex"
+             [class.done]="i < currentGroupIndex">
+          <div class="circle">
+            <span *ngIf="i >= currentGroupIndex">{{ i + 1 }}</span>
+            <i class="pi pi-check" *ngIf="i < currentGroupIndex"></i>
+          </div>
+          <div class="label">{{ g.title }}</div>
+        </div>
+      </div>
+
+      <!-- GROUP TITLE -->
+      <h2 class="fw-group-title">{{ currentGroup?.title }}</h2>
+      <p class="fw-group-sub">{{ currentGroup?.subtitle }}</p>
+
+      <!-- QUESTIONS -->
+       <div class="fw-fields-grid">
+        <ng-container *ngFor="let q of currentGroup?.questions">
+
+        <div *ngIf="!(q.id === 'emiAmount' && answers['hasEmi'] !== 'Yes')"
+             class="fw-field"
+             [class.has-err]="showErrors && (fieldErrors[q.id] || !answers[q.id])">
+
+          <label class="fw-label">{{ q.label }}</label>
+
+          <!-- MOBILE FIELD with OTP button beside -->
+          <ng-container *ngIf="q.id === 'phone' || q.id === 'mobile'; else otherFields">
+
+            <div class="fw-mobile-row">
+              <div class="fw-mobile-input-wrap">
+                <input
+                  pInputText
+                  [(ngModel)]="answers[q.id]"
+                  class="fw-input fw-mobile-input"
+                  [placeholder]="q.ph || q.label"
+                  [readonly]="mobileOtpVerified"
+                  [class.input-verified]="mobileOtpVerified"
+                  type="number"
+                />
+                <span class="fw-input-tick" *ngIf="mobileOtpVerified">
+                  <i class="pi pi-check-circle"></i>
+                </span>
+              </div>
+
+              <button
+                *ngIf="!mobileOtpVerified"
+                class="fw-otp-send-btn"
+                (click)="sendMobileOtp()"
+                [disabled]="sendingMobileOtp || mobileResendCooldown > 0 || !isMobileValid"
+                type="button">
+                {{
+                  sendingMobileOtp
+                    ? 'Sending…'
+                    : mobileOtpSent
+                      ? mobileResendCooldown > 0
+                        ? 'Resend in ' + mobileResendCooldown + 's'
+                        : 'Resend OTP'
+                      : 'Send OTP'
+                }}
+              </button>
+            </div>
+
+            <div class="fw-otp-input-row" *ngIf="mobileOtpSent && !mobileOtpVerified">
+              <input
+                pInputText
+                [(ngModel)]="mobileOtp"
+                class="fw-input"
+                placeholder="Enter 4-digit OTP"
+                maxlength="4"
+                inputmode="numeric"
+                type="text"
+              />
+              <button
+                class="fw-otp-verify-btn"
+                (click)="verifyMobileOtp()"
+                [disabled]="verifyingMobileOtp"
+                type="button">
+                {{ verifyingMobileOtp ? 'Verifying…' : 'Verify OTP' }}
+              </button>
+            </div>
+
+          </ng-container>
+
+          <!-- ALL OTHER FIELDS -->
+          <ng-template #otherFields>
+
+            <input
+              *ngIf="q.type === 'text' && q.id !== 'email'"
+              pInputText
+              [(ngModel)]="answers[q.id]"
+              class="fw-input w-full"
+              [placeholder]="q.ph || q.label"
+              [type]="
+                q.id === 'salary'        ||
+                q.id === 'emiAmount'     ||
+                q.id === 'monthlyIncome' ||
+                q.id === 'loanAmount'
+                ? 'number' : 'text'
+              "
+            />
+
+            <input
+              *ngIf="q.id === 'email'"
+              pInputText
+              [(ngModel)]="answers[q.id]"
+              class="fw-input w-full"
+              placeholder="Enter email"
+              type="email"
+            />
+
+            <p-select
+              *ngIf="q.type === 'select'"
+              [(ngModel)]="answers[q.id]"
+              [options]="q.options || []"
+              [placeholder]="'Select ' + q.label"
+              styleClass="fw-dropdown w-full "
+              appendTo="body"
+            ></p-select>
+
+          </ng-template>
+
+          <!-- <div class="fw-err">This field is required</div> -->
+           <div class="fw-err">{{ fieldErrors[q.id] || 'This field is required' }}</div>
+        </div>
+
+      </ng-container>
+       </div>
+      <!-- FOOTER BUTTONS -->
+      <div class="fw-footer">
+        <button
+          class="fw-back-btn"
+          (click)="goBack()"
+          type="button">
+          ← Back
+        </button>
+
+        <button
+          class="fw-btn"
+          (click)="nextGroup()"
+          [disabled]="isSubmitting"
+          type="button">
+          {{
+            isSubmitting
+              ? 'Submitting…'
+              : currentGroupIndex === totalGroups - 1
+                ? 'Submit →'
+                : 'Continue →'
+          }}
+        </button>
+      </div>
+    </div>
+
+    <!-- ELIGIBILITY POPUP -->
+    <div class="popup-overlay" *ngIf="showEligibilityPopup">
+      <div class="popup-box">
+        <div class="popup-icon">
+          <i class="fa-solid fa-ban"></i>
+        </div>
+        <!-- <h2>You are not eligible for loan</h2> -->
+        <p class="popup-message">{{ eligibilityMessage }}</p>
+        <button class="popup-btn" (click)="showEligibilityPopup = false">OK</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div *ngIf="isSubmitted" class="fw-success">
+      <div class="fw-success-icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2>Application Submitted!</h2>
+      <p>Thank you! Our team will reach out to you shortly.</p>
+      <button class="fw-btn-outline" (click)="goToHome()" type="button">
+        Go To Home
+      </button>
+    </div>
+
+  </div>
+</section>

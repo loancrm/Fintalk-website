@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoanApplicationComponent } from './loan-application/loan-application.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { CampaignBuilderComponentComponent } from './campaign-builder-component/campaign-builder-component.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,9 +37,13 @@ const routes: Routes = [
         (m) => m.EmicalculatorModule,
       ),
   },
+  // {
+  //   path: 'check-eligibility',
+  // component: ChatbotComponent,
+  // },
   {
     path: 'check-eligibility',
-  component: ChatbotComponent,
+  component: CampaignBuilderComponentComponent,
   },
   // { path: "about", component: AboutComponent },
   // { path: "process", component: ProcessComponent },
