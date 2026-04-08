@@ -604,7 +604,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
     for (const q of questions) {
       const value = this.answers[q.id];
 
-      // Required check
+
       if (!value && value !== 0) {
         this.showErrors = true;
         this.fieldErrors[q.id] = 'This field is required.';
