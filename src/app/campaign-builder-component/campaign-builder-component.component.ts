@@ -276,7 +276,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
               options: ['750+', '700-749', 'Below 700', 'Not sure']
             },
             {
-              id: 'creditHistory',
+              id: 'history',
               label: 'Any past loan or credit card defaults, write-offs, settlements or overdue?',
               type: 'select',
               options: [
@@ -733,7 +733,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
       payload.isGstRegistered        = a['gst']              || null;
       payload.businessCurrentAccount = a['currentAccount']   || null;
       payload.cibilScore             = a['cibil']            || null;
-      payload.creditHistory          = a['creditHistory']    || null;
+      payload.creditHistory          = a['history']    || null;
       payload.loanRequirement        = a['loanAmount']       || null;
       payload.loanUrgency            = a['loanUrgency']      || null;
       payload.city                   = a['city']             || null;
