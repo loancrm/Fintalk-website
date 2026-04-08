@@ -75,9 +75,9 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             { id: 'company', label: 'Company Name', type: 'text' },
             {
               id: 'duration',
-              label: 'Work Duration',
+              label: 'How many years of work experience do you have?',
               type: 'select',
-              options: ['0-3 Months', '3-6 Months', '6-12 Months', '1+ Year']
+              options: ['0-1 Years', '1-2 Years', '2-3 Years', '3-4 Years', '5+ Years']
             },
             { id: 'salary', label: 'Monthly Salary', type: 'text' },
             {
@@ -86,7 +86,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
               type: 'select',
               options: ['Yes', 'No']
             },
-            { id: 'emiAmount', label: 'Total EMI per month', type: 'text' },
+            { id: 'emiAmount', label: 'Enter your total monthly EMI amount.', type: 'text' },
             {
               id: 'payslip',
               label: 'Does your company provide payslips?',
@@ -111,9 +111,16 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
               type: 'select',
               options: ['750+', '700-749', 'Below 700', 'Not sure']
             },
+           
             {
+              id: 'bounce',
+              label: 'Any Active Loan EMI bounces in last 6 months',
+              type: 'select',
+              options: ['None', '1-2 minor', 'Multiple']
+            },
+             {
               id: 'history',
-              label: 'Loan / Credit history',
+              label: 'Any past loan or credit card defaults, write-offs, settlements or overdue?',
               type: 'select',
               options: [
                 'No, clean history',
@@ -121,11 +128,27 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
                 'Yes, unresolved issues'
               ]
             },
+          ]
+        },
+        {
+          title: 'Loan Requirement',
+          subtitle: 'Funding needs',
+          questions: [
             {
-              id: 'bounce',
-              label: 'EMI bounces in last 6 months',
+              id: 'amount',
+              label: 'How Much Loan Amount do you require?',
               type: 'select',
-              options: ['None', '1-2 minor', 'Multiple']
+              options: ['₹5-10 Lakhs', '₹10-20 Lakhs', '₹20-50 Lakhs', '₹50 Lakhs+']
+            },
+            {
+              id: 'urgency',
+              label: 'How Urgently do you need the funds?',
+              type: 'select',
+              options: [
+                'Immediately (within 7 days)',
+                'Within 15-30 days',
+                'Flexible timeline'
+              ]
             }
           ]
         },
@@ -139,28 +162,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             { id: 'city', label: 'City', type:'text'}
           ]
         },
-        {
-          title: 'Other Details',
-          subtitle: 'Loan requirement',
-          questions: [
-            {
-              id: 'amount',
-              label: 'Loan Amount',
-              type: 'select',
-              options: ['₹5-10 Lakhs', '₹10-20 Lakhs', '₹20-50 Lakhs', '₹50 Lakhs+']
-            },
-            {
-              id: 'urgency',
-              label: 'Loan Urgency',
-              type: 'select',
-              options: [
-                'Immediately (within 7 days)',
-                'Within 15-30 days',
-                'Flexible timeline'
-              ]
-            }
-          ]
-        }
+        
       ]
     },
 
@@ -213,7 +215,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             },
             {
               id: 'currentAccount',
-              label: 'Current Account Status',
+              label: 'Do you currently hold a business current account?',
               type: 'select',
               options: [
                 'Yes, actively used',
@@ -275,12 +277,29 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             },
             {
               id: 'creditHistory',
-              label: 'Credit History',
+              label: 'Any past loan or credit card defaults, write-offs, settlements or overdue?',
               type: 'select',
               options: [
                 'No, clean history',
                 'Minor past issue (resolved)',
                 'Yes, unresolved issues'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Loan Requirement',
+          subtitle: 'Funding needs',
+          questions: [
+            { id: 'loanAmount', label: 'How Much Loan Amount do you require?', type: 'text' },
+            {
+              id: 'loanUrgency',
+              label: 'How Urgently do you need the funds?',
+              type: 'select',
+              options: [
+                'Immediately (within 7 days)',
+                'Within 15–30 days',
+                'Flexible timeline'
               ]
             }
           ]
@@ -294,24 +313,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             { id: 'email',         label: 'Email ID',            type: 'text' },
             { id:'city', label:'City', type:'text'}
           ]
-        },
-        {
-          title: 'Loan Requirement',
-          subtitle: 'Funding needs',
-          questions: [
-            { id: 'loanAmount', label: 'Loan Amount', type: 'text' },
-            {
-              id: 'loanUrgency',
-              label: 'Loan Urgency',
-              type: 'select',
-              options: [
-                'Immediately (within 7 days)',
-                'Within 15–30 days',
-                'Flexible timeline'
-              ]
-            }
-          ]
-        }
+        }, 
       ]
     },
 
@@ -331,7 +333,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             },
             {
               id: 'experience',
-              label: 'Years of Experience',
+              label: 'How many years of work experience do you have?',
               type: 'text',
               ph: 'Enter years (0-50)'
             },
@@ -361,6 +363,23 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
         //   ]
         // },
         {
+          title: 'Loan Requirement',
+          subtitle: 'Funding needs',
+          questions: [
+            { id: 'loanAmount', label: 'How Much Loan Amount do you require?', type: 'text' },
+            {
+              id: 'loanUrgency',
+              label: 'How Urgently do you need the funds?',
+              type: 'select',
+              options: [
+                'Immediately (within 7 days)',
+                'Within 15–30 days',
+                'Flexible timeline'
+              ]
+            }
+          ]
+        },
+        {
           title: 'Contact Details',
           subtitle: 'We will reach you',
           questions: [
@@ -370,23 +389,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
             { id:'city', label:'City', type:'text'}
           ]
         },
-        {
-          title: 'Loan Requirement',
-          subtitle: 'Funding needs',
-          questions: [
-            { id: 'loanAmount', label: 'Loan Amount', type: 'text' },
-            {
-              id: 'loanUrgency',
-              label: 'Loan Urgency',
-              type: 'select',
-              options: [
-                'Immediately (within 7 days)',
-                'Within 15–30 days',
-                'Flexible timeline'
-              ]
-            }
-          ]
-        }
+        
       ]
     }
   };
