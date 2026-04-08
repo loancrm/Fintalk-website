@@ -586,9 +586,26 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
       return;
     }
     if (this.answers['gst'] === 'No') {
-      this.openEligibilityPopup('You are not eligible for a loan.');
+      this.openEligibilityPopup('We are unable to proceed because GST registration is required to verify your business operations.');
       return;
     }
+    if (this.answers['payslip'] === 'No') {
+      this.openEligibilityPopup('You are not eligible for a personal loan because payslips are required as proof of stable income.');
+      return;
+    }
+     if (this.answers['salaryBank'] === 'No') {
+      this.openEligibilityPopup('You are not eligible for a personal loan because a salary account is required.');
+      return;
+    }
+    if (this.selectedLoan === 'personal' && this.answers['salary']) {
+    const salary = Number(this.answers['salary']);
+
+    if (salary < 30000) {
+      this.openEligibilityPopup('You are not eligible. Your salary must be at least ₹30,000.');
+      return;
+    }
+  }
+
 
     // Block if mobile not OTP verified
     if (this.currentGroupHasMobile && !this.mobileOtpVerified) {
@@ -674,88 +691,89 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
       this.submitForm();
     }
   }
+
   submitForm(): void {
-  this.isSubmitting = true;
+    this.isSubmitting = true;
 
-  const a = this.answers;
+    const a = this.answers;
 
-  const payload: any = {
-    accountId:     1234567,
-    productType:   this.getProductType(),
-    status:        'active',
-    enquirySource: this.enquirySource,
-  };
+    const payload: any = {
+      accountId:     1234567,
+      productType:   this.getProductType(),
+      status:        'active',
+      enquirySource: this.enquirySource,
+    };
 
-  if (this.selectedLoan === 'personal') {
-    payload.companyName          = a['company']    || null;
-    payload.workExperience       = a['duration']   || null;
-    payload.monthlyIncome        = a['salary']     || null;
-    payload.totalEmi             = a['emiAmount']  || null;
-    payload.payslipProvided      = a['payslip']    || null;
-    payload.salaryCreditedToBank = a['salaryBank'] || null;
-    payload.cibilScore           = a['cibil']      || null;
-    payload.creditHistory        = a['history']    || null;
-    payload.emiBounces           = a['bounce']     || null;
-    payload.contactPerson        = a['name']       || null;
-    payload.mobile               = a['phone']      || null;
-    payload.emailId              = a['email']      || null;
-    payload.loanRequirement      = a['amount']     || null;
-    payload.loanUrgency          = a['urgency']    || null;
-    payload.city                 =a['city']        || null;
-  }
-
-  else if (this.selectedLoan === 'business') {
-    payload.businessName           = a['businessName']     || null;
-    payload.contactPerson          = a['contactPerson']    || null;
-    payload.mobile                 = a['mobile']           || null;
-    payload.emailId                = a['email']            || null;
-    payload.businessEntity         = a['businessEntity']   || null;
-    payload.businessVintage        = a['businessVintage']  || null;
-    payload.businessTurnover       = a['businessTurnover'] || null;
-    payload.isGstRegistered        = a['gst']              || null;
-    payload.businessCurrentAccount = a['currentAccount']   || null;
-    payload.cibilScore             = a['cibil']            || null;
-    payload.creditHistory          = a['creditHistory']    || null;
-    payload.loanRequirement        = a['loanAmount']       || null;
-    payload.loanUrgency            = a['loanUrgency']      || null;
-    payload.city                   = a['city']             || null;
-  }
-
-  else if (this.selectedLoan === 'professional') {
-    payload.profession      = a['profession']    || null;
-    payload.workExperience  = a['experience']    || null;
-    payload.monthlyIncome   = a['monthlyIncome'] || null;
-    payload.contactPerson   = a['name']          || null;
-    payload.mobile          = a['mobile']        || null;
-    payload.emailId         = a['email']         || null;
-    payload.loanRequirement = a['loanAmount']    || null;
-    payload.loanUrgency     = a['loanUrgency']   || null;
-    payload.city            = a['city']          || null;
-  }
-
-  this.apiService.createEnquiry(payload).subscribe({
-    next: (res: any) => {
-      this.isSubmitting = false;
-      if (res?.message) {
-        this.referenceId = res?.enquiryId || '';
-        this.isSubmitted = true;
-
-        // Facebook Pixel tracking
-        if (
-          this.enquirySource?.toLowerCase() === 'facebook' &&
-          typeof (window as any).fbq === 'function'
-        ) {
-          (window as any).fbq('track', 'Lead');
-        }
-
-      }
-    },
-    error: (err: any) => {
-      this.isSubmitting = false;
-      alert(err?.error?.message || 'Submission failed. Please try again.');
+    if (this.selectedLoan === 'personal') {
+      payload.companyName          = a['company']    || null;
+      payload.workExperience       = a['duration']   || null;
+      payload.monthlyIncome        = a['salary']     || null;
+      payload.totalEmi             = a['emiAmount']  || null;
+      payload.payslipProvided      = a['payslip']    || null;
+      payload.salaryCreditedToBank = a['salaryBank'] || null;
+      payload.cibilScore           = a['cibil']      || null;
+      payload.creditHistory        = a['history']    || null;
+      payload.emiBounces           = a['bounce']     || null;
+      payload.contactPerson        = a['name']       || null;
+      payload.mobile               = a['phone']      || null;
+      payload.emailId              = a['email']      || null;
+      payload.loanRequirement      = a['amount']     || null;
+      payload.loanUrgency          = a['urgency']    || null;
+      payload.city                 =a['city']        || null;
     }
-  });
-}
+
+    else if (this.selectedLoan === 'business') {
+      payload.businessName           = a['businessName']     || null;
+      payload.contactPerson          = a['contactPerson']    || null;
+      payload.mobile                 = a['mobile']           || null;
+      payload.emailId                = a['email']            || null;
+      payload.businessEntity         = a['businessEntity']   || null;
+      payload.businessVintage        = a['businessVintage']  || null;
+      payload.businessTurnover       = a['businessTurnover'] || null;
+      payload.isGstRegistered        = a['gst']              || null;
+      payload.businessCurrentAccount = a['currentAccount']   || null;
+      payload.cibilScore             = a['cibil']            || null;
+      payload.creditHistory          = a['creditHistory']    || null;
+      payload.loanRequirement        = a['loanAmount']       || null;
+      payload.loanUrgency            = a['loanUrgency']      || null;
+      payload.city                   = a['city']             || null;
+    }
+
+    else if (this.selectedLoan === 'professional') {
+      payload.profession      = a['profession']    || null;
+      payload.workExperience  = a['experience']    || null;
+      payload.monthlyIncome   = a['monthlyIncome'] || null;
+      payload.contactPerson   = a['name']          || null;
+      payload.mobile          = a['mobile']        || null;
+      payload.emailId         = a['email']         || null;
+      payload.loanRequirement = a['loanAmount']    || null;
+      payload.loanUrgency     = a['loanUrgency']   || null;
+      payload.city            = a['city']          || null;
+    }
+
+    this.apiService.createEnquiry(payload).subscribe({
+      next: (res: any) => {
+        this.isSubmitting = false;
+        if (res?.message) {
+          this.referenceId = res?.enquiryId || '';
+          this.isSubmitted = true;
+
+          // Facebook Pixel tracking
+          if (
+            this.enquirySource?.toLowerCase() === 'facebook' &&
+            typeof (window as any).fbq === 'function'
+          ) {
+            (window as any).fbq('track', 'Lead');
+          }
+
+        }
+      },
+      error: (err: any) => {
+        this.isSubmitting = false;
+        alert(err?.error?.message || 'Submission failed. Please try again.');
+      }
+    });
+  }
 
   private getProductType(): string {
     const map: Record<string, string> = {
@@ -778,16 +796,16 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
   }
 
   private openEligibilityPopup(message: string): void {
-  this.eligibilityMessage = message;
-  this.showEligibilityPopup = true;
-}
-goToHome(): void {
-  this.router.navigate(['/']);
-}
+    this.eligibilityMessage = message;
+    this.showEligibilityPopup = true;
+  }
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
 
-get isMobileValid(): boolean {
-  const mobile = this.answers[this.mobileFieldId];
-  return !!(mobile && /^[6-9][0-9]{9}$/.test(String(mobile)));
-}
+  get isMobileValid(): boolean {
+    const mobile = this.answers[this.mobileFieldId];
+    return !!(mobile && /^[6-9][0-9]{9}$/.test(String(mobile)));
+  }
 
 }
