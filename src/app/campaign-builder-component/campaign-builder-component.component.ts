@@ -77,7 +77,7 @@ export class CampaignBuilderComponentComponent implements OnDestroy {
               id: 'duration',
               label: 'How many years of work experience do you have?',
               type: 'select',
-              options: ['0-1 Years', '1-2 Years', '2-3 Years', '3-4 Years', '5+ Years']
+              options: ['0-1 Year', '1-2 Years', '2-3 Years', '3-4 Years', '5+ Years']
             },
             { id: 'salary', label: 'Monthly Salary', type: 'text' },
             {
